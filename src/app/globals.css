@@ -57,9 +57,53 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+
+  /* Accessibility skip link */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background-color: #7C1C2B;
+    color: #FAF7F2;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 0.75rem 0.75rem;
+    font-weight: 500;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(124, 28, 43, 0.15);
+    transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .skip-link:focus-visible {
+    top: 0;
+    outline: 2px solid #C9922A;
+    outline-offset: 2px;
+  }
 }
 
 @layer components {
+  /* Premium underline animation on hover */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #C9922A;
+    transform-origin: bottom right;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .link-underline-active::after {
+    transform: scaleX(1);
+  }
+
   /* Motif divider */
   .motif-divider {
     display: flex;

@@ -1,32 +1,11 @@
 import type { Metadata } from 'next';
-import { Phone, Mail, MapPin, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import { ContactPageForm } from '@/components/ContactPageForm';
 
 export const metadata: Metadata = {
   title: 'Contact Us — Get a Free Consultation',
   description: 'Get in touch with Ayan Hospitality for a free wedding consultation. Call, WhatsApp, or fill the form — we respond within 24 hours.',
 };
-
-const SERVICES_OPTIONS = [
-  'RSVP & Invitation Management',
-  'Guest Help Desk',
-  'VIP Guest Handling',
-  'Ritual Coordination',
-  'Artist Coordination',
-  'Production Management',
-  'F&B / Bar Management',
-  'Guest Giveaways & Hampers',
-  'Stationery & Collaterals',
-  'First Aid & Essentials',
-  'Airport / Railway Transfers',
-  'Luxury Vehicle Coordination',
-  'Luggage Tagging & Handling',
-  'Multi-city Logistics',
-  'Event Supervisors',
-  'Shadows',
-  'Runners',
-  'Porter Services',
-  'Inventory Management',
-];
 
 export default function ContactPage() {
   return (
@@ -89,52 +68,7 @@ export default function ContactPage() {
 
           {/* Form */}
           <div className="lg:col-span-2">
-            <form action="/api/contact" method="POST" id="contact-form" className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label htmlFor="contact-name" className="block text-sm font-medium text-charcoal mb-2">Your name *</label>
-                  <input id="contact-name" type="text" name="name" required placeholder="Priya Mehta" className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm" />
-                </div>
-                <div>
-                  <label htmlFor="contact-phone" className="block text-sm font-medium text-charcoal mb-2">Phone / WhatsApp *</label>
-                  <input id="contact-phone" type="tel" name="phone" required placeholder="+91 98765 43210" className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm" />
-                </div>
-                <div>
-                  <label htmlFor="contact-email" className="block text-sm font-medium text-charcoal mb-2">Email</label>
-                  <input id="contact-email" type="email" name="email" placeholder="priya@example.com" className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm" />
-                </div>
-                <div>
-                  <label htmlFor="contact-date" className="block text-sm font-medium text-charcoal mb-2">Event date</label>
-                  <input id="contact-date" type="date" name="eventDate" className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm" />
-                </div>
-                <div>
-                  <label htmlFor="contact-city" className="block text-sm font-medium text-charcoal mb-2">City / Venue</label>
-                  <input id="contact-city" type="text" name="city" placeholder="Udaipur, Jaipur…" className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm" />
-                </div>
-                <div>
-                  <label htmlFor="contact-guests" className="block text-sm font-medium text-charcoal mb-2">Guest count (approx.)</label>
-                  <input id="contact-guests" type="number" name="guestCount" placeholder="300" className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm" />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-charcoal mb-3">Services interested in</label>
-                <div className="flex flex-wrap gap-2">
-                  {SERVICES_OPTIONS.map((s) => (
-                    <label key={s} className="cursor-pointer">
-                      <input type="checkbox" name="services" value={s} className="sr-only peer" />
-                      <span className="inline-block px-3 py-1.5 rounded-full border border-cream-300 bg-cream-50 text-charcoal-soft text-xs peer-checked:bg-maroon-700 peer-checked:text-white peer-checked:border-maroon-700 transition-colors">{s}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label htmlFor="contact-message" className="block text-sm font-medium text-charcoal mb-2">Anything else you'd like us to know</label>
-                <textarea id="contact-message" name="message" rows={4} placeholder="Tell us about your event, any specific concerns, or how you heard about us…" className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm resize-none" />
-              </div>
-              <button type="submit" id="contact-form-submit" className="w-full py-4 rounded-xl bg-maroon-700 text-white font-semibold text-base hover:bg-maroon-800 active:scale-[0.99] transition-all">
-                Send Enquiry
-              </button>
-            </form>
+            <ContactPageForm />
           </div>
         </div>
       </section>

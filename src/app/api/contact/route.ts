@@ -60,10 +60,21 @@ Submitted via ayanhospitality.com at ${new Date().toISOString()}
       console.log('[Contact Form Submission]\n', emailBody);
     }
 
+    // Detect if client expects JSON
+    const isAjax = request.headers.get('accept')?.includes('application/json');
+
+    if (isAjax) {
+      return NextResponse.json({ success: true });
+    }
+
     // Redirect back with success
     return NextResponse.redirect(new URL('/contact?success=1', request.url));
   } catch (error) {
     console.error('Contact form error:', error);
+    const isAjax = request.headers.get('accept')?.includes('application/json');
+    if (isAjax) {
+      return NextResponse.json({ success: false, error: 'Failed to send message' }, { status: 500 });
+    }
     return NextResponse.redirect(new URL('/contact?error=1', request.url));
   }
 }

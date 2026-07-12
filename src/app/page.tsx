@@ -12,6 +12,7 @@ import {
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Button } from "@/components/ui/Button";
+import { HomepageContactForm } from "@/components/HomepageContactForm";
 import { buildWhatsAppUrl, formatDate } from "@/lib/utils";
 import {
   ArrowRight,
@@ -600,60 +601,7 @@ export default async function HomePage() {
             Tell us a little about your event and we'll get back to you within 24 hours.
           </p>
 
-          <form
-            action="/api/contact"
-            method="POST"
-            className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-6 lg:p-10"
-            id="homepage-contact-form"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your name"
-                required
-                className="w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm"
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone / WhatsApp number"
-                required
-                className="w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm"
-              />
-              <input
-                type="text"
-                name="city"
-                placeholder="Wedding city / venue"
-                className="w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm"
-              />
-              <input
-                type="text"
-                name="guestCount"
-                placeholder="Approx. guest count"
-                className="w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm"
-              />
-            </div>
-            <input
-              type="date"
-              name="eventDate"
-              className="w-full px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm mb-4"
-            />
-            <button
-              type="submit"
-              id="homepage-form-submit"
-              className="w-full py-4 rounded-xl bg-gold-500 text-white font-semibold text-base hover:bg-gold-400 active:scale-[0.99] transition-all"
-            >
-              Request a Free Consultation
-            </button>
-            <p className="text-cream-200/50 text-xs mt-4 text-center">
-              Or call us directly:{" "}
-              <a href="tel:+918826104232" className="text-gold-400 hover:underline">
-                +91 88261 04232
-              </a>{" "}
-              · We respond within 24 hours.
-            </p>
-          </form>
+          <HomepageContactForm />
         </div>
       </section>
     </>
