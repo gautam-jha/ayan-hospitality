@@ -49,14 +49,8 @@ export function Header() {
   if (pathname === '/guest-help-desk') return null;
 
   // Pages that start with a dark background hero section (white text header initially)
-  const isDarkHeroPage =
-    !pathname ||
-    pathname === '/' ||
-    pathname === '/about' ||
-    pathname === '/for-planners' ||
-    pathname === '/careers' ||
-    (pathname.startsWith('/blog/') && pathname !== '/blog') ||
-    (pathname.startsWith('/our-work/') && pathname !== '/our-work');
+  // Only the homepage starts without a top padding offset, allowing the hero to bleed behind the header.
+  const isDarkHeroPage = pathname === '/';
 
   return (
     <header
