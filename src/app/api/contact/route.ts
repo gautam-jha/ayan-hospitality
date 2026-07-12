@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     // Build email body
     const emailBody = `
-New ${type === 'b2b' ? 'Partnership' : 'Wedding'} Enquiry — Ayan Hospitality
+New ${type === 'b2b' ? 'Partnership' : 'Wedding'} Enquiry | Ayan Hospitality
 
 Name: ${name}
 Phone: ${phone}
@@ -47,7 +47,7 @@ Submitted via ayanhospitality.com at ${new Date().toISOString()}
           from: 'Ayan Hospitality Website <noreply@ayanhospitality.com>',
           to: [TO_EMAIL],
           reply_to: email || undefined,
-          subject: `New Enquiry from ${name} — ${type === 'b2b' ? 'Partnership' : 'Wedding'}`,
+          subject: `New Enquiry from ${name} | ${type === 'b2b' ? 'Partnership' : 'Wedding'}`,
           text: emailBody,
         }),
       });

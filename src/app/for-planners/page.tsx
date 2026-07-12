@@ -1,25 +1,25 @@
 import type { Metadata } from 'next';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { Shield, Users, FileText, Download, CheckCircle2, ArrowRight, Phone, Mail } from 'lucide-react';
+import { Shield, Users, FileText, Download, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'For Wedding Planners & Venues — Partner with Ayan Hospitality',
+  title: 'For Wedding Planners & Venues | Partner with Ayan Hospitality',
   description: 'White-label and sub-contract wedding hospitality & logistics services for wedding planners, hotels, and event companies. SOPs, trained staff, full capability deck available.',
 };
 
 const CREDIBILITY_POINTS = [
-  { icon: Shield, title: 'SOPs & Protocols', desc: 'Documented Standard Operating Procedures for every service — shareable with your team and your client.' },
-  { icon: Users, title: 'Trained, Verified Staff', desc: 'All on-ground staff complete our internal training programme. Staff vetting documentation available on request.' },
-  { icon: FileText, title: 'White-label Terms', desc: 'We operate fully under your brand if required — NDAs available, no direct contact with your client without your consent.' },
-  { icon: CheckCircle2, title: 'Seamless Integration', desc: 'We align with your existing vendor structure, attend your pre-event briefings, and report to your project lead.' },
+  { icon: Shield, title: 'SOPs & Protocols', desc: 'Documented Standard Operating Procedures for every service, shareable with your team and your client.' },
+  { icon: Users, title: 'Trained, Verified Staff', desc: 'All on-ground staff complete our internal training programme. Vetting documentation is available on request.' },
+  { icon: FileText, title: 'White-label Terms', desc: 'We operate fully under your brand if required, with NDAs available and no direct contact with your client without your consent.' },
+  { icon: CheckCircle2, title: 'Seamless Integration', desc: 'We align with your existing vendor structure, attend your pre-event briefings, and report directly to your project lead.' },
 ];
 
 const PROCESS_STEPS = [
-  { step: '01', title: 'Initial Briefing', desc: 'Share your event brief with us — we ask the right questions and come back with a scoped proposal within 48 hours.' },
+  { step: '01', title: 'Initial Briefing', desc: 'Share your event brief with us. We ask the right questions and come back with a scoped proposal within 48 hours.' },
   { step: '02', title: 'Proposal & Agreement', desc: 'We confirm scope, team size, and pricing. NDAs and white-label agreements are signed if required.' },
   { step: '03', title: 'Pre-event Integration', desc: 'We join your pre-event calls, align with your team, and share our deployment plan for your review.' },
-  { step: '04', title: 'On-ground Execution', desc: 'Our team operates as part of your event — reporting to your lead, maintaining your standards, invisible to the client if you prefer.' },
+  { step: '04', title: 'On-ground Execution', desc: 'Our team operates as part of your event, reporting to your lead, maintaining your standards, and remaining invisible to the client if you prefer.' },
 ];
 
 export default function ForPlannersPage() {
@@ -34,7 +34,7 @@ export default function ForPlannersPage() {
               A hospitality partner you can trust with your reputation
             </h1>
             <p className="text-cream-200/80 text-lg leading-relaxed mb-8">
-              We work with India's leading wedding planners and luxury hotels as a white-label or sub-contracted hospitality and logistics partner. 800+ events, full SOPs, and a team that makes you look good.
+              We work with India&apos;s leading wedding planners and luxury hotels as a white-label or sub-contracted hospitality and logistics partner. We bring 800+ events of experience, detailed SOPs, and a professional team that seamlessly integrates with yours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button href="#b2b-contact" variant="secondary" size="lg" id="planners-hero-cta">Partner with us <ArrowRight className="w-4 h-4" /></Button>

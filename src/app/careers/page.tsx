@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import { Button } from '@/components/ui/Button';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Careers — Join the Ayan Hospitality Team',
-  description: 'Join India\'s trusted wedding hospitality and logistics team. We\'re always looking for passionate, professional people — full-time, part-time, and event-day gig work available.',
+  title: 'Careers | Join the Ayan Hospitality Team',
+  description: 'Join India\'s trusted wedding hospitality and logistics team. We\'re always looking for passionate, professional people: full-time, part-time, and event-day gig work available.',
 };
 
 const ROLES = [
@@ -28,7 +27,7 @@ export default function CareersPage() {
               The people who make it happen
             </h1>
             <p className="text-cream-200/80 text-lg leading-relaxed mb-8">
-              Ayan Hospitality is built on the people on the ground — the supervisors, shadows, coordinators, and runners who make 400-guest weddings feel personal. If that's the kind of work you love, we'd love to hear from you.
+              Ayan Hospitality is built on the people on the ground: the supervisors, shadows, coordinators, and runners who make 400-guest weddings feel personal. If that&apos;s the kind of work you love, we&apos;d love to hear from you.
             </p>
           </div>
         </div>
@@ -57,8 +56,8 @@ export default function CareersPage() {
           </div>
 
           <div className="mt-12 bg-maroon-700 rounded-3xl p-10 text-center">
-            <h3 className="font-display text-3xl text-white font-semibold mb-3">Don't see your role?</h3>
-            <p className="text-cream-200/80 mb-6">We're always growing. Send us your CV and tell us how you'd like to contribute.</p>
+            <h3 className="font-display text-3xl text-white font-semibold mb-3">Don&apos;t see your role?</h3>
+            <p className="text-cream-200/80 mb-6">We&apos;re always growing. Send us your CV and tell us how you&apos;d like to contribute.</p>
             <a
               href="mailto:careers@ayanhospitality.com"
               id="careers-general-apply"

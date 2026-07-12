@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, ArrowLeft, CheckCircle2, Phone } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle2 } from 'lucide-react';
 
 const SERVICES_LIST = [
   { id: 'rsvp', label: 'RSVP & Invitation Management', pillar: 'Hospitality' },
@@ -92,11 +92,11 @@ export function BuildPackageWizard() {
     return name.trim() !== '' && phone.trim() !== '';
   };
 
-  const handleRadioKeyDown = (
+  const handleRadioKeyDown = <T extends string>(
     e: React.KeyboardEvent,
-    currentValue: string | null,
-    options: { value: string; label: string }[],
-    setValue: (val: any) => void
+    currentValue: T | null,
+    options: { value: T; label: string }[],
+    setValue: (val: T) => void
   ) => {
     const currentIndex = options.findIndex((opt) => opt.value === currentValue);
     let nextIndex = currentIndex;
@@ -141,7 +141,7 @@ export function BuildPackageWizard() {
           <CheckCircle2 className="w-10 h-10 text-gold-500" />
         </div>
         <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-3">Package request sent!</h2>
-        <p className="text-charcoal-muted mb-6">We'll reach out to <strong>{name}</strong> within 24 hours with a detailed quote.</p>
+        <p className="text-charcoal-muted mb-6">We&apos;ll reach out to <strong>{name}</strong> within 24 hours with a detailed quote.</p>
         <div className="bg-cream-100 rounded-2xl p-6 border border-cream-300 text-left mb-8 shadow-inner border-l-4 border-l-gold-500">
           <p className="text-sm font-semibold text-charcoal mb-2">Your indicative estimate</p>
           <p className="font-display text-3xl text-maroon-700 font-semibold">

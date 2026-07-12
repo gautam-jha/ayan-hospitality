@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'FAQ — Frequently Asked Questions',
-  description: 'Answers to the most common questions about Ayan Hospitality\'s wedding hospitality and logistics services — pricing, process, coverage, and more.',
+  title: 'FAQ | Frequently Asked Questions',
+  description: 'Answers to the most common questions about Ayan Hospitality\'s wedding hospitality and logistics services, including pricing, process, coverage, and more.',
 };
 
 const CATEGORIES = [
@@ -73,7 +73,7 @@ export default async function FAQPage() {
 
           <div className="mt-12 bg-maroon-700/5 border border-maroon-700/10 rounded-3xl p-8 text-center">
             <h3 className="font-display text-2xl text-maroon-700 font-semibold mb-3">Still have questions?</h3>
-            <p className="text-charcoal-muted mb-6">Our team is happy to answer anything — call, WhatsApp, or fill the contact form.</p>
+            <p className="text-charcoal-muted mb-6">Our team is happy to answer anything: call, WhatsApp, or fill the contact form.</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <Button href="/contact" variant="primary" id="faq-contact-cta">Contact Us <ArrowRight className="w-4 h-4" /></Button>
               <a href="https://wa.me/918826104232" target="_blank" rel="noopener noreferrer"

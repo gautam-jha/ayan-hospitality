@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { ArrowRight, MapPin, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Our Work — Wedding Case Studies',
-  description: 'Real wedding case studies from Ayan Hospitality — the challenges, what we did, and the outcomes. 800+ weddings delivered across India.',
+  title: 'Our Work | Wedding Case Studies',
+  description: 'Real wedding case studies from Ayan Hospitality. Learn about the challenges, what we did, and the outcomes across 800+ weddings in India.',
 };
 
 export default async function OurWorkPage() {
@@ -20,7 +20,7 @@ export default async function OurWorkPage() {
           <SectionHeading
             eyebrow="Our Work"
             title="Every wedding is a story. Here are a few of ours."
-            subtitle="Real events, real challenges, real outcomes — not a portfolio gallery, but an honest account of what we do."
+            subtitle="Real events, real challenges, real outcomes: not a portfolio gallery, but an honest account of what we do."
             centered
           />
         </div>
@@ -71,7 +71,7 @@ export default async function OurWorkPage() {
               Every event tells its own story.
             </h3>
             <p className="text-charcoal-muted mb-6 max-w-xl mx-auto">
-              We've managed weddings from 50 to 1,200 guests across 30+ cities. Get in touch to discuss yours.
+              We&apos;ve managed weddings from 50 to 1,200 guests across 30+ cities. Get in touch to discuss yours.
             </p>
             <Button href="/contact" variant="primary" id="our-work-contact">
               Start a Conversation <ArrowRight className="w-4 h-4" />

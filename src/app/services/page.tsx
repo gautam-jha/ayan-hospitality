@@ -3,12 +3,11 @@ import Link from 'next/link';
 import { getHospitalityServices, getLogisticsServices } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { buildWhatsAppUrl } from '@/lib/utils';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Wedding Hospitality & Logistics Services',
-  description: 'Full range of wedding hospitality and logistics services — RSVP management, guest help desk, VIP handling, airport transfers, luggage handling, and more. Covering 30+ cities across India.',
+  description: 'Full range of wedding hospitality and logistics services: RSVP management, guest help desk, VIP handling, airport transfers, luggage handling, and more. Covering 30+ cities across India.',
 };
 
 export default async function ServicesPage() {

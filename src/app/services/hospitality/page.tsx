@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getHospitalityServices } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {

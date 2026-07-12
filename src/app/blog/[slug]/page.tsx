@@ -25,7 +25,7 @@ const BLOG_CONTENT: Record<string, string> = {
   'rsvp-management-mistakes': `
 RSVP management sounds simple until you're two weeks out and still don't have a final headcount for a 400-person wedding.
 
-After managing 800+ weddings across India, here are the five mistakes we see families make — and how to avoid each one.
+After managing 800+ weddings across India, here are the five mistakes we see families make, and how to avoid each one.
 
 **1. Assuming guests will respond on time**
 
@@ -33,11 +33,11 @@ They won't. Especially for destination weddings where travel planning is involve
 
 **2. Collecting RSVPs across multiple channels**
 
-Phone calls to aunties, WhatsApp messages to cousins, email to international guests — and nobody keeping a single master list. Use one system (even a shared Google Sheet is better than nothing), or delegate this entirely to a professional.
+Phone calls to aunties, WhatsApp messages to cousins, email to international guests, and nobody keeping a single master list. Use one system (even a shared Google Sheet is better than nothing), or delegate this entirely to a professional.
 
 **3. Not collecting preferences with the RSVP**
 
-Dietary needs, mobility requirements, room preferences, airport arrival times — if you collect these after the RSVP, you're making twice the calls. Collect everything in one go.
+Dietary needs, mobility requirements, room preferences, airport arrival times. If you collect these after the RSVP, you're making twice the calls. Collect everything in one go.
 
 **4. Finalising headcount too late**
 
@@ -47,7 +47,7 @@ Hotels and caterers need final numbers 5-7 days out. Families who lock headcount
 
 If the bride's mother is handling one set of RSVPs and the groom's sister is handling another, data gets lost. Designate one person (or one team) who owns this entirely.
 
-If you'd rather not manage any of this yourself, our RSVP & Invitation Management service handles the full lifecycle — from digital outreach to final headcount reports.
+**If you'd rather not manage any of this yourself, our RSVP & Invitation Management service handles the full lifecycle, from digital outreach to final headcount reports.**
   `,
   'destination-wedding-logistics-checklist': `
 Moving 300 guests from Mumbai to Udaipur across three days is a logistics operation most families underestimate until something goes wrong.
@@ -92,15 +92,15 @@ VIP handling at Indian weddings is a delicate balance. Do it too visibly and oth
 
 **Define who your VIPs actually are**
 
-Not everyone who the family thinks is important needs dedicated handling. True VIPs — the ones who need assigned support — are usually: senior or elderly guests (75+), guests with mobility or health needs, out-of-town guests unfamiliar with the city or venue, and specific high-profile individuals the family wants to honour.
+Not everyone who the family thinks is important needs dedicated handling. True VIPs, the ones who need assigned support, are usually: senior or elderly guests (75+), guests with mobility or health needs, out-of-town guests unfamiliar with the city or venue, and specific high-profile individuals the family wants to honour.
 
 **Assign a Shadow, not a Greeter**
 
-A shadow is different from a welcome coordinator. A shadow stays with the guest through the event — anticipating needs, not waiting to be asked. If your grandmother uses a wheelchair, her shadow makes sure every transition (hotel room → lobby → bus → venue → seating) is smooth and dignified, without her having to ask for help.
+A shadow is different from a welcome coordinator. A shadow stays with the guest through the event, anticipating needs instead of waiting to be asked. If your grandmother uses a wheelchair, her shadow makes sure every transition (hotel room, lobby, bus, venue, and seating) is smooth and dignified, without her having to ask for help.
 
 **Coordinate with the hotel early**
 
-Room preferences, dietary needs, early check-in — most of this can be pre-arranged if you brief the hotel two weeks out. We do this for every VIP guest on our list.
+Room preferences, dietary needs, early check-in: most of this can be pre-arranged if you brief the hotel two weeks out. We do this for every VIP guest on our list.
 
 **Keep it discreet**
 
@@ -108,7 +108,7 @@ VIP handling that draws attention defeats its purpose. Our shadow staff dress li
 
 **Have one escalation path**
 
-If a VIP guest has a problem, there should be one number that solves it immediately. That's our help desk — one call, and the issue is either resolved or escalated to whoever can fix it.
+If a VIP guest has a problem, there should be one number that solves it immediately. That's our help desk: one call, and the issue is either resolved or escalated to whoever can fix it.
   `,
 };
 
@@ -186,7 +186,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <aside className="space-y-6">
               <div className="bg-maroon-700 rounded-2xl p-6 text-center sticky top-24">
                 <p className="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-3">Planning a wedding?</p>
-                <p className="text-cream-200/80 text-sm mb-5 leading-relaxed">Our team has managed 800+ weddings. We'd love to help with yours.</p>
+                <p className="text-cream-200/80 text-sm mb-5 leading-relaxed">Our team has managed 800+ weddings. We&apos;d love to help with yours.</p>
                 <Button href="/contact" variant="secondary" className="w-full justify-center" id="blog-post-cta">
                   Get a Free Consultation <ArrowRight className="w-4 h-4" />
                 </Button>

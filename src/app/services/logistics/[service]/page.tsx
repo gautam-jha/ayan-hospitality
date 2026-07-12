@@ -44,7 +44,7 @@ export default async function LogisticsServicePage({ params }: { params: Promise
           <div className="max-w-3xl">
             <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-4">Logistics Services</p>
             <h1 className="font-display text-5xl lg:text-6xl text-maroon-700 font-semibold mb-4">{service.title}</h1>
-            <p className="text-2xl text-charcoal-soft font-display italic mb-6">"{service.shortDescription}"</p>
+            <p className="text-2xl text-charcoal-soft font-display italic mb-6">&ldquo;{service.shortDescription}&rdquo;</p>
             <p className="text-charcoal-muted leading-relaxed text-lg mb-8">{service.longDescription}</p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button href="/contact" variant="primary" size="lg" id={`${slug}-get-quote`}>Get a Quote <ArrowRight className="w-4 h-4" /></Button>
@@ -61,7 +61,7 @@ export default async function LogisticsServicePage({ params }: { params: Promise
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-6">What's included</h2>
+            <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-6">What&apos;s included</h2>
             <ul className="space-y-3">
               {service.included.map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -82,7 +82,7 @@ export default async function LogisticsServicePage({ params }: { params: Promise
             {testimonial && (
               <div className="bg-maroon-700/5 rounded-2xl p-6 border border-maroon-700/10">
                 <div className="flex mb-3">{Array.from({length:5}).map((_,i)=><Star key={i} className="w-4 h-4 fill-gold-400 text-gold-400" />)}</div>
-                <blockquote className="text-charcoal-soft italic leading-relaxed mb-4">"{testimonial.quote}"</blockquote>
+                <blockquote className="text-charcoal-soft italic leading-relaxed mb-4">&ldquo;{testimonial.quote}&rdquo;</blockquote>
                 <p className="font-semibold text-charcoal text-sm">{testimonial.clientName}</p>
                 <p className="text-charcoal-muted text-xs">{testimonial.eventDescription}</p>
                 {testimonial.venue && <p className="text-gold-500 text-xs mt-1 flex items-center gap-1"><MapPin className="w-3 h-3" />{testimonial.venue}</p>}

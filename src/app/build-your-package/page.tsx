@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { BuildPackageWizard } from '@/components/BuildPackageWizard';
 
 export const metadata: Metadata = {
-  title: 'Build Your Package — Get an Estimate',
+  title: 'Build Your Package | Get an Estimate',
   description: 'Use our guided package builder to select services, get an indicative estimate, and request a custom quote from Ayan Hospitality in under 2 minutes.',
 };
 
@@ -14,7 +14,7 @@ export default function BuildYourPackagePage() {
           <div className="text-center mb-12">
             <p className="text-gold-500 text-xs font-semibold tracking-[0.3em] uppercase mb-4">Package Builder</p>
             <h1 className="font-display text-5xl text-maroon-700 font-semibold mb-4">Build Your Package</h1>
-            <p className="text-charcoal-muted text-lg">Answer 4 quick questions — get an indicative estimate in under 2 minutes.</p>
+            <p className="text-charcoal-muted text-lg">Answer 4 quick questions to get an indicative estimate in under 2 minutes.</p>
           </div>
           <BuildPackageWizard />
         </div>

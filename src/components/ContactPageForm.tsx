@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle2, AlertCircle, Phone, ArrowRight } from 'lucide-react';
+import { CheckCircle2, AlertCircle } from 'lucide-react';
 
 const SERVICES_OPTIONS = [
   'RSVP & Invitation Management',
@@ -232,7 +232,7 @@ export function ContactPageForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="block text-sm font-medium text-charcoal mb-2">Anything else you'd like us to know</label>
+        <label htmlFor="contact-message" className="block text-sm font-medium text-charcoal mb-2">Anything else you&apos;d like us to know</label>
         <textarea
           id="contact-message"
           name="message"

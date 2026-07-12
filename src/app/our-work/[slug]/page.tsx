@@ -76,7 +76,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               {testimonial && (
                 <div className="bg-cream-100 rounded-2xl p-6 border border-cream-200">
                   <div className="flex mb-3">{Array.from({length:5}).map((_,i)=><Star key={i} className="w-4 h-4 fill-gold-400 text-gold-400" />)}</div>
-                  <blockquote className="text-charcoal-soft italic text-sm leading-relaxed mb-4">"{testimonial.quote}"</blockquote>
+                  <blockquote className="text-charcoal-soft italic text-sm leading-relaxed mb-4">&ldquo;{testimonial.quote}&rdquo;</blockquote>
                   <p className="font-semibold text-charcoal text-sm">{testimonial.clientName}</p>
                   <p className="text-charcoal-muted text-xs">{testimonial.eventDescription}</p>
                 </div>

@@ -5,14 +5,14 @@ import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us — Our Story & Team',
+  title: 'About Us | Our Story & Team',
   description: 'Founded by Ayan Shah after 15+ years in the wedding industry, Ayan Hospitality was built to take the chaos of operations completely off the host family\'s shoulders. Meet our team.',
 };
 
 const TIMELINE = [
-  { year: '2009', event: 'First steps in the industry', detail: 'Ayan begins working in wedding operations — learning the industry from the ground up, event by event.' },
+  { year: '2009', event: 'First steps in the industry', detail: 'Ayan begins working in wedding operations, learning the industry from the ground up, event by event.' },
   { year: '2014', event: 'Seeing the gap', detail: 'After managing hundreds of events, a pattern becomes clear: logistics and hospitality are consistently the most under-planned, most impactful parts of a wedding. No dedicated company exists to fix this.' },
-  { year: '2018', event: 'The founding insight', detail: '"Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that." — Ayan Shah' },
+  { year: '2018', event: 'The founding insight', detail: '"Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that." - Ayan Shah' },
   { year: '2020', event: 'Ayan Hospitality is founded', detail: 'Launched with a small team and a clear mission: be the company that takes the full weight of hospitality and logistics off the host family.' },
   { year: '2024', event: '800+ weddings later', detail: 'A team of 50+ trained professionals, presence in 30+ cities, and a reputation built entirely on referrals and repeat clients.' },
 ];
@@ -28,10 +28,10 @@ export default async function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gold-400 text-xs font-semibold tracking-[0.3em] uppercase mb-6">Our Story</p>
           <h1 className="font-display text-5xl lg:text-6xl text-white font-semibold mb-6 leading-tight">
-            <em>"Be Our Guest"</em> —<br />a philosophy, not a tagline
+            <em>&ldquo;Be Our Guest&rdquo;</em><br />A philosophy, not a tagline
           </h1>
           <p className="text-cream-200/80 text-lg leading-relaxed max-w-2xl mx-auto">
-            In Indian culture, a guest is not just a visitor — they are akin to God. Ayan Hospitality was built around one question: what does it look like to honour that belief at scale, across 600 guests, 4 days, 3 cities?
+            In Indian culture, a guest is akin to God. Ayan Hospitality was built around one question: what does it look like to honour that belief at scale for hundreds of guests across a multi-day celebration?
           </p>
         </div>
       </section>
@@ -43,10 +43,10 @@ export default async function AboutPage() {
             <div>
               <SectionHeading eyebrow="Founder's Story" title="15 years. 800+ weddings. One mission." />
               <div className="mt-6 space-y-5 text-charcoal-soft leading-relaxed">
-                <p>Ayan Shah spent his first decade in the wedding industry watching the same story repeat itself: a family would plan every detail of their wedding — the decor, the food, the music — and then hand the most human part, the guest experience, to a fragmented collection of vendors who'd never worked together before.</p>
-                <p>The result was always some version of the same chaos: guests who couldn't find their driver, luggage that arrived at the wrong room, elderly relatives who needed help but didn't know who to call, a help desk that was really just a harried family member's phone number.</p>
-                <p>"Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that."</p>
-                <p>He founded Ayan Hospitality to be the company he always wished existed — one that doesn't just describe hospitality as a service, but actually delivers it as an experience.</p>
+                <p>Ayan Shah spent his first decade in the wedding industry watching the same story repeat itself: a family would plan every detail of their wedding, including the decor, food, and music, and then hand the guest experience to a fragmented collection of vendors who had never worked together before.</p>
+                <p>The result was always some version of the same chaos: guests who couldn&apos;t find their driver, luggage that arrived at the wrong room, elderly relatives who needed help but didn&apos;t know who to call, a help desk that was really just a harried family member&apos;s phone number.</p>
+                <p>&ldquo;Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that.&rdquo;</p>
+                <p>He founded Ayan Hospitality to be the company he always wished existed: one that doesn&apos;t just describe hospitality as a service, but actually delivers it as an experience.</p>
               </div>
             </div>
             {/* Timeline */}

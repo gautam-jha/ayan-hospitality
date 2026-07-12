@@ -53,7 +53,7 @@ const config: Config = {
         whatsapp: "#25D366",
       },
       fontFamily: {
-        display: ["var(--font-cormorant)", "Georgia", "serif"],
+        display: ["var(--font-playfair)", "Georgia", "serif"],
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       fontSize: {

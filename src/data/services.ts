@@ -5,9 +5,9 @@ export const HOSPITALITY_SERVICES: Service[] = [
     slug: "rsvp-invitation-management",
     pillar: "hospitality",
     title: "RSVP & Invitation Management",
-    shortDescription: "Every guest accounted for — before they arrive.",
+    shortDescription: "Every guest accounted for, long before arrival.",
     longDescription:
-      "From the moment invitations go out, we manage the entire RSVP lifecycle — collecting confirmations, tracking dietary preferences, coordinating plus-ones, and keeping the host family updated in real time. No spreadsheet chaos, no last-minute surprises.",
+      "From the moment invitations go out, we manage the entire RSVP process. We collect confirmations, track dietary preferences, coordinate plus-ones, and keep the host family updated in real time. This ensures no spreadsheet chaos and no last-minute surprises.",
     icon: "Mail",
     included: [
       "Digital + physical invitation dispatch coordination",
@@ -23,15 +23,15 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I'm interested in RSVP & Invitation Management for my wedding. Can we discuss?",
     metaTitle: "RSVP & Invitation Management for Weddings | Ayan Hospitality",
     metaDescription:
-      "Professional RSVP and invitation management for Indian weddings. We track every guest, collect preferences, and give you real-time updates — no last-minute chaos.",
+      "Professional RSVP and invitation management for Indian weddings. We track every guest, collect preferences, and give you real-time updates to prevent last-minute chaos.",
   },
   {
     slug: "guest-help-desk",
     pillar: "hospitality",
     title: "Guest Help Desk",
-    shortDescription: "One number, every answer — so you don't have to be.",
+    shortDescription: "One dedicated hotline for all guest queries.",
     longDescription:
-      "Our trained help-desk team is the single point of contact for every guest — fielding calls and messages about schedules, transfers, venue directions, room queries, and anything else that comes up. Your family focuses on the celebrations; we handle the rest.",
+      "Our trained help-desk team acts as the single point of contact for every guest. We handle calls and messages regarding schedules, transfers, venue directions, and room queries, allowing your family to focus entirely on the celebration.",
     icon: "Headphones",
     included: [
       "Dedicated help-desk number active throughout all events",
@@ -47,15 +47,15 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I'm interested in a Guest Help Desk setup for my wedding. Can we discuss?",
     metaTitle: "Wedding Guest Help Desk Services | Ayan Hospitality",
     metaDescription:
-      "A dedicated help desk for your wedding guests — one number for all queries, bilingual staff, real-time resolution. Your guests feel looked after; you stay present.",
+      "A dedicated help desk for your wedding guests: one number for all queries, bilingual staff, and real-time resolution so you stay present.",
   },
   {
     slug: "vip-guest-handling",
     pillar: "hospitality",
     title: "VIP Guest Handling & Escort Services",
-    shortDescription: "Your most important guests, treated exactly that way.",
+    shortDescription: "Your most important guests, treated with the highest care.",
     longDescription:
-      "Senior family members, out-of-town dignitaries, and special guests deserve a different standard of care. Our VIP escorts provide personal, attentive accompaniment from arrival to departure — anticipating needs before they're asked.",
+      "Senior family members, out-of-town dignitaries, and special guests deserve a dedicated standard of care. Our VIP escorts provide personal, attentive accompaniment from arrival to departure, anticipating needs before they are even voiced.",
     icon: "Star",
     included: [
       "Dedicated personal escort assigned to each VIP",
@@ -79,7 +79,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
     title: "Ritual Coordination",
     shortDescription: "Every ceremony, perfectly timed.",
     longDescription:
-      "Indian weddings are rich with rituals — Haldi, Mehendi, Sangeet, pheras, and more. Our ritual coordinators work alongside your pandit and planner to ensure every ceremony flows on time, guests are in the right place, and nothing is left to chance.",
+      "Indian weddings are rich with rituals, including the Haldi, Mehendi, Sangeet, and pheras. Our ritual coordinators work alongside your pandit and planner to ensure every ceremony flows on time and guests are in the right place.",
     icon: "Flame",
     included: [
       "Pre-event ritual schedule shared with all stakeholders",
@@ -87,7 +87,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Coordination with pandit / officiant on timing",
       "Stage and mandap entry management",
       "Photography and videography cue coordination",
-      "Cultural sensitivity — staff trained for diverse traditions",
+      "Cultural sensitivity, with staff trained for diverse traditions",
     ],
     timelineNote:
       "Final ritual schedule locked 1 week before. On-ground coordinator present from venue setup.",
@@ -95,7 +95,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I'd like Ritual Coordination support for my wedding. Can we discuss?",
     metaTitle: "Wedding Ritual Coordination Services India | Ayan Hospitality",
     metaDescription:
-      "Expert ritual coordination for Indian weddings — Haldi, Mehendi, Sangeet, pheras and more. We keep every ceremony on time and your guests in the right place.",
+      "Expert ritual coordination for Indian weddings, covering Haldi, Mehendi, Sangeet, pheras, and more. We keep every ceremony on time and guests in the right place.",
   },
   {
     slug: "artist-coordination",
@@ -103,7 +103,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
     title: "Artist Coordination",
     shortDescription: "Every performer, on cue.",
     longDescription:
-      "Mehndi artists, dhol players, folk dancers, DJs, live bands — managing artists is a job in itself. We handle logistics, green rooms, timing, sound checks, and backstage requirements so performances are seamless and memorable.",
+      "Managing performers like Mehndi artists, dhol players, folk dancers, DJs, and live bands can be a massive job. We handle logistics, green rooms, timing, sound checks, and backstage requirements to ensure every performance is seamless and memorable.",
     icon: "Music",
     included: [
       "Artist briefing and schedule distribution",
@@ -119,15 +119,15 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Artist Coordination for my wedding. Can we discuss?",
     metaTitle: "Wedding Artist Coordination Services | Ayan Hospitality",
     metaDescription:
-      "Seamless artist coordination for weddings — mehndi artists, dhol players, live bands, DJs. We handle logistics, timing, and backstage so every performance lands perfectly.",
+      "Seamless artist coordination for weddings, including mehndi artists, dhol players, live bands, and DJs. We handle logistics, timing, and backstage requirements.",
   },
   {
     slug: "production-management",
     pillar: "hospitality",
     title: "Production Management",
-    shortDescription: "Behind every stunning event, an operations team you never see.",
+    shortDescription: "Discreet and professional on-ground production operations.",
     longDescription:
-      "Stage builds, lighting rigs, décor installations, AV setups — our production managers coordinate all vendors on-ground, making sure timelines are met, installations are safe, and the venue is ready when your guests arrive.",
+      "From stage builds and lighting rigs to décor installations and AV setups, our production managers coordinate all vendors on-ground. We make sure timelines are met, installations are safe, and the venue is ready when guests arrive.",
     icon: "Settings",
     included: [
       "Vendor coordination and on-ground scheduling",
@@ -143,7 +143,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I'm interested in Production Management for my wedding. Can we discuss?",
     metaTitle: "Wedding Production Management Services | Ayan Hospitality",
     metaDescription:
-      "On-ground production management for Indian weddings — vendor coordination, stage setup, AV, décor installation, and venue readiness checks handled by experienced managers.",
+      "On-ground production management for Indian weddings: vendor coordination, stage setup, AV, décor installation, and venue readiness checks.",
   },
   {
     slug: "fb-bar-management",
@@ -151,7 +151,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
     title: "F&B & Bar Management",
     shortDescription: "Serving 500 guests on time, without a single cold dish.",
     longDescription:
-      "F&B is where guest experience is won or lost. Our team manages the entire food and beverage operation — stall setup, service flow, buffet replenishment, bar operations, and dietary accommodation — so every guest is well fed and nothing runs out.",
+      "Food and beverage quality determines much of the guest experience. Our team manages the entire food and beverage operation, including stall setup, service flow, buffet replenishment, bar operations, and dietary accommodation.",
     icon: "UtensilsCrossed",
     included: [
       "F&B flow and seating plan design",
@@ -167,7 +167,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need F&B & Bar Management for my wedding. Can we discuss?",
     metaTitle: "Wedding F&B and Bar Management | Ayan Hospitality",
     metaDescription:
-      "Professional F&B and bar management for Indian weddings. We ensure smooth service, on-time replenishment, and that every guest — including those with dietary needs — is taken care of.",
+      "Professional F&B and bar management for Indian weddings. We ensure smooth service, on-time replenishment, and accommodation for guests with dietary needs.",
   },
   {
     slug: "guest-giveaways-hampers",
@@ -175,7 +175,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
     title: "Guest Giveaways & Hamper Placement",
     shortDescription: "The gift they remember, delivered exactly right.",
     longDescription:
-      "Hampers and giveaways are the last impression your guests carry home. We handle curation, procurement coordination, packaging QA, room placement, and distribution — making sure every item reaches the right guest at the right moment.",
+      "Hampers and giveaways leave a lasting impression. We handle curation, procurement coordination, packaging quality checks, room placement, and distribution to make sure every item reaches the right guest at the right moment.",
     icon: "Gift",
     included: [
       "Hamper content coordination with the host family",
@@ -191,15 +191,15 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I'd like help with Guest Giveaways & Hamper Placement for my wedding. Can we discuss?",
     metaTitle: "Wedding Guest Hampers & Giveaways | Ayan Hospitality",
     metaDescription:
-      "Thoughtful wedding hamper placement and giveaway distribution. We coordinate curation, packaging, in-room placement, and event-wise distribution so every guest feels personally welcomed.",
+      "Thoughtful wedding hamper placement and giveaway distribution. We coordinate curation, packaging, in-room placement, and distribution.",
   },
   {
     slug: "stationery-collaterals",
     pillar: "hospitality",
     title: "Stationery & Collaterals",
-    shortDescription: "Menus, place cards, welcome notes — every detail in print.",
+    shortDescription: "Menus, place cards, welcome notes, and printed details.",
     longDescription:
-      "Wedding stationery touches every moment of the event. We project-manage the design brief, printing vendor, quality checks, and on-site placement of all printed collaterals — menus, table cards, welcome notes, signage, and more.",
+      "Wedding stationery is a key touchpoint. We project-manage the design brief, printing vendor, quality checks, and on-site placement of all printed collaterals: menus, table cards, welcome notes, signage, and more.",
     icon: "BookOpen",
     included: [
       "Coordination with design and print vendors",
@@ -215,7 +215,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Stationery & Collaterals coordination for my wedding. Can we discuss?",
     metaTitle: "Wedding Stationery & Collaterals Management | Ayan Hospitality",
     metaDescription:
-      "Menus, place cards, welcome notes, and signage — we manage stationery from print to placement so every touchpoint of your wedding is perfectly presented.",
+      "Menus, place cards, welcome notes, and signage. We manage stationery from print to placement so every touchpoint of your wedding is perfectly presented.",
   },
   {
     slug: "first-aid-essentials",
@@ -223,7 +223,7 @@ export const HOSPITALITY_SERVICES: Service[] = [
     title: "First Aid & Essentials Kit",
     shortDescription: "Safety, quietly in the background.",
     longDescription:
-      "Multi-day weddings with hundreds of guests need a quiet safety net. Our first-aid station, staffed by trained personnel, and our essentials kit (pain relief, antacids, safety pins, stain removers, and more) ensure every guest is looked after — and the family never has to scramble.",
+      "Multi-day weddings with hundreds of guests need a quiet safety net. Our staffed first-aid station and essentials kit (pain relief, antacids, safety pins, stain removers, and more) ensure every guest is looked after, so you never have to scramble.",
     icon: "Heart",
     included: [
       "Staffed first-aid station at all event venues",
@@ -250,7 +250,7 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Airport & Railway Transfers",
     shortDescription: "Every guest, picked up and dropped. Zero missed connections.",
     longDescription:
-      "Coordinating transfers for 200+ guests across multiple arrival windows is a precision operation. Our team manages every pickup — flight trackers, driver briefings, real-time adjustments for delays — so no guest is stranded.",
+      "Coordinating transfers for hundreds of guests across multiple arrival windows requires precision. Our team manages every pickup using flight tracking, driver briefings, and real-time adjustments for delays.",
     icon: "Plane",
     included: [
       "Guest-wise arrival schedule and vehicle assignment",
@@ -266,7 +266,7 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Airport & Railway Transfer coordination for my wedding. Can we discuss?",
     metaTitle: "Wedding Guest Airport & Railway Transfers India | Ayan Hospitality",
     metaDescription:
-      "Reliable airport and railway transfer coordination for wedding guests across India. Real-time tracking, driver briefings, and on-ground coordinators so no guest is left stranded.",
+      "Reliable airport and railway transfer coordination for wedding guests. Real-time tracking, driver briefings, and on-ground coordinators prevent guests from being left stranded.",
   },
   {
     slug: "luxury-vehicle-coordination",
@@ -274,7 +274,7 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Luxury Vehicle Coordination",
     shortDescription: "The right car, for the right moment.",
     longDescription:
-      "From the baraat procession to the vidaai, the vehicles at a wedding are part of the story. We coordinate luxury and specialty vehicles — vintage cars, luxury SUVs, horses, or elephant processions — with precision timing.",
+      "From the baraat procession to the vidaai, the vehicles at a wedding are part of the story. We coordinate luxury and specialty vehicles, including vintage cars, luxury SUVs, horses, or traditional processions.",
     icon: "Car",
     included: [
       "Luxury vehicle sourcing and confirmation",
@@ -290,7 +290,7 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Luxury Vehicle Coordination for my wedding. Can we discuss?",
     metaTitle: "Wedding Luxury Vehicle & Baraat Coordination | Ayan Hospitality",
     metaDescription:
-      "Luxury vehicle and baraat coordination for Indian weddings — vintage cars, SUVs, decorated procession vehicles, all on time and perfectly coordinated.",
+      "Luxury vehicle and baraat coordination for Indian weddings: vintage cars, SUVs, and decorated procession vehicles, all on time and perfectly coordinated.",
   },
   {
     slug: "luggage-tagging-handling",
@@ -298,7 +298,7 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Luggage Tagging & Handling",
     shortDescription: "Every bag, where it needs to be.",
     longDescription:
-      "100+ guests checking in and out of a hotel simultaneously creates luggage chaos — unless someone is managing it. Our luggage team tags, tracks, and delivers every bag to the right room on arrival, and collects them on departure.",
+      "Dozens of guests checking in and out of a hotel simultaneously can create luggage chaos. Our team tags, tracks, and delivers every bag to the right room on arrival, and collects them on departure.",
     icon: "Luggage",
     included: [
       "Pre-printed personalized luggage tags for all guests",
@@ -314,15 +314,15 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Luggage Tagging & Handling for my wedding. Can we discuss?",
     metaTitle: "Wedding Guest Luggage Tagging & Handling | Ayan Hospitality",
     metaDescription:
-      "Personalized luggage tagging and handling for wedding guests — from airport arrival to in-room delivery, and back again at departure. No lost bags, no chaos.",
+      "Personalized luggage tagging and handling for wedding guests, from airport arrival to in-room delivery and departure collection.",
   },
   {
     slug: "multicity-multimodal-logistics",
     pillar: "logistics",
     title: "Multi-city & Multi-modal Logistics",
-    shortDescription: "Mumbai → Udaipur → Jaipur. We connect every dot.",
+    shortDescription: "Mumbai to Udaipur to Jaipur. We connect every dot.",
     longDescription:
-      "Destination weddings often span multiple cities, venues, and transport modes — trains, flights, buses, and local transfers. We plan and execute the full logistics matrix so every guest and every piece of equipment arrives on time.",
+      "Destination weddings often span multiple cities, venues, and transport modes like trains, flights, buses, and local transfers. We plan and execute the logistics matrix so everyone arrives on time.",
     icon: "Map",
     included: [
       "Full multi-city movement planning",
@@ -346,13 +346,13 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Event Supervisors",
     shortDescription: "A senior eye on everything, at all times.",
     longDescription:
-      "Event supervisors are our senior on-ground leads — each overseeing a function or zone of the event. They are your point of accountability: if anything needs to be escalated, decided, or fixed, they do it without bothering the host family.",
+      "Event supervisors are our senior on-ground leads. Each oversees a function or zone of the event, serving as your point of accountability to resolve issues without bothering the family.",
     icon: "ClipboardList",
     included: [
       "Zone-wise supervisor assignment (hospitality, logistics, venue, F&B)",
       "Pre-event briefing and SOP walkthrough",
       "Real-time radio/WhatsApp communication between supervisors",
-      "Host family liaison — single point of contact",
+      "Host family liaison: single point of contact",
       "Decision authority for on-ground issues",
       "End-of-day debrief and next-day readiness report",
     ],
@@ -362,7 +362,7 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Event Supervisors for my wedding. Can we discuss?",
     metaTitle: "Wedding Event Supervisors & On-ground Management | Ayan Hospitality",
     metaDescription:
-      "Experienced event supervisors for Indian weddings — zone leads who manage operations, resolve issues, and keep the host family free to enjoy the celebration.",
+      "Experienced event supervisors for Indian weddings: zone leads who manage operations, resolve issues, and keep the host family free to enjoy the celebration.",
   },
   {
     slug: "shadows-guest-support",
@@ -370,7 +370,7 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Shadows (Guest Support Staff)",
     shortDescription: "Personal support, for every guest who needs it.",
     longDescription:
-      "Shadows are dedicated guest-support staff — each assigned to a specific guest (typically VIPs, elderly guests, or special needs guests) to provide seamless, attentive support throughout the event without being intrusive.",
+      "Shadows are dedicated guest-support staff members assigned to specific guests, typically VIPs, elderly guests, or guests with special needs, to provide attentive support throughout the event.",
     icon: "UserCheck",
     included: [
       "One-to-one assignment based on guest needs",
@@ -386,7 +386,7 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Shadow staff for specific guests at my wedding. Can we discuss?",
     metaTitle: "Wedding Shadow Staff & Guest Support | Ayan Hospitality",
     metaDescription:
-      "Dedicated shadow staff for VIP, elderly, and special-needs wedding guests — personal, discreet, and attentive support from arrival to departure.",
+      "Dedicated shadow staff for VIP, elderly, and special-needs wedding guests. We offer personal, discreet, and attentive support from arrival to departure.",
   },
   {
     slug: "runners-on-ground-support",
@@ -394,7 +394,7 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Runners (On-Ground Support Staff)",
     shortDescription: "Nothing waits. Runners make sure of it.",
     longDescription:
-      "Runners are the nimble backbone of event execution — moving messages, materials, props, and last-minute requirements across the venue with speed and reliability. Every event needs them; few weddings plan for enough of them.",
+      "Runners are the quick backbone of event execution, moving messages, materials, props, and last-minute requirements across the venue. Every event needs them, but few weddings plan for enough of them.",
     icon: "Zap",
     included: [
       "Runners assigned to each event zone and supervisor",
@@ -410,7 +410,7 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Runners for my wedding operations. Can we discuss?",
     metaTitle: "Wedding On-Ground Runners & Support Staff | Ayan Hospitality",
     metaDescription:
-      "Trained on-ground runners for Indian weddings — rapid relay, material movement, and zone support that keeps every event moment flowing without delay.",
+      "Trained on-ground runners for Indian weddings. We handle rapid relay, material movement, and zone support to keep event moments flowing without delay.",
   },
   {
     slug: "porter-services",
@@ -418,7 +418,7 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Porter Services",
     shortDescription: "Heavy lifting, handled with care.",
     longDescription:
-      "From equipment loading to in-room luggage delivery, our porter teams are trained, uniformed, and briefed to handle guest belongings with the care they deserve — no outsourcing to unknown hotel staff.",
+      "From equipment loading to in-room luggage delivery, our porter teams are trained, uniformed, and briefed to handle guest belongings with the utmost care, rather than relying on unknown hotel staff.",
     icon: "Package",
     included: [
       "Uniformed, briefed porter team",
@@ -434,7 +434,7 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Porter Services for my wedding. Can we discuss?",
     metaTitle: "Wedding Porter Services India | Ayan Hospitality",
     metaDescription:
-      "Trained, uniformed porter services for Indian weddings — luggage handling from airport to room, and every piece of equipment treated with care.",
+      "Trained, uniformed porter services for Indian weddings. We handle luggage from airport to room, treating every piece of equipment with care.",
   },
   {
     slug: "inventory-management",
@@ -442,7 +442,7 @@ export const LOGISTICS_SERVICES: Service[] = [
     title: "Inventory Management",
     shortDescription: "Know exactly what you have, where it is, and what's missing.",
     longDescription:
-      "Multi-day weddings involve a staggering volume of props, décor, stationery, hampers, and equipment. Our inventory team tracks every item from procurement to deployment to return, eliminating loss, duplication, and last-minute scrambles.",
+      "Multi-day weddings involve a staggering volume of props, décor, stationery, hampers, and equipment. Our inventory team tracks every item from procurement to return, eliminating loss, duplication, and last-minute scrambles.",
     icon: "BarChart2",
     included: [
       "Full inventory register from event brief",
@@ -458,7 +458,7 @@ export const LOGISTICS_SERVICES: Service[] = [
       "Hi Ayan Hospitality, I need Inventory Management for my wedding. Can we discuss?",
     metaTitle: "Wedding Inventory Management Services | Ayan Hospitality",
     metaDescription:
-      "End-to-end inventory management for Indian weddings — props, décor, equipment, hampers, and stationery tracked from procurement through post-event return.",
+      "End-to-end inventory management for Indian weddings: props, décor, equipment, hampers, and stationery tracked from procurement through return.",
   },
 ];
 

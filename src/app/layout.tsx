@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFAB } from "@/components/layout/WhatsAppFAB";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -21,7 +21,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ayanhospitality.com"),
   title: {
-    default: "Ayan Hospitality — Wedding Hospitality & Logistics India",
+    default: "Ayan Hospitality | Wedding Hospitality & Logistics India",
     template: "%s | Ayan Hospitality",
   },
   description:
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://ayanhospitality.com",
     siteName: "Ayan Hospitality",
-    title: "Ayan Hospitality — Be Our Guest",
+    title: "Ayan Hospitality | Be Our Guest",
     description:
       "India's trusted wedding hospitality and logistics partner. 800+ weddings delivered across 30+ cities.",
     images: [
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Ayan Hospitality — Be Our Guest",
+        alt: "Ayan Hospitality | Be Our Guest",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ayan Hospitality — Be Our Guest",
+    title: "Ayan Hospitality | Be Our Guest",
     description:
       "India's trusted wedding hospitality and logistics partner. 800+ weddings delivered across 30+ cities.",
   },
@@ -99,7 +99,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"

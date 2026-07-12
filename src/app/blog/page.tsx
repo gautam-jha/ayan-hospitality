@@ -6,7 +6,7 @@ import { formatDate } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Blog — Wedding Planning Insights from 800+ Weddings',
+  title: 'Blog | Wedding Planning Insights from 800+ Weddings',
   description: 'Practical insights on wedding hospitality, logistics, RSVP management, and destination weddings from the team at Ayan Hospitality.',
 };
 
@@ -20,7 +20,7 @@ export default async function BlogPage() {
           <SectionHeading
             eyebrow="Blog & Journal"
             title="Insights from 800+ weddings"
-            subtitle="Practical advice on wedding logistics, hospitality, and planning — written by people who've managed hundreds of events."
+            subtitle="Practical advice on wedding logistics, hospitality, and planning, written by people who've managed hundreds of events."
             centered
           />
         </div>

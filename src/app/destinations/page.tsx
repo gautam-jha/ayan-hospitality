@@ -4,8 +4,8 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Destinations — Cities & Regions We Cover',
-  description: 'Ayan Hospitality covers 30+ cities across India — metros, leisure destinations, and select international destinations. View the full list.',
+  title: 'Destinations | Cities & Regions We Cover',
+  description: 'Ayan Hospitality covers 30+ cities across India, including metros, leisure destinations, and select international destinations. View the full list.',
 };
 
 export default async function DestinationsPage() {
@@ -24,7 +24,7 @@ export default async function DestinationsPage() {
           <SectionHeading
             eyebrow="Where We Work"
             title="30+ cities. One team."
-            subtitle="From metro cities to palace destinations, hill retreats to international venues — our on-ground team has you covered."
+            subtitle="From metro cities to palace destinations, hill retreats to international venues, our on-ground team has you covered."
             centered
           />
         </div>
@@ -109,8 +109,8 @@ export default async function DestinationsPage() {
           </div>
 
           <div className="bg-maroon-700/5 border border-maroon-700/10 rounded-3xl p-8 text-center">
-            <p className="font-display text-2xl text-maroon-700 font-semibold mb-3">Don't see your city?</p>
-            <p className="text-charcoal-muted mb-6">We may still be able to cover your event. Get in touch and we'll tell you what's possible.</p>
+            <p className="font-display text-2xl text-maroon-700 font-semibold mb-3">Don&apos;t see your city?</p>
+            <p className="text-charcoal-muted mb-6">We may still be able to cover your event. Get in touch and we&apos;ll tell you what&apos;s possible.</p>
             <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-maroon-700 text-white font-medium hover:bg-maroon-800 transition-colors">
               Ask about your destination
             </a>

@@ -46,7 +46,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-cream-300/70 text-sm leading-relaxed mb-6 max-w-xs">
-              India's trusted wedding hospitality & logistics partner. 15+ years, 800+ weddings, 1,00,000+ guests welcomed across 30+ cities.
+              India&apos;s trusted wedding hospitality & logistics partner. 15+ years, 800+ weddings, 1,00,000+ guests welcomed across 30+ cities.
             </p>
             <div className="space-y-3">
               <a href="tel:+918826104232" className="flex items-center gap-3 text-cream-300/80 hover:text-gold-400 transition-colors text-sm">

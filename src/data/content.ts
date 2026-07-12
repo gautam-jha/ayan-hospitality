@@ -5,7 +5,7 @@ export const TEAM: TeamMember[] = [
     id: "ayan-shah",
     name: "Ayan Shah",
     role: "Founder & Managing Director",
-    bio: "15+ years in the wedding industry. Ayan started Ayan Hospitality after seeing, again and again, that the logistics and hospitality side of a wedding was treated as an afterthought — outsourced last-minute, under-staffed, and under-planned. He built the company to fix that.",
+    bio: "With over 15 years of experience in the wedding industry, Ayan founded Ayan Hospitality after noticing that hospitality and logistics were often treated as afterthoughts. They were frequently outsourced last minute, under-staffed, and under-planned. He built the company to solve this exact problem.",
     avatarUrl: "/images/team/ayan-shah.jpg",
     isLeadership: true,
   },
@@ -57,7 +57,7 @@ export const FAQS: FAQ[] = [
     id: "faq-2",
     question: "How far in advance should we book?",
     answer:
-      "For large weddings (300+ guests) or peak season dates (Oct–Feb), we recommend booking 4–6 months in advance. We can sometimes accommodate shorter timelines — please reach out and we'll tell you what's possible for your dates.",
+      "For large weddings (over 300 guests) or peak season dates between October and February, we recommend booking 4 to 6 months in advance. We can sometimes accommodate shorter timelines, so please contact us to check availability for your dates.",
     category: "general",
   },
   {
@@ -71,28 +71,28 @@ export const FAQS: FAQ[] = [
     id: "faq-4",
     question: "How does the RSVP management process work?",
     answer:
-      "We set up a tracking system (digital RSVP form + a coordination dashboard shared with your family) within 48 hours of briefing. We then manage outreach, follow-ups, and data collection — delivering you a clean, accurate guest list with all preferences noted 5 days before the event.",
+      "We set up a tracking system (digital RSVP form + a coordination dashboard shared with your family) within 48 hours of briefing. We then manage outreach, follow-ups, and data collection to deliver a clean, accurate guest list with all preferences noted 5 days before the event.",
     category: "hospitality",
   },
   {
     id: "faq-5",
     question: "What is a 'Shadow' and do we need them?",
     answer:
-      "Shadows are dedicated staff members assigned one-to-one to specific guests — usually VIPs, elderly guests, guests with mobility needs, or out-of-town guests who need a consistent point of contact. For weddings with senior family members or special guests, we strongly recommend them.",
+      "Shadows are dedicated staff members assigned one-to-one to specific guests. This service is typically chosen for VIPs, elderly family members, guests with mobility needs, or out-of-town guests who require a consistent point of contact. For weddings with senior family members or special guests, we strongly recommend them.",
     category: "hospitality",
   },
   {
     id: "faq-6",
     question: "How do you handle flight delays for airport transfers?",
     answer:
-      "We monitor all incoming flights in real time through the event period. If a flight is delayed, we automatically update the driver assignment and notify the guest via WhatsApp. There is no extra charge for delay management — it's part of our transfer service.",
+      "We monitor all incoming flights in real time through the event period. If a flight is delayed, we automatically update the driver assignment and notify the guest via WhatsApp. There is no extra charge for delay management as it is fully included in our transfer service.",
     category: "logistics",
   },
   {
     id: "faq-7",
     question: "Do you work with wedding planners on a sub-contract basis?",
     answer:
-      "Yes — and it's a significant part of our business. We have a formal 'For Planners & Venues' partnership model with NDAs, white-label terms, and a dedicated capability deck. Visit our Planners & Venues page or contact us directly to discuss.",
+      "Yes, and it is a key part of our business. We have a formal 'For Planners & Venues' partnership model with NDAs, white-label terms, and a dedicated capability deck. Visit our Planners & Venues page or contact us directly to discuss.",
     category: "planners",
   },
   {
@@ -192,7 +192,7 @@ export const BLOG_POSTS: BlogPost[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "udaipur-600-guest-wedding",
-    title: "600 Guests, 4 Days, 2 Cities — Zero Complaints",
+    title: "600 Guests, 4 Days, 2 Cities: Zero Complaints",
     location: "Udaipur & Mumbai",
     guestCount: 600,
     serviceTypes: ["hospitality", "logistics"],
@@ -214,7 +214,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     serviceTypes: ["hospitality", "logistics"],
     heroImageUrl: "/images/case-studies/jaipur-hero.jpg",
     challenge:
-      "A palace wedding with 200 out-of-town guests, including 30 international guests, all checking into the same property. Luggage management at arrival was a critical concern — the family had seen chaos at a previous sibling's wedding and wanted it fixed.",
+      "A palace wedding with 200 out-of-town guests, including 30 international guests, all checking into the same property. Luggage management at arrival was a critical concern. Having experienced chaos at a previous sibling's wedding, the family wanted this handled flawlessly.",
     whatWeDid:
       "We built a guest-wise luggage manifest from the RSVP data. Pre-printed tags were ready at the airport. A team of 12 porters managed intake at the hotel. Every bag was in the right room within 90 minutes of the first guest checking in. Our help desk handled all guest queries in English and Hindi throughout the 3-day event.",
     outcome:

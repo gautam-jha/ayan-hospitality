@@ -33,7 +33,7 @@ export default async function TestimonialsPage() {
                   ))}
                 </div>
                 <blockquote className="text-charcoal-soft text-sm leading-relaxed flex-1 mb-6 italic">
-                  "{t.quote}"
+                  &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <div className="border-t border-cream-200 pt-5">
                   <p className="font-semibold text-charcoal">{t.clientName}</p>

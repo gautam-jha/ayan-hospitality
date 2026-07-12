@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   getHospitalityServices,
@@ -13,22 +12,19 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Button } from "@/components/ui/Button";
 import { HomepageContactForm } from "@/components/HomepageContactForm";
-import { buildWhatsAppUrl, formatDate } from "@/lib/utils";
+import { buildWhatsAppUrl } from "@/lib/utils";
 import {
   ArrowRight,
-  CheckCircle2,
-  Phone,
   Star,
   Shield,
   Users,
   FileText,
   Download,
-  Calendar,
   MapPin,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Ayan Hospitality — Wedding Hospitality & Logistics India | Be Our Guest",
+  title: "Ayan Hospitality | Wedding Hospitality & Logistics India | Be Our Guest",
   description:
     "India's trusted wedding hospitality and logistics company. 800+ weddings delivered, 1,00,000+ guests welcomed, 30+ cities. RSVP management, guest help desk, transfers, and the full range of on-ground services.",
 };
@@ -53,21 +49,21 @@ const HOW_IT_WORKS = [
     step: "01",
     title: "Consultation",
     description:
-      "A call with our team to understand your wedding — guest count, cities, events, and what matters most. No obligation.",
+      "A call with our team to understand your wedding, including guest count, cities, events, and what matters most, with no obligation.",
     icon: "💬",
   },
   {
     step: "02",
     title: "Custom Plan",
     description:
-      "We build a detailed hospitality & logistics plan, assign your team, and share a timeline — weeks before the first guest arrives.",
+      "We build a detailed hospitality & logistics plan, assign your team, and share a timeline weeks before the first guest arrives.",
     icon: "📋",
   },
   {
     step: "03",
     title: "On-Ground Execution",
     description:
-      "Our team is on the ground from Day 1 — managing every transfer, query, ceremony, and surprise without bothering the family.",
+      "Our team is on the ground from Day 1 to manage every transfer, query, ceremony, and surprise without bothering the family.",
     icon: "🎯",
   },
   {
@@ -116,15 +112,12 @@ export default async function HomePage() {
             ✦ Be Our Guest ✦
           </p>
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold text-white leading-[1.05] mb-6">
-            400 guests.
+            Be a guest at
             <br />
-            <span className="text-gradient-gold">3 cities.</span>
-            <br />
-            Zero chaos.
+            <span className="text-gradient-gold">your own wedding.</span>
           </h1>
           <p className="text-cream-200/90 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Ayan Hospitality handles the complete hospitality and logistics of your
-            wedding — so your family is free to celebrate, not manage.
+            We run the entire hospitality, transport, and on-ground logistics machine behind your celebration, letting you focus on celebrating with the people you love.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button href="/contact" size="lg" variant="primary" id="hero-cta-quote">
@@ -168,7 +161,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ─── 2. Trust Bar — Partner logos ────────────────────────────────── */}
+      {/* ─── 2. Trust Bar: Partner logos ────────────────────────────────── */}
       <section className="bg-white border-y border-cream-300 py-6 overflow-hidden" aria-label="Hotel and venue partners">
         <div className="relative">
           <div className="marquee-track">
@@ -195,7 +188,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="What We Do"
             title="Two pillars. One seamless wedding."
-            subtitle="We've built our work around the two things that determine whether a wedding runs beautifully or falls apart — Hospitality and Logistics."
+            subtitle="We've built our work around the two things that determine whether a wedding runs beautifully or falls apart: hospitality and logistics."
             centered
           />
 
@@ -211,7 +204,7 @@ export default async function HomePage() {
                   Wedding Hospitality
                 </h3>
                 <p className="text-charcoal-muted leading-relaxed mb-6">
-                  Every interaction a guest has — from the moment they RSVP to the moment they leave — is a reflection of your family. We make sure it's flawless.
+                  Every interaction a guest has, from the moment they RSVP to the moment they leave, is a reflection of your family. We make sure it is flawless.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-8">
                   {hospitalityServices.slice(0, 5).map((s) => (
@@ -249,7 +242,7 @@ export default async function HomePage() {
                   Logistics & On-Ground Crew
                 </h3>
                 <p className="text-charcoal-muted leading-relaxed mb-6">
-                  Transfers, luggage, multi-city movement, on-ground staff — the operational backbone of your wedding, run by a team that's done this hundreds of times.
+                  Transfers, luggage, multi-city movement, and on-ground staff: the operational backbone of your wedding, run by a team that has done this hundreds of times.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-8">
                   {logisticsServices.slice(0, 5).map((s) => (
@@ -285,7 +278,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="The Process"
             title="From first call to final farewell"
-            subtitle="Four steps that take you from overwhelmed to confident — and keep you there through every event."
+            subtitle="Four steps that take you from overwhelmed to confident, keeping you there through every event."
             centered
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -418,7 +411,7 @@ export default async function HomePage() {
                   ))}
                 </div>
                 <blockquote className="text-charcoal-soft text-sm leading-relaxed flex-1 mb-6">
-                  "{t.quote}"
+                  &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <div className="border-t border-cream-200 pt-4">
                   <p className="font-semibold text-charcoal text-sm">{t.clientName}</p>
@@ -454,7 +447,7 @@ export default async function HomePage() {
                   <span className="text-gold-400">you can trust with your name</span>
                 </h2>
                 <p className="text-cream-200/80 leading-relaxed mb-8">
-                  We work with India's leading wedding planners and luxury hotels as a white-label or sub-contracted hospitality and logistics partner. Full SOPs, trained staff, and a track record of 800+ events.
+                  We work with India&apos;s leading wedding planners and luxury hotels as a white-label or sub-contracted hospitality and logistics partner. Full SOPs, trained staff, and a track record of 800+ events.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                   {[
@@ -523,10 +516,10 @@ export default async function HomePage() {
                 Founder-Led · 15+ Years
               </p>
               <blockquote className="font-display text-3xl lg:text-4xl text-maroon-700 font-semibold leading-tight mb-6">
-                "I started this company because I saw, again and again, that the most important moments of a family's life were being left to chance."
+                &ldquo;I started this company because I saw, again and again, that the most important moments of a family&apos;s life were being left to chance.&rdquo;
               </blockquote>
               <p className="text-charcoal-muted leading-relaxed mb-6">
-                Ayan Shah has spent 15 years in the wedding industry. He built Ayan Hospitality to be the team he always wished existed — one that takes the weight of operations completely off the host family's shoulders.
+                Ayan Shah has spent 15 years in the wedding industry. He built Ayan Hospitality to be the team he always wished existed, one that takes the weight of operations completely off the host family&apos;s shoulders.
               </p>
               <div className="flex items-center gap-2 mb-6 justify-center lg:justify-start">
                 <div className="font-semibold text-charcoal">Ayan Shah</div>
@@ -595,10 +588,10 @@ export default async function HomePage() {
             ✦ Be Our Guest ✦
           </p>
           <h2 className="font-display text-4xl lg:text-5xl text-white font-semibold mb-4">
-            Planning a wedding?<br />Let's talk.
+            Planning a wedding?<br />Let&apos;s talk.
           </h2>
           <p className="text-cream-200/80 mb-10 text-lg">
-            Tell us a little about your event and we'll get back to you within 24 hours.
+            Tell us a little about your event and we&apos;ll get back to you within 24 hours.
           </p>
 
           <HomepageContactForm />
