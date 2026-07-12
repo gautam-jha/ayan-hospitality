@@ -45,12 +45,27 @@ export function Header() {
     setIsOpen(false);
   }, [pathname]);
 
+  // Hide global header on the guest help desk page
+  if (pathname === '/guest-help-desk') return null;
+
+  // Pages that start with a dark background hero section (white text header initially)
+  const isDarkHeroPage =
+    !pathname ||
+    pathname === '/' ||
+    pathname === '/about' ||
+    pathname === '/for-planners' ||
+    pathname === '/careers' ||
+    (pathname.startsWith('/blog/') && pathname !== '/blog') ||
+    (pathname.startsWith('/our-work/') && pathname !== '/our-work');
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-warm'
-          : 'bg-transparent'
+          ? 'bg-white/95 backdrop-blur-md shadow-warm border-b border-cream-200/50'
+          : isDarkHeroPage
+            ? 'bg-transparent'
+            : 'bg-cream-50/80 backdrop-blur-md border-b border-cream-200/60'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,14 +78,14 @@ export function Header() {
             <div>
               <span
                 className={`font-display font-semibold text-lg leading-none block transition-colors ${
-                  scrolled ? 'text-maroon-700' : 'text-white'
+                  scrolled || !isDarkHeroPage ? 'text-maroon-700' : 'text-white'
                 }`}
               >
                 Ayan Hospitality
               </span>
               <span
                 className={`text-xs tracking-widest uppercase transition-colors ${
-                  scrolled ? 'text-gold-500' : 'text-gold-400'
+                  scrolled || !isDarkHeroPage ? 'text-gold-500' : 'text-gold-400'
                 }`}
               >
                 Be Our Guest
@@ -88,10 +103,10 @@ export function Header() {
                   href={item.href}
                   className={`text-sm font-medium tracking-wide transition-colors hover:text-gold-500 link-underline ${
                     isActive
-                      ? scrolled
+                      ? scrolled || !isDarkHeroPage
                         ? 'text-maroon-700 font-semibold link-underline-active'
                         : 'text-gold-400 font-semibold link-underline-active'
-                      : scrolled
+                      : scrolled || !isDarkHeroPage
                         ? 'text-charcoal-soft'
                         : 'text-white/90'
                   }`}
@@ -126,7 +141,7 @@ export function Header() {
           {/* Mobile hamburger */}
           <button
             className={`lg:hidden p-2 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-gold-500 ${
-              scrolled || isOpen ? 'text-charcoal' : 'text-white'
+              scrolled || isOpen || !isDarkHeroPage ? 'text-charcoal' : 'text-white'
             }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
@@ -183,3 +198,4 @@ export function Header() {
     </header>
   );
 }
+
