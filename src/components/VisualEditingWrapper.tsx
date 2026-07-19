@@ -1,7 +1,12 @@
 "use client";
 
-import { VisualEditing } from "next-sanity/visual-editing/client-component";
+import dynamic from "next/dynamic";
+
+const VisualEditing = dynamic(
+  () => import("@sanity/visual-editing/react").then((mod) => ({ default: mod.VisualEditing })),
+  { ssr: false }
+);
 
 export function VisualEditingWrapper() {
-  return <VisualEditing />;
+  return <VisualEditing portal />;
 }

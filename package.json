@@ -10,9 +10,9 @@
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "@next/font": "^14.2.15",
-
     "@portabletext/react": "^6.2.0",
     "@sanity/image-url": "^2.1.1",
+    "@sanity/visual-editing": "^5.5.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
     "lucide-react": "^1.24.0",
