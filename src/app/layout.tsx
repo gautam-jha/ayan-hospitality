@@ -5,9 +5,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFAB } from "@/components/layout/WhatsAppFAB";
 import { SanityLive } from "@/sanity/live";
-import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import { getSiteSettings, getAreaServed } from "@/lib/repository";
 
 const playfair = Playfair_Display({
@@ -121,7 +121,7 @@ export default async function RootLayout({
         <SanityLive />
         {(await draftMode()).isEnabled && (
           <>
-            <VisualEditing />
+            <VisualEditingWrapper />
             <DisableDraftMode />
           </>
         )}
