@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/repository';
 import { Button } from '@/components/ui/Button';
 import { formatDate } from '@/lib/utils';
@@ -21,103 +22,46 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-const BLOG_CONTENT: Record<string, string> = {
-  'rsvp-management-mistakes': `
-RSVP management sounds simple until you're two weeks out and still don't have a final headcount for a 400-person wedding.
-
-After managing 800+ weddings across India, here are the five mistakes we see families make, and how to avoid each one.
-
-**1. Assuming guests will respond on time**
-
-They won't. Especially for destination weddings where travel planning is involved, guests procrastinate. Build a follow-up schedule: a reminder at 3 weeks, 2 weeks, and 1 week before the deadline. Don't rely on a single invitation.
-
-**2. Collecting RSVPs across multiple channels**
-
-Phone calls to aunties, WhatsApp messages to cousins, email to international guests, and nobody keeping a single master list. Use one system (even a shared Google Sheet is better than nothing), or delegate this entirely to a professional.
-
-**3. Not collecting preferences with the RSVP**
-
-Dietary needs, mobility requirements, room preferences, airport arrival times. If you collect these after the RSVP, you're making twice the calls. Collect everything in one go.
-
-**4. Finalising headcount too late**
-
-Hotels and caterers need final numbers 5-7 days out. Families who lock headcount 2 days before create last-minute chaos for every vendor. Build your RSVP deadline at 10 days before the event.
-
-**5. Not having a single point of contact for queries**
-
-If the bride's mother is handling one set of RSVPs and the groom's sister is handling another, data gets lost. Designate one person (or one team) who owns this entirely.
-
-**If you'd rather not manage any of this yourself, our RSVP & Invitation Management service handles the full lifecycle, from digital outreach to final headcount reports.**
-  `,
-  'destination-wedding-logistics-checklist': `
-Moving 300 guests from Mumbai to Udaipur across three days is a logistics operation most families underestimate until something goes wrong.
-
-Here's the checklist we use internally for every destination wedding we manage.
-
-**Pre-arrival (6-8 weeks out)**
-- Collect all guest arrival/departure dates and flight/train details
-- Book and confirm charter or scheduled transport for inter-city movement
-- Confirm vehicle inventory at destination (airport pickups, hotel-to-venue transfers, baraat vehicles)
-- Share logistics plan with hotel for coordination
-
-**Guest communication (2 weeks out)**
-- Send every guest their driver details, pickup times, and hotel check-in info
-- Communicate luggage tagging process (bags are tagged at airport/station, delivered to rooms)
-- Share emergency contact (help desk number active throughout event)
-
-**Airport/station day-of**
-- Position coordinators at arrivals with name boards
-- Activate flight/train delay monitoring
-- Confirm driver manifest matches guest manifest
-
-**Hotel arrival**
-- Luggage team ready at hotel entrance
-- Luggage tagged and delivered to rooms within 90 minutes of arrival
-- Help desk active and briefed on all known guest queries
-
-**Inter-city movement**
-- Daily transport briefings for all drivers
-- Guest-wise manifest for every vehicle movement
-- Contingency vehicles on standby
-
-**Departure**
-- Luggage collection from rooms 3 hours before checkout
-- Driver assignments confirmed 24 hours before departure
-- Last guest checked out before team demobilises
-
-If this list feels overwhelming, that's exactly why professional logistics management exists for weddings of this scale.
-  `,
-  'vip-guest-management-guide': `
-VIP handling at Indian weddings is a delicate balance. Do it too visibly and other guests feel overlooked. Do it too quietly and the VIP doesn't feel valued. Here's how we approach it.
-
-**Define who your VIPs actually are**
-
-Not everyone who the family thinks is important needs dedicated handling. True VIPs, the ones who need assigned support, are usually: senior or elderly guests (75+), guests with mobility or health needs, out-of-town guests unfamiliar with the city or venue, and specific high-profile individuals the family wants to honour.
-
-**Assign a Shadow, not a Greeter**
-
-A shadow is different from a welcome coordinator. A shadow stays with the guest through the event, anticipating needs instead of waiting to be asked. If your grandmother uses a wheelchair, her shadow makes sure every transition (hotel room, lobby, bus, venue, and seating) is smooth and dignified, without her having to ask for help.
-
-**Coordinate with the hotel early**
-
-Room preferences, dietary needs, early check-in: most of this can be pre-arranged if you brief the hotel two weeks out. We do this for every VIP guest on our list.
-
-**Keep it discreet**
-
-VIP handling that draws attention defeats its purpose. Our shadow staff dress like guests, carry themselves discreetly, and operate on the principle that nobody should be able to tell who's on the team.
-
-**Have one escalation path**
-
-If a VIP guest has a problem, there should be one number that solves it immediately. That's our help desk: one call, and the issue is either resolved or escalated to whoever can fix it.
-  `,
+/** Portable Text component overrides for consistent styling */
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p className="leading-relaxed mb-4">{children}</p>
+    ),
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 className="font-display text-2xl text-maroon-700 font-semibold mt-8 mb-3">{children}</h2>
+    ),
+    h3: ({ children }: { children?: React.ReactNode }) => (
+      <h3 className="font-display text-xl text-maroon-700 font-semibold mt-6 mb-2">{children}</h3>
+    ),
+    blockquote: ({ children }: { children?: React.ReactNode }) => (
+      <blockquote className="border-l-4 border-gold-500 pl-5 italic text-charcoal-muted my-6">{children}</blockquote>
+    ),
+  },
+  marks: {
+    strong: ({ children }: { children?: React.ReactNode }) => (
+      <strong className="font-semibold text-maroon-700">{children}</strong>
+    ),
+    em: ({ children }: { children?: React.ReactNode }) => (
+      <em className="italic">{children}</em>
+    ),
+    link: ({ value, children }: { value?: { href: string; blank?: boolean }; children?: React.ReactNode }) => (
+      <a
+        href={value?.href}
+        target={value?.blank ? '_blank' : undefined}
+        rel={value?.blank ? 'noopener noreferrer' : undefined}
+        className="text-maroon-600 underline hover:text-gold-600 transition-colors"
+      >
+        {children}
+      </a>
+    ),
+  },
 };
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
-
-  const content = BLOG_CONTENT[slug] || post.excerpt;
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -160,21 +104,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <p className="text-lg text-charcoal-soft leading-relaxed font-semibold mb-8 border-l-4 border-gold-500 pl-5">
                 {post.excerpt}
               </p>
-              <div className="prose prose-lg max-w-none text-charcoal-soft leading-relaxed space-y-5">
-                {content.trim().split('\n\n').map((para, i) => {
-                  if (para.startsWith('**') && para.endsWith('**') === false && para.includes('**')) {
-                    const parts = para.split('**');
-                    return (
-                      <p key={i}>
-                        {parts.map((part, j) =>
-                          j % 2 === 1 ? <strong key={j} className="text-maroon-700">{part}</strong> : part
-                        )}
-                      </p>
-                    );
-                  }
-                  return <p key={i} className="leading-relaxed">{para}</p>;
-                })}
-              </div>
+              {post.body && post.body.length > 0 ? (
+                <div className="prose prose-lg max-w-none text-charcoal-soft">
+                  <PortableText value={post.body} components={portableTextComponents} />
+                </div>
+              ) : (
+                <p className="text-charcoal-muted italic">Full article content coming soon.</p>
+              )}
 
               <div className="mt-12 border-t border-cream-200 pt-8">
                 <Button href="/blog" variant="ghost" id="blog-back">

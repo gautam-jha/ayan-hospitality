@@ -1,28 +1,29 @@
 import type { Metadata } from 'next';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { Shield, Users, FileText, Download, CheckCircle2, ArrowRight } from 'lucide-react';
+import { getCredibilityPoints, getB2BProcessSteps } from '@/lib/repository';
+import { Shield, Users, FileText, CheckCircle2, Download, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'For Wedding Planners & Venues | Partner with Ayan Hospitality',
   description: 'White-label and sub-contract wedding hospitality & logistics services for wedding planners, hotels, and event companies. SOPs, trained staff, full capability deck available.',
 };
 
-const CREDIBILITY_POINTS = [
-  { icon: Shield, title: 'SOPs & Protocols', desc: 'Documented Standard Operating Procedures for every service, shareable with your team and your client.' },
-  { icon: Users, title: 'Trained, Verified Staff', desc: 'All on-ground staff complete our internal training programme. Vetting documentation is available on request.' },
-  { icon: FileText, title: 'White-label Terms', desc: 'We operate fully under your brand if required, with NDAs available and no direct contact with your client without your consent.' },
-  { icon: CheckCircle2, title: 'Seamless Integration', desc: 'We align with your existing vendor structure, attend your pre-event briefings, and report directly to your project lead.' },
-];
+// Map Sanity icon names to Lucide components
+const ICON_MAP: Record<string, React.ElementType> = {
+  Shield,
+  Users,
+  FileText,
+  Star: CheckCircle2,
+  CheckCircle2,
+};
 
-const PROCESS_STEPS = [
-  { step: '01', title: 'Initial Briefing', desc: 'Share your event brief with us. We ask the right questions and come back with a scoped proposal within 48 hours.' },
-  { step: '02', title: 'Proposal & Agreement', desc: 'We confirm scope, team size, and pricing. NDAs and white-label agreements are signed if required.' },
-  { step: '03', title: 'Pre-event Integration', desc: 'We join your pre-event calls, align with your team, and share our deployment plan for your review.' },
-  { step: '04', title: 'On-ground Execution', desc: 'Our team operates as part of your event, reporting to your lead, maintaining your standards, and remaining invisible to the client if you prefer.' },
-];
+export default async function ForPlannersPage() {
+  const [credibilityPoints, processSteps] = await Promise.all([
+    getCredibilityPoints(),
+    getB2BProcessSteps(),
+  ]);
 
-export default function ForPlannersPage() {
   return (
     <div className="pt-20">
       {/* Hero */}
@@ -51,15 +52,18 @@ export default function ForPlannersPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Why Planners Choose Us" title="The rigour your clients expect" centered />
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CREDIBILITY_POINTS.map((point) => (
-              <div key={point.title} className="card-warm p-7 text-center">
-                <div className="w-12 h-12 rounded-2xl bg-maroon-700/10 flex items-center justify-center mx-auto mb-4">
-                  <point.icon className="w-6 h-6 text-maroon-700" />
+            {credibilityPoints.map((point) => {
+              const Icon = ICON_MAP[point.icon] ?? Shield;
+              return (
+                <div key={point.title} className="card-warm p-7 text-center">
+                  <div className="w-12 h-12 rounded-2xl bg-maroon-700/10 flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-6 h-6 text-maroon-700" />
+                  </div>
+                  <h3 className="font-display text-lg text-maroon-700 font-semibold mb-3">{point.title}</h3>
+                  <p className="text-charcoal-muted text-sm leading-relaxed">{point.description}</p>
                 </div>
-                <h3 className="font-display text-lg text-maroon-700 font-semibold mb-3">{point.title}</h3>
-                <p className="text-charcoal-muted text-sm leading-relaxed">{point.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -69,11 +73,11 @@ export default function ForPlannersPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="How We Work Together" title="From brief to execution" centered />
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {PROCESS_STEPS.map((step) => (
+            {processSteps.map((step) => (
               <div key={step.step} className="text-center">
                 <div className="w-12 h-12 rounded-full bg-gold-500 text-white font-bold flex items-center justify-center mx-auto mb-4 font-display text-lg">{step.step}</div>
                 <h3 className="font-display text-lg text-maroon-700 font-semibold mb-2">{step.title}</h3>
-                <p className="text-charcoal-muted text-sm leading-relaxed">{step.desc}</p>
+                <p className="text-charcoal-muted text-sm leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>

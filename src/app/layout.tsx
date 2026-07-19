@@ -4,6 +4,10 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFAB } from "@/components/layout/WhatsAppFAB";
+import { SanityLive } from "@/sanity/live";
+import { VisualEditing } from "next-sanity/visual-editing";
+import { draftMode } from "next/headers";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -93,7 +97,7 @@ const localBusinessSchema = {
   image: "https://ayanhospitality.com/og-image.jpg",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -112,6 +116,13 @@ export default function RootLayout({
         <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
         <Footer />
         <WhatsAppFAB />
+        <SanityLive />
+        {(await draftMode()).isEnabled && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { getActiveJobListings } from '@/lib/repository';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -7,16 +8,9 @@ export const metadata: Metadata = {
   description: 'Join India\'s trusted wedding hospitality and logistics team. We\'re always looking for passionate, professional people: full-time, part-time, and event-day gig work available.',
 };
 
-const ROLES = [
-  { title: 'Event Supervisor', type: 'Full-time / Per event', location: 'Pan India', desc: 'Senior on-ground lead managing a team across a full event. Requires 3+ years of events experience.' },
-  { title: 'Guest Relations Executive', type: 'Full-time', location: 'Delhi NCR / Mumbai / Bangalore', desc: 'Part of our help desk and guest experience team. Hotel or luxury hospitality background preferred.' },
-  { title: 'Logistics Coordinator', type: 'Full-time', location: 'Delhi NCR', desc: 'Managing transfers, drivers, and multi-city logistics for events. Strong on operations and communication.' },
-  { title: 'Shadow (Guest Support)', type: 'Per event (Gig)', location: 'Pan India', desc: 'Dedicated one-to-one guest support for specific guests. Ideal for hospitality students and part-time professionals.' },
-  { title: 'Runner', type: 'Per event (Gig)', location: 'Pan India', desc: 'On-ground support across event zones. Physical, fast-paced, and great for people new to event work.' },
-  { title: 'Porter Team Lead', type: 'Per event (Gig)', location: 'Pan India', desc: 'Managing a small porter team at hotel arrivals and departures. Experience with luggage handling preferred.' },
-];
+export default async function CareersPage() {
+  const roles = await getActiveJobListings();
 
-export default function CareersPage() {
   return (
     <div className="pt-20">
       <section className="section-padding bg-gradient-to-b from-maroon-900 to-maroon-800">
@@ -37,14 +31,14 @@ export default function CareersPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Open Positions" title="Current openings" centered />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {ROLES.map((role) => (
+            {roles.map((role) => (
               <div key={role.title} className="card-warm p-7">
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="font-display text-xl text-maroon-700 font-semibold">{role.title}</h3>
                   <span className="text-xs bg-cream-200 text-charcoal-muted px-3 py-1 rounded-full shrink-0 ml-3">{role.type}</span>
                 </div>
                 <p className="text-gold-500 text-xs font-medium mb-3">📍 {role.location}</p>
-                <p className="text-charcoal-muted text-sm leading-relaxed mb-5">{role.desc}</p>
+                <p className="text-charcoal-muted text-sm leading-relaxed mb-5">{role.description}</p>
                 <a
                   href={`mailto:careers@ayanhospitality.com?subject=Application: ${role.title}`}
                   className="inline-flex items-center gap-1 text-maroon-700 text-sm font-medium hover:gap-2 transition-all"

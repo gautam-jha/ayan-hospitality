@@ -76,6 +76,9 @@ export interface BlogPost {
   date: string;
   readTime: number; // minutes
   category: string;
+  // Portable Text body — present when fetching a single post
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body?: any[];
 }
 
 export interface SiteStat {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Phone, MapPin, Truck, HelpCircle } from 'lucide-react';
+import { getGuestFAQs } from '@/lib/repository';
 
 export const metadata: Metadata = {
   title: 'Guest Help Desk | Ayan Hospitality',
@@ -7,16 +8,9 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-const GUEST_FAQS = [
-  { q: 'Where do I collect my luggage?', a: 'Your luggage will be collected and tagged at the airport/station by our team in Ayan Hospitality uniforms. It will be delivered to your room. If you don\'t see it within 30 minutes of check-in, call the number above.' },
-  { q: 'Who do I call for room issues?', a: 'For anything urgent, call our Help Desk above. We coordinate with the hotel directly. For non-urgent matters, the hotel front desk can assist.' },
-  { q: 'How do I find out about event timings?', a: 'Your wedding welcome folder in the room has the full event schedule. You can also WhatsApp or call our Help Desk for real-time updates.' },
-  { q: 'What if my driver doesn\'t arrive?', a: 'Call our Help Desk immediately. We track all vehicles in real time and will send an alternate if needed: no guest should ever be left waiting.' },
-  { q: 'Is there a dress code?', a: 'The wedding family will have shared dress code details in your invitation. If you\'re unsure, WhatsApp us and we\'ll find out for you.' },
-  { q: 'I need medical assistance', a: 'Call the Help Desk immediately. We have a first-aid team on site and emergency medical contacts for all venues.' },
-];
+export default async function GuestHelpDeskPage() {
+  const guestFaqs = await getGuestFAQs();
 
-export default function GuestHelpDeskPage() {
   return (
     <div className="min-h-screen bg-cream-100">
       {/* Header - no nav, focused micro-page */}
@@ -85,7 +79,7 @@ export default function GuestHelpDeskPage() {
           </a>
         </div>
 
-        {/* FAQ */}
+        {/* FAQ from Sanity */}
         <div className="bg-white rounded-3xl p-6 border border-cream-300">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-cream-200 flex items-center justify-center">
@@ -94,13 +88,13 @@ export default function GuestHelpDeskPage() {
             <h2 className="font-display text-xl text-maroon-700 font-semibold">Common Questions</h2>
           </div>
           <div className="space-y-5">
-            {GUEST_FAQS.map((faq, i) => (
+            {guestFaqs.map((faq, i) => (
               <details key={i} className="group">
                 <summary className="flex items-center justify-between cursor-pointer list-none">
-                  <span className="font-medium text-charcoal text-sm">{faq.q}</span>
+                  <span className="font-medium text-charcoal text-sm">{faq.question}</span>
                   <span className="text-charcoal-muted group-open:rotate-180 transition-transform">▾</span>
                 </summary>
-                <p className="mt-3 text-charcoal-muted text-sm leading-relaxed pl-0 border-t border-cream-200 pt-3">{faq.a}</p>
+                <p className="mt-3 text-charcoal-muted text-sm leading-relaxed pl-0 border-t border-cream-200 pt-3">{faq.answer}</p>
               </details>
             ))}
           </div>
