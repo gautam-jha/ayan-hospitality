@@ -1,8 +1,7 @@
-import { client } from "@/sanity/client";
-import { defineEnableDraftMode } from "next-sanity/draft-mode";
+import { NextResponse } from "next/server";
 
-export const { GET } = defineEnableDraftMode({
-  client: client.withConfig({
-    token: process.env.SANITY_API_READ_TOKEN,
-  }),
-});
+export const dynamic = "force-static";
+
+export function GET() {
+  return NextResponse.redirect(new URL("/", "https://ayanhospitality.com"), 307);
+}

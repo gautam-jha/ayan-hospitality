@@ -4,10 +4,6 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFAB } from "@/components/layout/WhatsAppFAB";
-import { SanityLive } from "@/sanity/live";
-import { draftMode } from "next/headers";
-import { DisableDraftMode } from "@/components/DisableDraftMode";
-import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import { getSiteSettings, getAreaServed } from "@/lib/repository";
 
 const playfair = Playfair_Display({
@@ -118,13 +114,6 @@ export default async function RootLayout({
         <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
         <Footer settings={settings} />
         <WhatsAppFAB whatsAppNumber={settings?.whatsAppNumber} />
-        <SanityLive />
-        {(await draftMode()).isEnabled && (
-          <>
-            <VisualEditingWrapper />
-            <DisableDraftMode />
-          </>
-        )}
       </body>
     </html>
   );

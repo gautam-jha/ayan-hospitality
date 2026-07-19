@@ -9,9 +9,9 @@
 import { sanityFetch as liveFetch } from "@/sanity/live";
 import { urlFor } from "@/sanity/client";
 
-// Wrapper helper to keep the original signature while using Live Content API
+// Wrapper helper to keep the original signature
 async function sanityFetch<T>(query: string, params: Record<string, unknown> = {}): Promise<T> {
-  const { data } = await liveFetch({ query, params });
+  const { data } = await liveFetch(query, params);
   return data as T;
 }
 import type {

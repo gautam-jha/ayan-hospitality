@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getAllDestinations } from '@/lib/repository';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   const dests = await getAllDestinations();
   return NextResponse.json({

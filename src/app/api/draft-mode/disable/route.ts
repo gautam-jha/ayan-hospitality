@@ -1,9 +1,7 @@
-import { draftMode } from "next/headers";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
-  const draft = await draftMode();
-  draft.disable();
-  const url = new URL(request.url);
-  return NextResponse.redirect(new URL("/", url.origin));
+export const dynamic = "force-static";
+
+export function GET() {
+  return NextResponse.redirect(new URL("/", "https://ayanhospitality.com"), 307);
 }
