@@ -12,8 +12,8 @@ export const client = createClient({
   apiVersion,
   useCdn: process.env.NODE_ENV === "production",
   stega: {
-    enabled: process.env.NEXT_PUBLIC_SANITY_SIGNAL === "true" || process.env.NODE_ENV === "development",
-    studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || "https://ayan-hospitality.sanity.studio",
+    enabled: true,
+    studioUrl: "https://ayan-hospitality.sanity.studio",
   },
 });
 
