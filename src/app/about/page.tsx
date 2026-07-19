@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { getLeadership, getAllTeamMembers, getSiteSettings, getTimeline } from '@/lib/repository';
+import { getLeadership, getAllTeamMembers, getSiteSettings, getTimeline, getPageAbout } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
+import { PortableText } from '@portabletext/react';
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
@@ -14,11 +15,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const [leadership, allTeam, settings, fetchedTimeline] = await Promise.all([
+  const [leadership, allTeam, settings, fetchedTimeline, page] = await Promise.all([
     getLeadership(),
     getAllTeamMembers(),
     getSiteSettings(),
     getTimeline(),
+    getPageAbout(),
   ]);
   const crew = allTeam.filter((m) => !m.isLeadership);
   const timelineData = fetchedTimeline || [];
@@ -29,12 +31,17 @@ export default async function AboutPage() {
       {/* Hero */}
       <section className="section-padding bg-gradient-to-b from-maroon-900 to-maroon-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gold-400 text-xs font-semibold tracking-[0.3em] uppercase mb-6">Our Story</p>
+          <p className="text-gold-400 text-xs font-semibold tracking-[0.3em] uppercase mb-6">{page?.heroEyebrow}</p>
           <h1 className="font-display text-5xl lg:text-6xl text-white font-semibold mb-6 leading-tight">
-            <em>&ldquo;Be Our Guest&rdquo;</em><br />A philosophy, not a tagline
+            {page?.heroTitle?.split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {i === 0 ? <em>&ldquo;{line}&rdquo;</em> : <>{line}</>}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </h1>
           <p className="text-cream-200/80 text-lg leading-relaxed max-w-2xl mx-auto">
-            In Indian culture, a guest is akin to God. Ayan Hospitality was built around one question: what does it look like to honour that belief at scale for hundreds of guests across a multi-day celebration?
+            {page?.heroSubtitle}
           </p>
         </div>
       </section>
@@ -44,12 +51,14 @@ export default async function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <SectionHeading eyebrow="Founder's Story" title="15 years. 800+ weddings. One mission." />
+              <SectionHeading eyebrow={page?.founderStoryEyebrow || ""} title={page?.founderStoryTitle || ""} />
               <div className="mt-6 space-y-5 text-charcoal-soft leading-relaxed">
-                <p>{founderName} spent his first decade in the wedding industry watching the same story repeat itself: a family would plan every detail of their wedding, including the decor, food, and music, and then hand the guest experience to a fragmented collection of vendors who had never worked together before.</p>
-                <p>The result was always some version of the same chaos: guests who couldn&apos;t find their driver, luggage that arrived at the wrong room, elderly relatives who needed help but didn&apos;t know who to call, a help desk that was really just a harried family member&apos;s phone number.</p>
+                {page?.founderStoryText && (
+                  <div className="prose prose-sm md:prose-base prose-p:text-charcoal-soft prose-p:leading-relaxed max-w-none">
+                    <PortableText value={page.founderStoryText} />
+                  </div>
+                )}
                 <p>&ldquo;{settings?.founderQuote}&rdquo;</p>
-                <p>He founded Ayan Hospitality to be the company he always wished existed: one that doesn&apos;t just describe hospitality as a service, but actually delivers it as an experience.</p>
               </div>
             </div>
             {/* Timeline */}

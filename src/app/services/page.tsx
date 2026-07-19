@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getHospitalityServices, getLogisticsServices } from '@/lib/repository';
+import { getHospitalityServices, getLogisticsServices, getPageServices } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight, ConciergeBell, Luggage } from 'lucide-react';
@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage() {
-  const [hospitality, logistics] = await Promise.all([
+  const [hospitality, logistics, page] = await Promise.all([
     getHospitalityServices(),
     getLogisticsServices(),
+    getPageServices(),
   ]);
 
   const pillars = [
@@ -43,9 +44,9 @@ export default async function ServicesPage() {
       <section className="section-padding bg-gradient-to-b from-cream-200 to-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
-            eyebrow="Our Services"
-            title="Hospitality & Logistics for Indian Weddings"
-            subtitle="19 distinct services across two pillars. Every service can be booked standalone or as part of a full-event package."
+            eyebrow={page?.heroEyebrow || ""}
+            title={page?.heroTitle || ""}
+            subtitle={page?.heroSubtitle || ""}
             centered
           />
           <div className="mt-8 flex items-center justify-center gap-4">
@@ -95,8 +96,8 @@ export default async function ServicesPage() {
       {/* Build Your Package CTA */}
       <section className="section-padding bg-maroon-700">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-4xl text-white font-semibold mb-4">Not sure what you need?</h2>
-          <p className="text-cream-200/80 mb-8">Use our guided package selector — answer 4 quick questions and get an indicative estimate in under 2 minutes.</p>
+          <h2 className="font-display text-4xl text-white font-semibold mb-4">{page?.ctaTitle}</h2>
+          <p className="text-cream-200/80 mb-8">{page?.ctaSubtitle}</p>
           <Button href="/build-your-package" variant="secondary" size="lg" id="services-build-package-bottom">
             Build Your Package <ArrowRight className="w-4 h-4" />
           </Button>

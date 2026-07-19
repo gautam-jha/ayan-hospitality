@@ -435,6 +435,85 @@ export async function getGuestFAQs(): Promise<GuestFAQ[]> {
   );
 }
 
+// ─── Singletons for Pages ───────────────────────────────────────────────────
+
+export interface PageHome {
+  pillarsEyebrow: string;
+  pillarsTitle: string;
+  pillarsSubtitle: string;
+  processEyebrow: string;
+  processTitle: string;
+  processSubtitle: string;
+}
+
+export async function getPageHome(): Promise<PageHome | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageHome"][0]`);
+  return raw ? {
+    pillarsEyebrow: raw.pillarsEyebrow ?? "",
+    pillarsTitle: raw.pillarsTitle ?? "",
+    pillarsSubtitle: raw.pillarsSubtitle ?? "",
+    processEyebrow: raw.processEyebrow ?? "",
+    processTitle: raw.processTitle ?? "",
+    processSubtitle: raw.processSubtitle ?? "",
+  } : null;
+}
+
+export interface PageAbout {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  founderStoryEyebrow: string;
+  founderStoryTitle: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  founderStoryText: any;
+}
+
+export async function getPageAbout(): Promise<PageAbout | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageAbout"][0]`);
+  return raw ? {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    founderStoryEyebrow: raw.founderStoryEyebrow ?? "",
+    founderStoryTitle: raw.founderStoryTitle ?? "",
+    founderStoryText: raw.founderStoryText ?? null,
+  } : null;
+}
+
+export interface PageServices {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  ctaTitle: string;
+  ctaSubtitle: string;
+}
+
+export async function getPageServices(): Promise<PageServices | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageServices"][0]`);
+  return raw ? {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    ctaTitle: raw.ctaTitle ?? "",
+    ctaSubtitle: raw.ctaSubtitle ?? "",
+  } : null;
+}
+
+export interface PageContact {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+}
+
+export async function getPageContact(): Promise<PageContact | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageContact"][0]`);
+  return raw ? {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+  } : null;
+}
+
 export interface SiteSettings {
   whatsAppNumber: string;
   phone: string;
@@ -445,6 +524,9 @@ export interface SiteSettings {
   founderBio: string;
   founderQuote: string;
   founderImageUrl: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
   heroImageUrl: string;
   partnerLogos: { name: string; logoUrl: string }[];
 }
@@ -462,6 +544,9 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       founderBio,
       founderQuote,
       founderImage,
+      heroEyebrow,
+      heroTitle,
+      heroSubtitle,
       heroImage,
       partnerLogos[] { name, logo }
     }`
@@ -477,6 +562,9 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     founderBio: raw.founderBio ?? "",
     founderQuote: raw.founderQuote ?? "",
     founderImageUrl: imageUrl(raw.founderImage),
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
     heroImageUrl: imageUrl(raw.heroImage),
     partnerLogos: (raw.partnerLogos ?? []).map((p: { name: string; logo: unknown }) => ({
       name: p.name,

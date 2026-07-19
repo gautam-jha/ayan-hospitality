@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Phone, Mail } from 'lucide-react';
 import { ContactPageForm } from '@/components/ContactPageForm';
-import { getSiteSettings } from '@/lib/repository';
+import { getSiteSettings, getPageContact } from '@/lib/repository';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Get a Free Consultation',
@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  const settings = await getSiteSettings();
+  const [settings, page] = await Promise.all([
+    getSiteSettings(),
+    getPageContact()
+  ]);
 
   const displayPhone = settings?.phone || '';
   const telLink = settings?.phone ? `tel:${settings.phone.replace(/[^+\d]/g, '')}` : '';
@@ -21,9 +24,9 @@ export default async function ContactPage() {
       <section className="section-padding bg-gradient-to-b from-cream-200 to-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-xl">
-            <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-4">Get in Touch</p>
-            <h1 className="font-display text-5xl text-maroon-700 font-semibold mb-4">Let&apos;s plan your wedding together</h1>
-            <p className="text-charcoal-muted text-lg leading-relaxed">Fill the form or reach us directly. We respond to every enquiry within 24 hours.</p>
+            <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-4">{page?.heroEyebrow}</p>
+            <h1 className="font-display text-5xl text-maroon-700 font-semibold mb-4">{page?.heroTitle}</h1>
+            <p className="text-charcoal-muted text-lg leading-relaxed">{page?.heroSubtitle}</p>
           </div>
         </div>
       </section>

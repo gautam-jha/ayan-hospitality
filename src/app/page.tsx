@@ -9,6 +9,7 @@ import {
   getFeaturedCaseStudy,
   getSiteSettings,
   getHowItWorksSteps,
+  getPageHome,
 } from "@/lib/repository";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [hospitalityServices, logisticsServices, stats, testimonials, blogPosts, featuredCase, settings, hiwSteps] =
+  const [hospitalityServices, logisticsServices, stats, testimonials, blogPosts, featuredCase, settings, hiwSteps, pageHome] =
     await Promise.all([
       getHospitalityServices(),
       getLogisticsServices(),
@@ -49,6 +50,7 @@ export default async function HomePage() {
       getFeaturedCaseStudy(),
       getSiteSettings(),
       getHowItWorksSteps(),
+      getPageHome(),
     ]);
 
   const waUrl = buildWhatsAppUrl(
@@ -102,15 +104,17 @@ export default async function HomePage() {
         {/* Hero content */}
         <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-32 pt-40">
           <p className="text-gold-400 text-xs font-semibold tracking-[0.3em] uppercase mb-6 animate-fade-in">
-            ✦ Be Our Guest ✦
+            {settings?.heroEyebrow}
           </p>
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold text-white leading-[1.05] mb-6">
-            Be a guest at
-            <br />
-            <span className="text-gradient-gold">your own wedding.</span>
+            {settings?.heroTitle?.split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {i === arr.length - 1 ? <span className="text-gradient-gold">{line}</span> : <>{line}<br /></>}
+              </span>
+            ))}
           </h1>
           <p className="text-cream-200/90 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            We run the entire hospitality, transport, and on-ground logistics machine behind your celebration, letting you focus on celebrating with the people you love.
+            {settings?.heroSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button href="/contact" size="lg" variant="primary" id="hero-cta-quote">
@@ -179,9 +183,9 @@ export default async function HomePage() {
       <section className="section-padding bg-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="What We Do"
-            title="Two pillars. One seamless wedding."
-            subtitle="We've built our work around the two things that determine whether a wedding runs beautifully or falls apart: hospitality and logistics."
+            eyebrow={pageHome?.pillarsEyebrow || ""}
+            title={pageHome?.pillarsTitle || ""}
+            subtitle={pageHome?.pillarsSubtitle || ""}
             centered
           />
 
@@ -269,9 +273,9 @@ export default async function HomePage() {
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="The Process"
-            title="From first call to final farewell"
-            subtitle="Four steps that take you from overwhelmed to confident, keeping you there through every event."
+            eyebrow={pageHome?.processEyebrow || ""}
+            title={pageHome?.processTitle || ""}
+            subtitle={pageHome?.processSubtitle || ""}
             centered
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
