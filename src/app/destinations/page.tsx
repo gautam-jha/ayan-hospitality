@@ -36,7 +36,7 @@ export default async function DestinationsPage() {
           {/* Metros */}
           <div>
             <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-8 flex items-center gap-3">
-              <Building2 className="w-8 h-8 text-maroon-700" /> Metro Cities
+              <Building2 className="w-8 h-8 text-maroon-700" /> Metro Cities ({metros.length})
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {metros.map((d) => (
@@ -54,7 +54,7 @@ export default async function DestinationsPage() {
           {/* Wedding destinations */}
           <div>
             <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-8 flex items-center gap-3">
-              <Castle className="w-8 h-8 text-maroon-700" /> Destination Weddings
+              <Castle className="w-8 h-8 text-maroon-700" /> Destination Weddings ({weddingDests.length})
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {weddingDests.map((d) => (
@@ -70,10 +70,10 @@ export default async function DestinationsPage() {
           </div>
 
           {/* Leisure */}
-          {leisure.length > 0 && (
+          {leisure.length >= 0 && (
             <div>
               <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-8 flex items-center gap-3">
-                <Mountain className="w-8 h-8 text-maroon-700" /> Leisure Destinations
+                <Mountain className="w-8 h-8 text-maroon-700" /> Leisure Destinations ({leisure.length})
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {leisure.map((d) => (
@@ -92,7 +92,7 @@ export default async function DestinationsPage() {
           {/* International */}
           <div>
             <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-3 flex items-center gap-3">
-              <Plane className="w-8 h-8 text-maroon-700" /> International Destinations
+              <Plane className="w-8 h-8 text-maroon-700" /> International Destinations ({international.length})
             </h2>
             <p className="text-charcoal-muted mb-8">We manage destination weddings internationally, bringing our full team and coordinating with trusted local logistics partners.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -8,7 +8,7 @@ import { SanityLive } from "@/sanity/live";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
-import { getSiteSettings } from "@/lib/repository";
+import { getSiteSettings, getAreaServed } from "@/lib/repository";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -82,7 +82,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = await getSiteSettings();
+  const [settings, areaServed] = await Promise.all([
+    getSiteSettings(),
+    getAreaServed(),
+  ]);
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
@@ -97,7 +100,7 @@ export default async function RootLayout({
       "@type": "PostalAddress",
       streetAddress: settings?.address || "",
     },
-    areaServed: ["India", "UAE", "Sri Lanka", "Indonesia", "Thailand"],
+    areaServed,
     priceRange: "₹₹₹",
     image: "https://ayanhospitality.com/og-image.jpg",
   };

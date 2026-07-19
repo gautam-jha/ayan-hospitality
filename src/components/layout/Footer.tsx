@@ -30,11 +30,11 @@ const COMPANY_LINKS = [
 ];
 
 export function Footer({ settings }: { settings?: SiteSettings | null }) {
-  const displayPhone = settings?.phone || '+91 88261 04232';
+  const displayPhone = settings?.phone ?? '+91 88261 04232';
   const telLink = settings?.phone ? `tel:${settings.phone.replace(/[^+\d]/g, '')}` : 'tel:+918826104232';
-  const displayEmail = settings?.email || 'hello@ayanhospitality.com';
-  const displayAddress = settings?.address || 'Delhi NCR · Mumbai · Bangalore\nand 30+ cities across India';
-  const displayWhatsApp = settings?.whatsAppNumber || '918826104232';
+  const displayEmail = settings?.email ?? 'hello@ayanhospitality.com';
+  const displayAddress = settings?.address ?? 'Delhi NCR · Mumbai · Bangalore\nand 30+ cities across India';
+  const displayWhatsApp = settings?.whatsAppNumber ?? '918826104232';
 
   return (
     <footer className="bg-maroon-900 text-cream-200">

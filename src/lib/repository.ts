@@ -531,6 +531,13 @@ export interface SiteSettings {
   partnerLogos: { name: string; logoUrl: string }[];
 }
 
+export async function getAreaServed(): Promise<string[]> {
+  const indianCountries = ["India"];
+  const intl = await getInternationalDestinations();
+  const intlCountries = [...new Set(intl.map(d => d.country))].sort();
+  return [...indianCountries, ...intlCountries];
+}
+
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const raw = await sanityFetch<any | null>(
