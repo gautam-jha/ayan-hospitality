@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getHospitalityServices, getLogisticsServices } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, Home, Truck } from 'lucide-react';
+import { ArrowRight, ConciergeBell, Luggage } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Wedding Hospitality & Logistics Services',
@@ -21,7 +21,7 @@ export default async function ServicesPage() {
       id: 'hospitality',
       title: 'Wedding Hospitality',
       description: 'Everything that touches your guest experience — from the first RSVP to the final farewell.',
-      icon: <Home className="w-7 h-7" />,
+      icon: <ConciergeBell className="w-7 h-7" />,
       color: 'maroon',
       href: '/services/hospitality',
       services: hospitality,
@@ -30,7 +30,7 @@ export default async function ServicesPage() {
       id: 'logistics',
       title: 'Logistics & On-Ground Crew',
       description: 'Every vehicle, bag, movement, and on-ground team member — coordinated with precision.',
-      icon: <Truck className="w-7 h-7" />,
+      icon: <Luggage className="w-7 h-7" />,
       color: 'gold',
       href: '/services/logistics',
       services: logistics,
