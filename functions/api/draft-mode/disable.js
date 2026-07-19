@@ -1,13 +1,34 @@
 export async function onRequest(context) {
   const url = new URL(context.request.url);
-  const redirectUrl = new URL('/', url.origin);
+  const slug = url.searchParams.get('slug') || url.searchParams.get('redirect') || url.searchParams.get('url') || '/';
 
-  const response = Response.redirect(redirectUrl.toString(), 302);
+  let redirectPath = '/';
+  if (slug.startsWith('/')) {
+    redirectPath = slug;
+  } else {
+    try {
+      const parsedSlug = new URL(slug);
+      if (parsedSlug.origin === url.origin) {
+        redirectPath = parsedSlug.pathname + parsedSlug.search + parsedSlug.hash;
+      }
+    } catch {
+      const trimmed = slug.trim();
+      if (trimmed.startsWith('/')) {
+        redirectPath = trimmed;
+      }
+    }
+  }
 
-  response.headers.append(
+  const redirectUrl = new URL(redirectPath, url.origin);
+  const headers = new Headers();
+  headers.set('Location', redirectUrl.toString());
+  headers.set(
     'Set-Cookie',
     `__sanity_preview_perspective=; Path=/; SameSite=None; Secure; HttpOnly; Max-Age=0`
   );
 
-  return response;
+  return new Response(null, {
+    status: 307,
+    headers: headers,
+  });
 }

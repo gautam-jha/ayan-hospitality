@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+// import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,18 +7,8 @@ import { WhatsAppFAB } from "@/components/layout/WhatsAppFAB";
 import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import { getSiteSettings, getAreaServed } from "@/lib/repository";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+const playfair = { variable: "--font-playfair" };
+const inter = { variable: "--font-inter" };
 
 export const revalidate = 60;
 

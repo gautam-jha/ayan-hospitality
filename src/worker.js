@@ -11,6 +11,14 @@ export default {
       return handleTestDest(env);
     }
 
+    if (pathname === '/api/draft-mode/enable' && request.method === 'GET') {
+      return handleEnableDraft(request);
+    }
+
+    if (pathname === '/api/draft-mode/disable' && request.method === 'GET') {
+      return handleDisableDraft(request);
+    }
+
     if (request.method === 'GET' || request.method === 'HEAD') {
       let response = await env.ASSETS.fetch(request);
       if (response.status !== 404) return response;
@@ -148,4 +156,74 @@ async function handleTestDest(env) {
       headers: { 'Content-Type': 'application/json' },
     });
   }
+}
+
+async function handleEnableDraft(request) {
+  const url = new URL(request.url);
+  const slug = url.searchParams.get('slug') || url.searchParams.get('redirect') || url.searchParams.get('url') || '/';
+
+  let redirectPath = '/';
+  if (slug.startsWith('/')) {
+    redirectPath = slug;
+  } else {
+    try {
+      const parsedSlug = new URL(slug);
+      if (parsedSlug.origin === url.origin) {
+        redirectPath = parsedSlug.pathname + parsedSlug.search + parsedSlug.hash;
+      }
+    } catch {
+      const trimmed = slug.trim();
+      if (trimmed.startsWith('/')) {
+        redirectPath = trimmed;
+      }
+    }
+  }
+
+  const redirectUrl = new URL(redirectPath, url.origin);
+  const headers = new Headers();
+  headers.set('Location', redirectUrl.toString());
+  headers.set(
+    'Set-Cookie',
+    `__sanity_preview_perspective=drafts; Path=/; SameSite=None; Secure; HttpOnly; Max-Age=3600`
+  );
+
+  return new Response(null, {
+    status: 307,
+    headers: headers,
+  });
+}
+
+async function handleDisableDraft(request) {
+  const url = new URL(request.url);
+  const slug = url.searchParams.get('slug') || url.searchParams.get('redirect') || url.searchParams.get('url') || '/';
+
+  let redirectPath = '/';
+  if (slug.startsWith('/')) {
+    redirectPath = slug;
+  } else {
+    try {
+      const parsedSlug = new URL(slug);
+      if (parsedSlug.origin === url.origin) {
+        redirectPath = parsedSlug.pathname + parsedSlug.search + parsedSlug.hash;
+      }
+    } catch {
+      const trimmed = slug.trim();
+      if (trimmed.startsWith('/')) {
+        redirectPath = trimmed;
+      }
+    }
+  }
+
+  const redirectUrl = new URL(redirectPath, url.origin);
+  const headers = new Headers();
+  headers.set('Location', redirectUrl.toString());
+  headers.set(
+    'Set-Cookie',
+    `__sanity_preview_perspective=; Path=/; SameSite=None; Secure; HttpOnly; Max-Age=0`
+  );
+
+  return new Response(null, {
+    status: 307,
+    headers: headers,
+  });
 }
