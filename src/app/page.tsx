@@ -14,6 +14,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Button } from "@/components/ui/Button";
 import { HomepageContactForm } from "@/components/HomepageContactForm";
+import { urlFor } from "@/sanity/client";
 import { buildWhatsAppUrl } from "@/lib/utils";
 import {
   ArrowRight,
@@ -107,13 +108,24 @@ export default async function HomePage() {
         {/* Hero background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-maroon-900/70 via-maroon-900/40 to-maroon-900/80 z-10" />
-          <div
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/images/hero-wedding.jpg')",
-              backgroundColor: "#3D0D16",
-            }}
-          />
+          {settings?.heroImage && (
+            <div
+              className="w-full h-full bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url('${urlFor(settings.heroImage).width(1920).url()}')`,
+                backgroundColor: "#3D0D16",
+              }}
+            />
+          )}
+          {!settings?.heroImage && (
+            <div
+              className="w-full h-full bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: "url('/images/hero-wedding.jpg')",
+                backgroundColor: "#3D0D16",
+              }}
+            />
+          )}
         </div>
 
         {/* Hero content */}
