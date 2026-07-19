@@ -20,8 +20,8 @@ export default async function ServicesPage() {
   const pillars = [
     {
       id: 'hospitality',
-      title: 'Wedding Hospitality',
-      description: 'Everything that touches your guest experience — from the first RSVP to the final farewell.',
+      title: page?.pillarHospitalityTitle ?? "",
+      description: page?.pillarHospitalityDescription ?? "",
       icon: <ConciergeBell className="w-7 h-7" />,
       color: 'maroon',
       href: '/services/hospitality',
@@ -29,8 +29,8 @@ export default async function ServicesPage() {
     },
     {
       id: 'logistics',
-      title: 'Logistics & On-Ground Crew',
-      description: 'Every vehicle, bag, movement, and on-ground team member — coordinated with precision.',
+      title: page?.pillarLogisticsTitle ?? "",
+      description: page?.pillarLogisticsDescription ?? "",
       icon: <Luggage className="w-7 h-7" />,
       color: 'gold',
       href: '/services/logistics',
@@ -44,14 +44,14 @@ export default async function ServicesPage() {
       <section className="section-padding bg-gradient-to-b from-cream-200 to-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
-            eyebrow={page?.heroEyebrow || ""}
-            title={page?.heroTitle || ""}
-            subtitle={page?.heroSubtitle || ""}
+            eyebrow={page?.heroEyebrow ?? ""}
+            title={page?.heroTitle ?? ""}
+            subtitle={page?.heroSubtitle ?? ""}
             centered
           />
           <div className="mt-8 flex items-center justify-center gap-4">
-            <Button href="/contact" variant="primary" id="services-get-quote">Get a Quote <ArrowRight className="w-4 h-4" /></Button>
-            <Button href="/build-your-package" variant="ghost" id="services-build-package">Build Your Package</Button>
+            <Button href="/contact" variant="primary" id="services-get-quote">{page?.getQuoteCta ?? ""} <ArrowRight className="w-4 h-4" /></Button>
+            <Button href="/build-your-package" variant="ghost" id="services-build-package">{page?.buildPackageCta ?? ""}</Button>
           </div>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default async function ServicesPage() {
                 <p className="text-charcoal-muted mt-2 max-w-xl">{pillar.description}</p>
               </div>
               <Link href={pillar.href} className="inline-flex items-center gap-2 text-maroon-700 font-medium hover:gap-3 transition-all shrink-0">
-                View all {pillar.title} services <ArrowRight className="w-4 h-4" />
+                {page?.pillarCtaLabel?.replace('{title}', pillar.title) ?? ""} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -84,7 +84,7 @@ export default async function ServicesPage() {
                   </h3>
                   <p className="text-charcoal-muted text-sm leading-relaxed mb-4">{service.shortDescription}</p>
                   <div className="flex items-center gap-1 text-maroon-700 text-xs font-medium group-hover:gap-2 transition-all">
-                    Learn more <ArrowRight className="w-3 h-3" />
+                    {page?.serviceCardCta ?? ""} <ArrowRight className="w-3 h-3" />
                   </div>
                 </Link>
               ))}
@@ -99,7 +99,7 @@ export default async function ServicesPage() {
           <h2 className="font-display text-4xl text-white font-semibold mb-4">{page?.ctaTitle}</h2>
           <p className="text-cream-200/80 mb-8">{page?.ctaSubtitle}</p>
           <Button href="/build-your-package" variant="secondary" size="lg" id="services-build-package-bottom">
-            Build Your Package <ArrowRight className="w-4 h-4" />
+            {page?.buildPackageCta ?? ""} <ArrowRight className="w-4 h-4" />
           </Button>
         </div>
       </section>

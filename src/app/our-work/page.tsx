@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getAllCaseStudies } from '@/lib/repository';
+import { getAllCaseStudies, getPageOurWork } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
@@ -11,16 +11,19 @@ export const metadata: Metadata = {
 };
 
 export default async function OurWorkPage() {
-  const caseStudies = await getAllCaseStudies();
+  const [caseStudies, page] = await Promise.all([
+    getAllCaseStudies(),
+    getPageOurWork(),
+  ]);
 
   return (
     <div className="pt-20">
       <section className="section-padding bg-gradient-to-b from-cream-200 to-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
-            eyebrow="Our Work"
-            title="Every wedding is a story. Here are a few of ours."
-            subtitle="Real events, real challenges, real outcomes: not a portfolio gallery, but an honest account of what we do."
+            eyebrow={page?.heroEyebrow ?? ""}
+            title={page?.heroTitle ?? ""}
+            subtitle={page?.heroSubtitle ?? ""}
             centered
           />
         </div>
@@ -58,7 +61,7 @@ export default async function OurWorkPage() {
                     {cs.challenge}
                   </p>
                   <span className="inline-flex items-center gap-1 text-maroon-700 text-sm font-medium group-hover:gap-2 transition-all">
-                    Read the full story <ArrowRight className="w-4 h-4" />
+                    {page?.cardCta ?? ""} <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
               </Link>
@@ -66,15 +69,15 @@ export default async function OurWorkPage() {
           </div>
 
           <div className="mt-16 bg-cream-100 rounded-3xl p-10 text-center border border-cream-200">
-            <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-3">800+ more weddings</p>
+            <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-3">{page?.ctaEyebrow ?? ""}</p>
             <h3 className="font-display text-3xl text-maroon-700 font-semibold mb-4">
-              Every event tells its own story.
+              {page?.ctaTitle ?? ""}
             </h3>
             <p className="text-charcoal-muted mb-6 max-w-xl mx-auto">
-              We&apos;ve managed weddings from 50 to 1,200 guests across 30+ cities. Get in touch to discuss yours.
+              {page?.ctaText ?? ""}
             </p>
             <Button href="/contact" variant="primary" id="our-work-contact">
-              Start a Conversation <ArrowRight className="w-4 h-4" />
+              {page?.ctaButtonLabel ?? ""} <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
         </div>

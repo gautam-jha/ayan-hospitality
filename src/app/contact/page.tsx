@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Phone, Mail } from 'lucide-react';
 import { ContactPageForm } from '@/components/ContactPageForm';
-import { getSiteSettings, getPageContact } from '@/lib/repository';
+import { getSiteSettings, getPageContact, getAllServices } from '@/lib/repository';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Get a Free Consultation',
@@ -9,15 +9,16 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  const [settings, page] = await Promise.all([
+  const [settings, page, services] = await Promise.all([
     getSiteSettings(),
-    getPageContact()
+    getPageContact(),
+    getAllServices()
   ]);
 
-  const displayPhone = settings?.phone || '';
+  const displayPhone = settings?.phone ?? "";
   const telLink = settings?.phone ? `tel:${settings.phone.replace(/[^+\d]/g, '')}` : '';
-  const displayEmail = settings?.email || '';
-  const displayWhatsApp = settings?.whatsAppNumber || '';
+  const displayEmail = settings?.email ?? "";
+  const displayWhatsApp = settings?.whatsAppNumber ?? "";
 
   return (
     <div className="pt-20">
@@ -36,7 +37,7 @@ export default async function ContactPage() {
           {/* Contact info */}
           <div className="space-y-8">
             <div>
-              <h2 className="font-display text-2xl text-maroon-700 font-semibold mb-6">Reach us directly</h2>
+              <h2 className="font-display text-2xl text-maroon-700 font-semibold mb-6">{page?.reachHeading ?? ""}</h2>
               <div className="space-y-4">
                 <a href={telLink} id="contact-phone" className="flex items-center gap-4 p-4 rounded-2xl bg-cream-100 border border-cream-300 hover:border-maroon-700/30 transition-colors group">
                   <div className="w-10 h-10 rounded-xl bg-maroon-700 flex items-center justify-center shrink-0">
@@ -72,14 +73,14 @@ export default async function ContactPage() {
               </div>
             </div>
             <div className="bg-cream-100 rounded-2xl p-6 border border-cream-300">
-              <p className="font-semibold text-charcoal mb-2">We respond within 24 hours</p>
-              <p className="text-charcoal-muted text-sm leading-relaxed">For urgent queries, WhatsApp is the fastest way to reach us. For detailed event briefs, the form works well.</p>
+              <p className="font-semibold text-charcoal mb-2">{page?.infoBoxHeading ?? ""}</p>
+              <p className="text-charcoal-muted text-sm leading-relaxed">{page?.infoBoxText ?? ""}</p>
             </div>
           </div>
 
           {/* Form */}
           <div className="lg:col-span-2">
-            <ContactPageForm />
+            <ContactPageForm services={services} labels={page} />
           </div>
         </div>
       </section>

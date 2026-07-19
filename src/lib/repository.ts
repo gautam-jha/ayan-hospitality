@@ -444,18 +444,129 @@ export interface PageHome {
   processEyebrow: string;
   processTitle: string;
   processSubtitle: string;
+  heroCtaLabel: string;
+  heroCtaWhatsApp: string;
+  pillarHospitalityTitle: string;
+  pillarHospitalityDescription: string;
+  pillarHospitalityCta: string;
+  pillarLogisticsTitle: string;
+  pillarLogisticsDescription: string;
+  pillarLogisticsCta: string;
+  processCta: string;
+  featuredWorkEyebrow: string;
+  featuredWorkTitle: string;
+  caseStudyTag: string;
+  caseStudyChallengeLabel: string;
+  caseStudyOutcomeLabel: string;
+  caseStudyCta: string;
+  caseStudyViewAllCta: string;
+  testimonialsEyebrow: string;
+  testimonialsTitle: string;
+  testimonialsViewAllCta: string;
+  plannersEyebrow: string;
+  plannersTitleLine1: string;
+  plannersTitleLine2: string;
+  plannersDescription: string;
+  plannersFeature1: string;
+  plannersFeature2: string;
+  plannersFeature3: string;
+  plannersPrimaryCta: string;
+  plannersSecondaryCta: string;
+  plannersStat1Value: string;
+  plannersStat1Label: string;
+  plannersStat2Value: string;
+  plannersStat2Label: string;
+  plannersStat3Value: string;
+  plannersStat3Label: string;
+  plannersStat4Value: string;
+  plannersStat4Label: string;
+  founderEyebrow: string;
+  founderCta: string;
+  blogEyebrow: string;
+  blogTitle: string;
+  blogReadMoreCta: string;
+  blogViewAllCta: string;
+  finalCtaEyebrow: string;
+  finalCtaTitle: string;
+  finalCtaSubtitle: string;
+  formNamePlaceholder: string;
+  formPhonePlaceholder: string;
+  formCityPlaceholder: string;
+  formGuestPlaceholder: string;
+  formSubmitLabel: string;
+  formSuccessText: string;
+  formErrorText: string;
+  formSendingText: string;
+  formSendAnotherLabel: string;
+  formOrCallText: string;
 }
 
 export async function getPageHome(): Promise<PageHome | null> {
   const raw = await sanityFetch<any | null>(`*[_type == "pageHome"][0]`);
-  return raw ? {
+  if (!raw) return null;
+  return {
     pillarsEyebrow: raw.pillarsEyebrow ?? "",
     pillarsTitle: raw.pillarsTitle ?? "",
     pillarsSubtitle: raw.pillarsSubtitle ?? "",
     processEyebrow: raw.processEyebrow ?? "",
     processTitle: raw.processTitle ?? "",
     processSubtitle: raw.processSubtitle ?? "",
-  } : null;
+    heroCtaLabel: raw.heroCtaLabel ?? "",
+    heroCtaWhatsApp: raw.heroCtaWhatsApp ?? "",
+    pillarHospitalityTitle: raw.pillarHospitalityTitle ?? "",
+    pillarHospitalityDescription: raw.pillarHospitalityDescription ?? "",
+    pillarHospitalityCta: raw.pillarHospitalityCta ?? "",
+    pillarLogisticsTitle: raw.pillarLogisticsTitle ?? "",
+    pillarLogisticsDescription: raw.pillarLogisticsDescription ?? "",
+    pillarLogisticsCta: raw.pillarLogisticsCta ?? "",
+    processCta: raw.processCta ?? "",
+    featuredWorkEyebrow: raw.featuredWorkEyebrow ?? "",
+    featuredWorkTitle: raw.featuredWorkTitle ?? "",
+    caseStudyTag: raw.caseStudyTag ?? "",
+    caseStudyChallengeLabel: raw.caseStudyChallengeLabel ?? "",
+    caseStudyOutcomeLabel: raw.caseStudyOutcomeLabel ?? "",
+    caseStudyCta: raw.caseStudyCta ?? "",
+    caseStudyViewAllCta: raw.caseStudyViewAllCta ?? "",
+    testimonialsEyebrow: raw.testimonialsEyebrow ?? "",
+    testimonialsTitle: raw.testimonialsTitle ?? "",
+    testimonialsViewAllCta: raw.testimonialsViewAllCta ?? "",
+    plannersEyebrow: raw.plannersEyebrow ?? "",
+    plannersTitleLine1: raw.plannersTitleLine1 ?? "",
+    plannersTitleLine2: raw.plannersTitleLine2 ?? "",
+    plannersDescription: raw.plannersDescription ?? "",
+    plannersFeature1: raw.plannersFeature1 ?? "",
+    plannersFeature2: raw.plannersFeature2 ?? "",
+    plannersFeature3: raw.plannersFeature3 ?? "",
+    plannersPrimaryCta: raw.plannersPrimaryCta ?? "",
+    plannersSecondaryCta: raw.plannersSecondaryCta ?? "",
+    plannersStat1Value: raw.plannersStat1Value ?? "",
+    plannersStat1Label: raw.plannersStat1Label ?? "",
+    plannersStat2Value: raw.plannersStat2Value ?? "",
+    plannersStat2Label: raw.plannersStat2Label ?? "",
+    plannersStat3Value: raw.plannersStat3Value ?? "",
+    plannersStat3Label: raw.plannersStat3Label ?? "",
+    plannersStat4Value: raw.plannersStat4Value ?? "",
+    plannersStat4Label: raw.plannersStat4Label ?? "",
+    founderEyebrow: raw.founderEyebrow ?? "",
+    founderCta: raw.founderCta ?? "",
+    blogEyebrow: raw.blogEyebrow ?? "",
+    blogTitle: raw.blogTitle ?? "",
+    blogReadMoreCta: raw.blogReadMoreCta ?? "",
+    blogViewAllCta: raw.blogViewAllCta ?? "",
+    finalCtaEyebrow: raw.finalCtaEyebrow ?? "",
+    finalCtaTitle: raw.finalCtaTitle ?? "",
+    finalCtaSubtitle: raw.finalCtaSubtitle ?? "",
+    formNamePlaceholder: raw.formNamePlaceholder ?? "",
+    formPhonePlaceholder: raw.formPhonePlaceholder ?? "",
+    formCityPlaceholder: raw.formCityPlaceholder ?? "",
+    formGuestPlaceholder: raw.formGuestPlaceholder ?? "",
+    formSubmitLabel: raw.formSubmitLabel ?? "",
+    formSuccessText: raw.formSuccessText ?? "",
+    formErrorText: raw.formErrorText ?? "",
+    formSendingText: raw.formSendingText ?? "",
+    formSendAnotherLabel: raw.formSendAnotherLabel ?? "",
+    formOrCallText: raw.formOrCallText ?? "",
+  };
 }
 
 export interface PageAbout {
@@ -466,18 +577,35 @@ export interface PageAbout {
   founderStoryTitle: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   founderStoryText: any;
+  leadershipEyebrow: string;
+  leadershipTitle: string;
+  crewEyebrow: string;
+  crewTitle: string;
+  crewSubtitle: string;
+  ctaTitle: string;
+  ctaSubtitle: string;
+  ctaButtonLabel: string;
 }
 
 export async function getPageAbout(): Promise<PageAbout | null> {
   const raw = await sanityFetch<any | null>(`*[_type == "pageAbout"][0]`);
-  return raw ? {
+  if (!raw) return null;
+  return {
     heroEyebrow: raw.heroEyebrow ?? "",
     heroTitle: raw.heroTitle ?? "",
     heroSubtitle: raw.heroSubtitle ?? "",
     founderStoryEyebrow: raw.founderStoryEyebrow ?? "",
     founderStoryTitle: raw.founderStoryTitle ?? "",
     founderStoryText: raw.founderStoryText ?? null,
-  } : null;
+    leadershipEyebrow: raw.leadershipEyebrow ?? "",
+    leadershipTitle: raw.leadershipTitle ?? "",
+    crewEyebrow: raw.crewEyebrow ?? "",
+    crewTitle: raw.crewTitle ?? "",
+    crewSubtitle: raw.crewSubtitle ?? "",
+    ctaTitle: raw.ctaTitle ?? "",
+    ctaSubtitle: raw.ctaSubtitle ?? "",
+    ctaButtonLabel: raw.ctaButtonLabel ?? "",
+  };
 }
 
 export interface PageServices {
@@ -486,32 +614,428 @@ export interface PageServices {
   heroSubtitle: string;
   ctaTitle: string;
   ctaSubtitle: string;
+  pillarHospitalityTitle: string;
+  pillarHospitalityDescription: string;
+  pillarLogisticsTitle: string;
+  pillarLogisticsDescription: string;
+  pillarCtaLabel: string;
+  serviceCardCta: string;
+  getQuoteCta: string;
+  buildPackageCta: string;
 }
 
 export async function getPageServices(): Promise<PageServices | null> {
   const raw = await sanityFetch<any | null>(`*[_type == "pageServices"][0]`);
-  return raw ? {
+  if (!raw) return null;
+  return {
     heroEyebrow: raw.heroEyebrow ?? "",
     heroTitle: raw.heroTitle ?? "",
     heroSubtitle: raw.heroSubtitle ?? "",
     ctaTitle: raw.ctaTitle ?? "",
     ctaSubtitle: raw.ctaSubtitle ?? "",
-  } : null;
+    pillarHospitalityTitle: raw.pillarHospitalityTitle ?? "",
+    pillarHospitalityDescription: raw.pillarHospitalityDescription ?? "",
+    pillarLogisticsTitle: raw.pillarLogisticsTitle ?? "",
+    pillarLogisticsDescription: raw.pillarLogisticsDescription ?? "",
+    pillarCtaLabel: raw.pillarCtaLabel ?? "",
+    serviceCardCta: raw.serviceCardCta ?? "",
+    getQuoteCta: raw.getQuoteCta ?? "",
+    buildPackageCta: raw.buildPackageCta ?? "",
+  };
 }
 
 export interface PageContact {
   heroEyebrow: string;
   heroTitle: string;
   heroSubtitle: string;
+  reachHeading: string;
+  infoBoxHeading: string;
+  infoBoxText: string;
+  formNameLabel: string;
+  formNamePlaceholder: string;
+  formPhoneLabel: string;
+  formPhonePlaceholder: string;
+  formEmailLabel: string;
+  formEmailPlaceholder: string;
+  formDateLabel: string;
+  formCityLabel: string;
+  formCityPlaceholder: string;
+  formGuestLabel: string;
+  formGuestPlaceholder: string;
+  formServicesLabel: string;
+  formMessageLabel: string;
+  formMessagePlaceholder: string;
+  formSubmitLabel: string;
+  formSendingLabel: string;
+  formSuccessTitle: string;
+  formSuccessText: string;
+  formErrorText: string;
+  formSendAnotherLabel: string;
+  formChatWhatsAppLabel: string;
+  formServicesSelectedLabel: string;
 }
 
 export async function getPageContact(): Promise<PageContact | null> {
   const raw = await sanityFetch<any | null>(`*[_type == "pageContact"][0]`);
-  return raw ? {
+  if (!raw) return null;
+  return {
     heroEyebrow: raw.heroEyebrow ?? "",
     heroTitle: raw.heroTitle ?? "",
     heroSubtitle: raw.heroSubtitle ?? "",
-  } : null;
+    reachHeading: raw.reachHeading ?? "",
+    infoBoxHeading: raw.infoBoxHeading ?? "",
+    infoBoxText: raw.infoBoxText ?? "",
+    formNameLabel: raw.formNameLabel ?? "",
+    formNamePlaceholder: raw.formNamePlaceholder ?? "",
+    formPhoneLabel: raw.formPhoneLabel ?? "",
+    formPhonePlaceholder: raw.formPhonePlaceholder ?? "",
+    formEmailLabel: raw.formEmailLabel ?? "",
+    formEmailPlaceholder: raw.formEmailPlaceholder ?? "",
+    formDateLabel: raw.formDateLabel ?? "",
+    formCityLabel: raw.formCityLabel ?? "",
+    formCityPlaceholder: raw.formCityPlaceholder ?? "",
+    formGuestLabel: raw.formGuestLabel ?? "",
+    formGuestPlaceholder: raw.formGuestPlaceholder ?? "",
+    formServicesLabel: raw.formServicesLabel ?? "",
+    formMessageLabel: raw.formMessageLabel ?? "",
+    formMessagePlaceholder: raw.formMessagePlaceholder ?? "",
+    formSubmitLabel: raw.formSubmitLabel ?? "",
+    formSendingLabel: raw.formSendingLabel ?? "",
+    formSuccessTitle: raw.formSuccessTitle ?? "",
+    formSuccessText: raw.formSuccessText ?? "",
+    formErrorText: raw.formErrorText ?? "",
+    formSendAnotherLabel: raw.formSendAnotherLabel ?? "",
+    formChatWhatsAppLabel: raw.formChatWhatsAppLabel ?? "",
+    formServicesSelectedLabel: raw.formServicesSelectedLabel ?? "",
+  };
+}
+
+export interface PageDestinations {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  metrosHeading: string;
+  weddingHeading: string;
+  leisureHeading: string;
+  internationalHeading: string;
+  internationalDescription: string;
+  ctaHeading: string;
+  ctaText: string;
+  ctaLinkLabel: string;
+}
+
+export async function getPageDestinations(): Promise<PageDestinations | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageDestinations"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    metrosHeading: raw.metrosHeading ?? "",
+    weddingHeading: raw.weddingHeading ?? "",
+    leisureHeading: raw.leisureHeading ?? "",
+    internationalHeading: raw.internationalHeading ?? "",
+    internationalDescription: raw.internationalDescription ?? "",
+    ctaHeading: raw.ctaHeading ?? "",
+    ctaText: raw.ctaText ?? "",
+    ctaLinkLabel: raw.ctaLinkLabel ?? "",
+  };
+}
+
+export interface PageFAQ {
+  heroEyebrow: string;
+  heroTitle: string;
+  ctaHeading: string;
+  ctaText: string;
+  ctaButtonLabel: string;
+  ctaWhatsAppLabel: string;
+}
+
+export async function getPageFAQ(): Promise<PageFAQ | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageFAQ"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    ctaHeading: raw.ctaHeading ?? "",
+    ctaText: raw.ctaText ?? "",
+    ctaButtonLabel: raw.ctaButtonLabel ?? "",
+    ctaWhatsAppLabel: raw.ctaWhatsAppLabel ?? "",
+  };
+}
+
+export interface PageBlog {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  cardCta: string;
+  sidebarHeading: string;
+  sidebarText: string;
+  sidebarCta: string;
+  backLinkLabel: string;
+}
+
+export async function getPageBlog(): Promise<PageBlog | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageBlog"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    cardCta: raw.cardCta ?? "",
+    sidebarHeading: raw.sidebarHeading ?? "",
+    sidebarText: raw.sidebarText ?? "",
+    sidebarCta: raw.sidebarCta ?? "",
+    backLinkLabel: raw.backLinkLabel ?? "",
+  };
+}
+
+export interface PageOurWork {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  cardCta: string;
+  ctaEyebrow: string;
+  ctaTitle: string;
+  ctaText: string;
+  ctaButtonLabel: string;
+  detailChallengeLabel: string;
+  detailWhatWeDidLabel: string;
+  detailOutcomeLabel: string;
+  detailSidebarHeading: string;
+  detailSidebarCta: string;
+}
+
+export async function getPageOurWork(): Promise<PageOurWork | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageOurWork"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    cardCta: raw.cardCta ?? "",
+    ctaEyebrow: raw.ctaEyebrow ?? "",
+    ctaTitle: raw.ctaTitle ?? "",
+    ctaText: raw.ctaText ?? "",
+    ctaButtonLabel: raw.ctaButtonLabel ?? "",
+    detailChallengeLabel: raw.detailChallengeLabel ?? "",
+    detailWhatWeDidLabel: raw.detailWhatWeDidLabel ?? "",
+    detailOutcomeLabel: raw.detailOutcomeLabel ?? "",
+    detailSidebarHeading: raw.detailSidebarHeading ?? "",
+    detailSidebarCta: raw.detailSidebarCta ?? "",
+  };
+}
+
+export interface PageCareers {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  listingsEyebrow: string;
+  listingsTitle: string;
+  applyCta: string;
+  noRoleHeading: string;
+  noRoleText: string;
+  noRoleCta: string;
+}
+
+export async function getPageCareers(): Promise<PageCareers | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageCareers"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    listingsEyebrow: raw.listingsEyebrow ?? "",
+    listingsTitle: raw.listingsTitle ?? "",
+    applyCta: raw.applyCta ?? "",
+    noRoleHeading: raw.noRoleHeading ?? "",
+    noRoleText: raw.noRoleText ?? "",
+    noRoleCta: raw.noRoleCta ?? "",
+  };
+}
+
+export interface PageForPlanners {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  heroPrimaryCta: string;
+  heroSecondaryCta: string;
+  credibilityEyebrow: string;
+  credibilityTitle: string;
+  processEyebrow: string;
+  processTitle: string;
+  deckEyebrow: string;
+  deckTitle: string;
+  deckDescription: string;
+  deckButtonLabel: string;
+  contactEyebrow: string;
+  contactTitle: string;
+  formNamePlaceholder: string;
+  formCompanyPlaceholder: string;
+  formPhonePlaceholder: string;
+  formEmailPlaceholder: string;
+  formMessagePlaceholder: string;
+  formSubmitLabel: string;
+}
+
+export async function getPageForPlanners(): Promise<PageForPlanners | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageForPlanners"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    heroPrimaryCta: raw.heroPrimaryCta ?? "",
+    heroSecondaryCta: raw.heroSecondaryCta ?? "",
+    credibilityEyebrow: raw.credibilityEyebrow ?? "",
+    credibilityTitle: raw.credibilityTitle ?? "",
+    processEyebrow: raw.processEyebrow ?? "",
+    processTitle: raw.processTitle ?? "",
+    deckEyebrow: raw.deckEyebrow ?? "",
+    deckTitle: raw.deckTitle ?? "",
+    deckDescription: raw.deckDescription ?? "",
+    deckButtonLabel: raw.deckButtonLabel ?? "",
+    contactEyebrow: raw.contactEyebrow ?? "",
+    contactTitle: raw.contactTitle ?? "",
+    formNamePlaceholder: raw.formNamePlaceholder ?? "",
+    formCompanyPlaceholder: raw.formCompanyPlaceholder ?? "",
+    formPhonePlaceholder: raw.formPhonePlaceholder ?? "",
+    formEmailPlaceholder: raw.formEmailPlaceholder ?? "",
+    formMessagePlaceholder: raw.formMessagePlaceholder ?? "",
+    formSubmitLabel: raw.formSubmitLabel ?? "",
+  };
+}
+
+export interface PageGuestHelpDesk {
+  heroEyebrow: string;
+  helpDeskHeading: string;
+  helpDeskAvailability: string;
+  callButtonLabel: string;
+  whatsappButtonLabel: string;
+  venueHeading: string;
+  venueDescription: string;
+  venueMapButton: string;
+  transferHeading: string;
+  transferDescription: string;
+  transferButtonLabel: string;
+  faqHeading: string;
+  footerText: string;
+}
+
+export async function getPageGuestHelpDesk(): Promise<PageGuestHelpDesk | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageGuestHelpDesk"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    helpDeskHeading: raw.helpDeskHeading ?? "",
+    helpDeskAvailability: raw.helpDeskAvailability ?? "",
+    callButtonLabel: raw.callButtonLabel ?? "",
+    whatsappButtonLabel: raw.whatsappButtonLabel ?? "",
+    venueHeading: raw.venueHeading ?? "",
+    venueDescription: raw.venueDescription ?? "",
+    venueMapButton: raw.venueMapButton ?? "",
+    transferHeading: raw.transferHeading ?? "",
+    transferDescription: raw.transferDescription ?? "",
+    transferButtonLabel: raw.transferButtonLabel ?? "",
+    faqHeading: raw.faqHeading ?? "",
+    footerText: raw.footerText ?? "",
+  };
+}
+
+export interface PageBuildYourPackage {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  step1Title: string;
+  step1Subtitle: string;
+  step2Title: string;
+  step2Subtitle: string;
+  step3Title: string;
+  step3Subtitle: string;
+  step4Title: string;
+  step4Subtitle: string;
+  step5Title: string;
+  step5Subtitle: string;
+  guestOption1: string;
+  guestOption2: string;
+  guestOption3: string;
+  guestOption4: string;
+  cityOption1: string;
+  cityOption2: string;
+  cityOption3: string;
+  durationOption1: string;
+  durationOption2: string;
+  durationOption3: string;
+  durationOption4: string;
+  estimateFallback: string;
+  estimateFormat: string;
+  successTitle: string;
+  successText: string;
+  estimateLabel: string;
+  estimateDisclaimer: string;
+  sendWhatsAppLabel: string;
+  backLabel: string;
+  continueLabel: string;
+  submitLabel: string;
+  progressLabel: string;
+  hospitalitySection: string;
+  logisticsSection: string;
+  estimateRangeLabel: string;
+  estimateBasedOn: string;
+  formNameLabel: string;
+  formNamePlaceholder: string;
+  formPhoneLabel: string;
+  formPhonePlaceholder: string;
+}
+
+export async function getPageBuildYourPackage(): Promise<PageBuildYourPackage | null> {
+  const raw = await sanityFetch<any | null>(`*[_type == "pageBuildYourPackage"][0]`);
+  if (!raw) return null;
+  return {
+    heroEyebrow: raw.heroEyebrow ?? "",
+    heroTitle: raw.heroTitle ?? "",
+    heroSubtitle: raw.heroSubtitle ?? "",
+    step1Title: raw.step1Title ?? "",
+    step1Subtitle: raw.step1Subtitle ?? "",
+    step2Title: raw.step2Title ?? "",
+    step2Subtitle: raw.step2Subtitle ?? "",
+    step3Title: raw.step3Title ?? "",
+    step3Subtitle: raw.step3Subtitle ?? "",
+    step4Title: raw.step4Title ?? "",
+    step4Subtitle: raw.step4Subtitle ?? "",
+    step5Title: raw.step5Title ?? "",
+    step5Subtitle: raw.step5Subtitle ?? "",
+    guestOption1: raw.guestOption1 ?? "",
+    guestOption2: raw.guestOption2 ?? "",
+    guestOption3: raw.guestOption3 ?? "",
+    guestOption4: raw.guestOption4 ?? "",
+    cityOption1: raw.cityOption1 ?? "",
+    cityOption2: raw.cityOption2 ?? "",
+    cityOption3: raw.cityOption3 ?? "",
+    durationOption1: raw.durationOption1 ?? "",
+    durationOption2: raw.durationOption2 ?? "",
+    durationOption3: raw.durationOption3 ?? "",
+    durationOption4: raw.durationOption4 ?? "",
+    estimateFallback: raw.estimateFallback ?? "",
+    estimateFormat: raw.estimateFormat ?? "",
+    successTitle: raw.successTitle ?? "",
+    successText: raw.successText ?? "",
+    estimateLabel: raw.estimateLabel ?? "",
+    estimateDisclaimer: raw.estimateDisclaimer ?? "",
+    sendWhatsAppLabel: raw.sendWhatsAppLabel ?? "",
+    backLabel: raw.backLabel ?? "",
+    continueLabel: raw.continueLabel ?? "",
+    submitLabel: raw.submitLabel ?? "",
+    progressLabel: raw.progressLabel ?? "",
+    hospitalitySection: raw.hospitalitySection ?? "",
+    logisticsSection: raw.logisticsSection ?? "",
+    estimateRangeLabel: raw.estimateRangeLabel ?? "",
+    estimateBasedOn: raw.estimateBasedOn ?? "",
+    formNameLabel: raw.formNameLabel ?? "",
+    formNamePlaceholder: raw.formNamePlaceholder ?? "",
+    formPhoneLabel: raw.formPhoneLabel ?? "",
+    formPhonePlaceholder: raw.formPhonePlaceholder ?? "",
+  };
 }
 
 export interface SiteSettings {
@@ -529,6 +1053,9 @@ export interface SiteSettings {
   heroSubtitle: string;
   heroImageUrl: string;
   partnerLogos: { name: string; logoUrl: string }[];
+  schemaName: string;
+  schemaDescription: string;
+  schemaPriceRange: string;
 }
 
 export async function getAreaServed(): Promise<string[]> {
@@ -555,7 +1082,10 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       heroTitle,
       heroSubtitle,
       heroImage,
-      partnerLogos[] { name, logo }
+      partnerLogos[] { name, logo },
+      schemaName,
+      schemaDescription,
+      schemaPriceRange
     }`
   );
   if (!raw) return null;
@@ -577,5 +1107,8 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       name: p.name,
       logoUrl: imageUrl(p.logo),
     })),
+    schemaName: raw.schemaName ?? "",
+    schemaDescription: raw.schemaDescription ?? "",
+    schemaPriceRange: raw.schemaPriceRange ?? "",
   };
 }

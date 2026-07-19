@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const DEFAULT_MSG = encodeURIComponent('Hi Ayan Hospitality, I\'d like to discuss hospitality and logistics for my upcoming wedding.');
-
-export function WhatsAppFAB({ whatsAppNumber = '918826104232' }: { whatsAppNumber?: string }) {
+export function WhatsAppFAB({ whatsAppNumber }: { whatsAppNumber?: string }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
@@ -42,7 +40,7 @@ export function WhatsAppFAB({ whatsAppNumber = '918826104232' }: { whatsAppNumbe
       </div>
 
       <a
-        href={`https://wa.me/${whatsAppNumber}?text=${DEFAULT_MSG}`}
+        href={`https://wa.me/${whatsAppNumber}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"

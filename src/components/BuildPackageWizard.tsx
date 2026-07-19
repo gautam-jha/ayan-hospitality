@@ -29,26 +29,6 @@ type GuestBand = 'under-100' | '100-300' | '300-600' | '600+';
 type CityCount = '1' | '2' | '3+';
 type Duration = '1-day' | '2-3-days' | '4-5-days' | '6+';
 
-const GUEST_OPTIONS: { value: GuestBand; label: string }[] = [
-  { value: 'under-100', label: 'Under 100 guests' },
-  { value: '100-300', label: '100 – 300 guests' },
-  { value: '300-600', label: '300 – 600 guests' },
-  { value: '600+', label: '600+ guests' },
-];
-
-const CITY_OPTIONS: { value: CityCount; label: string }[] = [
-  { value: '1', label: 'Single city' },
-  { value: '2', label: '2 cities' },
-  { value: '3+', label: '3 or more cities' },
-];
-
-const DURATION_OPTIONS: { value: Duration; label: string }[] = [
-  { value: '1-day', label: '1 day' },
-  { value: '2-3-days', label: '2 – 3 days' },
-  { value: '4-5-days', label: '4 – 5 days' },
-  { value: '6+', label: '6+ days' },
-];
-
 function getEstimate(guests: GuestBand, cities: CityCount, services: string[]): string {
   const svcCount = services.length;
   if (svcCount === 0) return 'Select at least one service';
@@ -60,7 +40,25 @@ function getEstimate(guests: GuestBand, cities: CityCount, services: string[]): 
   return `₹${low}–${high} lakh (indicative)`;
 }
 
-export function BuildPackageWizard() {
+export function BuildPackageWizard({ labels }: {
+  labels?: {
+    step1Title: string; step1Subtitle: string; step2Title: string; step2Subtitle: string;
+    step3Title: string; step3Subtitle: string; step4Title: string; step4Subtitle: string;
+    step5Title: string; step5Subtitle: string;
+    guestOption1: string; guestOption2: string; guestOption3: string; guestOption4: string;
+    cityOption1: string; cityOption2: string; cityOption3: string;
+    durationOption1: string; durationOption2: string; durationOption3: string; durationOption4: string;
+    estimateFallback: string; estimateFormat: string;
+    successTitle: string; successText: string;
+    estimateLabel: string; estimateDisclaimer: string;
+    sendWhatsAppLabel: string; backLabel: string; continueLabel: string; submitLabel: string;
+    progressLabel: string;
+    hospitalitySection: string; logisticsSection: string;
+    estimateRangeLabel: string; estimateBasedOn: string;
+    formNameLabel: string; formNamePlaceholder: string;
+    formPhoneLabel: string; formPhonePlaceholder: string;
+  };
+}) {
   const [step, setStep] = useState(0);
   const [guests, setGuests] = useState<GuestBand | null>(null);
   const [cities, setCities] = useState<CityCount | null>(null);
@@ -71,11 +69,31 @@ export function BuildPackageWizard() {
   const [phone, setPhone] = useState('');
 
   const steps = [
-    { title: 'Guest count', subtitle: 'Approximately how many guests are you expecting?' },
-    { title: 'Number of cities', subtitle: 'How many cities will the wedding span?' },
-    { title: 'Event duration', subtitle: 'How many days will the wedding events run?' },
-    { title: 'Services needed', subtitle: 'Which services are you interested in? (Select all that apply)' },
-    { title: 'Get your estimate', subtitle: 'Tell us who to send the custom quote to.' },
+    { title: labels?.step1Title ?? '', subtitle: labels?.step1Subtitle ?? '' },
+    { title: labels?.step2Title ?? '', subtitle: labels?.step2Subtitle ?? '' },
+    { title: labels?.step3Title ?? '', subtitle: labels?.step3Subtitle ?? '' },
+    { title: labels?.step4Title ?? '', subtitle: labels?.step4Subtitle ?? '' },
+    { title: labels?.step5Title ?? '', subtitle: labels?.step5Subtitle ?? '' },
+  ];
+
+  const GUEST_OPTIONS: { value: GuestBand; label: string }[] = [
+    { value: 'under-100', label: labels?.guestOption1 ?? '' },
+    { value: '100-300', label: labels?.guestOption2 ?? '' },
+    { value: '300-600', label: labels?.guestOption3 ?? '' },
+    { value: '600+', label: labels?.guestOption4 ?? '' },
+  ];
+
+  const CITY_OPTIONS: { value: CityCount; label: string }[] = [
+    { value: '1', label: labels?.cityOption1 ?? '' },
+    { value: '2', label: labels?.cityOption2 ?? '' },
+    { value: '3+', label: labels?.cityOption3 ?? '' },
+  ];
+
+  const DURATION_OPTIONS: { value: Duration; label: string }[] = [
+    { value: '1-day', label: labels?.durationOption1 ?? '' },
+    { value: '2-3-days', label: labels?.durationOption2 ?? '' },
+    { value: '4-5-days', label: labels?.durationOption3 ?? '' },
+    { value: '6+', label: labels?.durationOption4 ?? '' },
   ];
 
   const toggleService = (id: string) => {
@@ -140,15 +158,15 @@ export function BuildPackageWizard() {
         <div className="w-20 h-20 rounded-full bg-gold-500/10 flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 className="w-10 h-10 text-gold-500" />
         </div>
-        <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-3">Package request sent!</h2>
-        <p className="text-charcoal-muted mb-6">We&apos;ll reach out to <strong>{name}</strong> within 24 hours with a detailed quote.</p>
+        <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-3">{labels?.successTitle ?? ''}</h2>
+        <p className="text-charcoal-muted mb-6">{labels?.successText?.replace('{name}', name) ?? ''}</p>
         <div className="bg-cream-100 rounded-2xl p-6 border border-cream-300 text-left mb-8 shadow-inner border-l-4 border-l-gold-500">
-          <p className="text-sm font-semibold text-charcoal mb-2">Your indicative estimate</p>
+          <p className="text-sm font-semibold text-charcoal mb-2">{labels?.estimateLabel ?? ''}</p>
           <p className="font-display text-3xl text-maroon-700 font-semibold">
             {guests && cities ? getEstimate(guests, cities, selectedServices) : ''}
           </p>
           <p className="text-charcoal-muted text-xs mt-2 border-t border-cream-300/60 pt-2">
-            Based on your selections: {selectedServices.length} services chosen. Final quote may vary depending on specifications.
+            {labels?.estimateDisclaimer?.replace('{count}', String(selectedServices.length)) ?? ''}
           </p>
         </div>
         <a
@@ -157,7 +175,7 @@ export function BuildPackageWizard() {
           className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 rounded-full bg-whatsapp text-white font-medium hover:brightness-110 active:scale-95 transition-all shadow-md hover:shadow-lg"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Also send via WhatsApp
+          {labels?.sendWhatsAppLabel ?? ''}
         </a>
       </div>
     );
@@ -165,7 +183,6 @@ export function BuildPackageWizard() {
 
   return (
     <div className="bg-white rounded-3xl border border-cream-300 shadow-warm-lg overflow-hidden animate-fade-up">
-      {/* Progress bar */}
       <div className="h-1.5 bg-cream-200">
         <div
           className="h-full bg-gradient-to-r from-maroon-700 to-gold-500 transition-all duration-500"
@@ -174,19 +191,17 @@ export function BuildPackageWizard() {
       </div>
 
       <div className="p-8 lg:p-10">
-        {/* Step header */}
         <div className="mb-8">
-          <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-2">Step {step + 1} of {steps.length}</p>
+          <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-2">{labels?.progressLabel?.replace('{current}', String(step + 1)).replace('{total}', String(steps.length)) ?? ''}</p>
           <h2 className="font-display text-3xl text-maroon-700 font-semibold">{steps[step].title}</h2>
           <p className="text-charcoal-muted mt-2">{steps[step].subtitle}</p>
         </div>
 
-        {/* Step content */}
         {step === 0 && (
           <div
             className="grid grid-cols-1 sm:grid-cols-2 gap-3"
             role="radiogroup"
-            aria-label="Guest count"
+            aria-label={steps[0].title}
           >
             {GUEST_OPTIONS.map((opt, index) => {
               const isSelected = guests === opt.value;
@@ -217,7 +232,7 @@ export function BuildPackageWizard() {
           <div
             className="grid grid-cols-1 sm:grid-cols-3 gap-3"
             role="radiogroup"
-            aria-label="Number of cities"
+            aria-label={steps[1].title}
           >
             {CITY_OPTIONS.map((opt, index) => {
               const isSelected = cities === opt.value;
@@ -248,7 +263,7 @@ export function BuildPackageWizard() {
           <div
             className="grid grid-cols-2 gap-3"
             role="radiogroup"
-            aria-label="Event duration"
+            aria-label={steps[2].title}
           >
             {DURATION_OPTIONS.map((opt, index) => {
               const isSelected = duration === opt.value;
@@ -279,7 +294,7 @@ export function BuildPackageWizard() {
           <div>
             {['Hospitality', 'Logistics'].map((pillar) => (
               <div key={pillar} className="mb-6">
-                <h3 className="text-xs font-semibold tracking-widest uppercase text-charcoal-muted mb-3">{pillar} Services</h3>
+                <h3 className="text-xs font-semibold tracking-widest uppercase text-charcoal-muted mb-3">{pillar === 'Hospitality' ? (labels?.hospitalitySection ?? '') : (labels?.logisticsSection ?? '')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {SERVICES_LIST.filter((s) => s.pillar === pillar).map((s) => {
                     const isChecked = selectedServices.includes(s.id);
@@ -311,12 +326,12 @@ export function BuildPackageWizard() {
             ))}
             {selectedServices.length > 0 && (
               <div className="mt-6 p-5 bg-cream-100 rounded-2xl border border-cream-300/80 border-l-4 border-l-gold-500 shadow-sm animate-fade-up">
-                <p className="text-sm text-charcoal-muted">Indicative estimate range:</p>
+                <p className="text-sm text-charcoal-muted">{labels?.estimateRangeLabel ?? ''}</p>
                 <p className="font-display text-3xl text-maroon-700 font-semibold mt-1">
                   {guests && cities ? getEstimate(guests, cities, selectedServices) : '—'}
                 </p>
                 <p className="text-charcoal-muted text-xs mt-1">
-                  Based on {selectedServices.length} selected service{selectedServices.length > 1 ? 's' : ''}.
+                  {labels?.estimateBasedOn?.replace('{count}', String(selectedServices.length)) ?? ''}
                 </p>
               </div>
             )}
@@ -326,7 +341,7 @@ export function BuildPackageWizard() {
         {step === 4 && (
           <div className="space-y-5 animate-fade-up">
             <div className="bg-cream-100 rounded-2xl p-6 border border-cream-300/80 shadow-sm border-l-4 border-l-gold-500 mb-6">
-              <p className="text-sm font-semibold text-charcoal mb-1">Your indicative estimate</p>
+              <p className="text-sm font-semibold text-charcoal mb-1">{labels?.estimateLabel ?? ''}</p>
               <p className="font-display text-3xl text-maroon-700 font-semibold">
                 {guests && cities ? getEstimate(guests, cities, selectedServices) : '—'}
               </p>
@@ -338,12 +353,12 @@ export function BuildPackageWizard() {
             <div className="space-y-4">
               <div>
                 <label htmlFor="wizard-name" className="block text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2">
-                  Your name *
+                  {labels?.formNameLabel ?? ''}
                 </label>
                 <input
                   id="wizard-name"
                   type="text"
-                  placeholder="e.g. Priya Mehta"
+                  placeholder={labels?.formNamePlaceholder ?? ''}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -353,12 +368,12 @@ export function BuildPackageWizard() {
 
               <div>
                 <label htmlFor="wizard-phone" className="block text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2">
-                  Phone / WhatsApp number *
+                  {labels?.formPhoneLabel ?? ''}
                 </label>
                 <input
                   id="wizard-phone"
                   type="tel"
-                  placeholder="e.g. +91 98765 43210"
+                  placeholder={labels?.formPhonePlaceholder ?? ''}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   required
@@ -369,14 +384,13 @@ export function BuildPackageWizard() {
           </div>
         )}
 
-        {/* Navigation */}
         <div className="flex items-center justify-between mt-8 pt-6 border-t border-cream-200">
           {step > 0 ? (
             <button
               onClick={() => setStep(step - 1)}
               className="flex items-center gap-2 text-charcoal-muted hover:text-maroon-700 transition-colors font-medium focus-visible:ring-2 focus-visible:ring-gold-500 rounded px-2 py-1"
             >
-              <ArrowLeft className="w-4 h-4" /> Back
+              <ArrowLeft className="w-4 h-4" /> {labels?.backLabel ?? ''}
             </button>
           ) : <div />}
 
@@ -387,7 +401,7 @@ export function BuildPackageWizard() {
               id={`wizard-step-${step}-next`}
               className="flex items-center gap-2 px-6 py-3 rounded-full bg-maroon-700 text-white font-medium hover:bg-maroon-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95 shadow-sm hover:shadow-md focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2"
             >
-              Continue <ArrowRight className="w-4 h-4" />
+              {labels?.continueLabel ?? ''} <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <button
@@ -396,7 +410,7 @@ export function BuildPackageWizard() {
               id="wizard-submit"
               className="flex items-center gap-2 px-6 py-3 rounded-full bg-gold-500 text-white font-medium hover:bg-gold-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95 shadow-sm hover:shadow-md focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2"
             >
-              Get My Quote <ArrowRight className="w-4 h-4" />
+              {labels?.submitLabel ?? ''} <ArrowRight className="w-4 h-4" />
             </button>
           )}
         </div>

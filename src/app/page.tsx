@@ -118,7 +118,7 @@ export default async function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button href="/contact" size="lg" variant="primary" id="hero-cta-quote">
-              Get a Free Consultation
+              {pageHome?.heroCtaLabel ?? ""}
               <ArrowRight className="w-4 h-4" />
             </Button>
             <a
@@ -131,7 +131,7 @@ export default async function HomePage() {
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
               </svg>
-              WhatsApp Us
+              {pageHome?.heroCtaWhatsApp ?? ""}
             </a>
           </div>
 
@@ -183,9 +183,9 @@ export default async function HomePage() {
       <section className="section-padding bg-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow={pageHome?.pillarsEyebrow || ""}
-            title={pageHome?.pillarsTitle || ""}
-            subtitle={pageHome?.pillarsSubtitle || ""}
+            eyebrow={pageHome?.pillarsEyebrow ?? ""}
+            title={pageHome?.pillarsTitle ?? ""}
+            subtitle={pageHome?.pillarsSubtitle ?? ""}
             centered
           />
 
@@ -198,10 +198,10 @@ export default async function HomePage() {
                   <ConciergeBell className="w-7 h-7 text-maroon-700" />
                 </div>
                 <h3 className="font-display text-3xl text-maroon-700 font-semibold mb-3">
-                  Wedding Hospitality
+                  {pageHome?.pillarHospitalityTitle ?? ""}
                 </h3>
                 <p className="text-charcoal-muted leading-relaxed mb-6">
-                  Every interaction a guest has, from the moment they RSVP to the moment they leave, is a reflection of your family. We make sure it is flawless.
+                  {pageHome?.pillarHospitalityDescription ?? ""}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-8">
                   {hospitalityServices.slice(0, 5).map((s) => (
@@ -223,7 +223,7 @@ export default async function HomePage() {
                   href="/services/hospitality"
                   className="inline-flex items-center gap-2 text-maroon-700 font-medium text-sm hover:gap-3 transition-all"
                 >
-                  Explore Hospitality Services <ArrowRight className="w-4 h-4" />
+                  {pageHome?.pillarHospitalityCta ?? ""} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
@@ -236,10 +236,10 @@ export default async function HomePage() {
                   <Luggage className="w-7 h-7 text-gold-600" />
                 </div>
                 <h3 className="font-display text-3xl text-maroon-700 font-semibold mb-3">
-                  Logistics & On-Ground Crew
+                  {pageHome?.pillarLogisticsTitle ?? ""}
                 </h3>
                 <p className="text-charcoal-muted leading-relaxed mb-6">
-                  Transfers, luggage, multi-city movement, and on-ground staff: the operational backbone of your wedding, run by a team that has done this hundreds of times.
+                  {pageHome?.pillarLogisticsDescription ?? ""}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-8">
                   {logisticsServices.slice(0, 5).map((s) => (
@@ -261,7 +261,7 @@ export default async function HomePage() {
                   href="/services/logistics"
                   className="inline-flex items-center gap-2 text-gold-600 font-medium text-sm hover:gap-3 transition-all"
                 >
-                  Explore Logistics Services <ArrowRight className="w-4 h-4" />
+                  {pageHome?.pillarLogisticsCta ?? ""} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
@@ -273,9 +273,9 @@ export default async function HomePage() {
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow={pageHome?.processEyebrow || ""}
-            title={pageHome?.processTitle || ""}
-            subtitle={pageHome?.processSubtitle || ""}
+            eyebrow={pageHome?.processEyebrow ?? ""}
+            title={pageHome?.processTitle ?? ""}
+            subtitle={pageHome?.processSubtitle ?? ""}
             centered
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -303,7 +303,7 @@ export default async function HomePage() {
           </div>
           <div className="mt-12 text-center">
             <Button href="/contact" variant="primary" size="lg" id="how-it-works-cta">
-              Start with a Free Consultation
+              {pageHome?.processCta ?? ""}
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
@@ -332,8 +332,8 @@ export default async function HomePage() {
         <section className="section-padding bg-cream-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
-              eyebrow="Featured Work"
-              title="What a seamless wedding looks like"
+              eyebrow={pageHome?.featuredWorkEyebrow ?? ""}
+              title={pageHome?.featuredWorkTitle ?? ""}
               centered
             />
             <div className="mt-10 bg-white rounded-4xl overflow-hidden border border-cream-300 shadow-warm-lg">
@@ -358,27 +358,27 @@ export default async function HomePage() {
                 </div>
                 <div className="p-8 lg:p-12 flex flex-col justify-center">
                   <p className="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-4">
-                    Case Study
+                    {pageHome?.caseStudyTag ?? ""}
                   </p>
                   <h3 className="font-display text-3xl lg:text-4xl text-maroon-700 font-semibold mb-6">
                     {featuredCase.title}
                   </h3>
                   <div className="space-y-4 mb-8">
                     <div>
-                      <p className="text-xs font-semibold text-charcoal-muted uppercase tracking-wide mb-1">The Challenge</p>
+                      <p className="text-xs font-semibold text-charcoal-muted uppercase tracking-wide mb-1">{pageHome?.caseStudyChallengeLabel ?? ""}</p>
                       <p className="text-charcoal-soft text-sm leading-relaxed">{featuredCase.challenge}</p>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-charcoal-muted uppercase tracking-wide mb-1">The Outcome</p>
+                      <p className="text-xs font-semibold text-charcoal-muted uppercase tracking-wide mb-1">{pageHome?.caseStudyOutcomeLabel ?? ""}</p>
                       <p className="text-charcoal-soft text-sm leading-relaxed">{featuredCase.outcome}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <Button href={`/our-work/${featuredCase.slug}`} variant="primary" id="case-study-read">
-                      Read the full story <ArrowRight className="w-4 h-4" />
+                      {pageHome?.caseStudyCta ?? ""} <ArrowRight className="w-4 h-4" />
                     </Button>
                     <Button href="/our-work" variant="ghost" id="case-study-all">
-                      All case studies
+                      {pageHome?.caseStudyViewAllCta ?? ""}
                     </Button>
                   </div>
                 </div>
@@ -392,8 +392,8 @@ export default async function HomePage() {
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="What Families Say"
-            title="Words that mean more than ours"
+            eyebrow={pageHome?.testimonialsEyebrow ?? ""}
+            title={pageHome?.testimonialsTitle ?? ""}
             centered
           />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -424,7 +424,7 @@ export default async function HomePage() {
           </div>
           <div className="mt-10 text-center">
             <Button href="/testimonials" variant="ghost" id="testimonials-view-all">
-              Read all testimonials <ArrowRight className="w-4 h-4" />
+              {pageHome?.testimonialsViewAllCta ?? ""} <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
         </div>
@@ -437,20 +437,20 @@ export default async function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               <div className="p-8 lg:p-14 flex flex-col justify-center">
                 <p className="text-gold-400 text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-                  For Wedding Planners & Venues
+                  {pageHome?.plannersEyebrow ?? ""}
                 </p>
                 <h2 className="font-display text-4xl lg:text-5xl text-white font-semibold mb-6 leading-tight">
-                  A hospitality partner<br />
-                  <span className="text-gold-400">you can trust with your name</span>
+                  {pageHome?.plannersTitleLine1 ?? ""}<br />
+                  <span className="text-gold-400">{pageHome?.plannersTitleLine2 ?? ""}</span>
                 </h2>
                 <p className="text-cream-200/80 leading-relaxed mb-8">
-                  We work with India&apos;s leading wedding planners and luxury hotels as a white-label or sub-contracted hospitality and logistics partner. Full SOPs, trained staff, and a track record of 800+ events.
+                  {pageHome?.plannersDescription ?? ""}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                   {[
-                    { icon: <Shield className="w-5 h-5" />, label: "SOPs & Protocols" },
-                    { icon: <Users className="w-5 h-5" />, label: "Trained Staff" },
-                    { icon: <FileText className="w-5 h-5" />, label: "White-label Terms" },
+                    { icon: <Shield className="w-5 h-5" />, label: pageHome?.plannersFeature1 ?? "" },
+                    { icon: <Users className="w-5 h-5" />, label: pageHome?.plannersFeature2 ?? "" },
+                    { icon: <FileText className="w-5 h-5" />, label: pageHome?.plannersFeature3 ?? "" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-center gap-2 text-cream-200/90 text-sm">
                       <span className="text-gold-400">{item.icon}</span>
@@ -460,7 +460,7 @@ export default async function HomePage() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button href="/for-planners" variant="secondary" size="lg" id="planners-cta">
-                    Partner with us <ArrowRight className="w-4 h-4" />
+                    {pageHome?.plannersPrimaryCta ?? ""} <ArrowRight className="w-4 h-4" />
                   </Button>
                   <Button
                     href="/for-planners#capability-deck"
@@ -468,17 +468,17 @@ export default async function HomePage() {
                     size="lg"
                     id="planners-deck"
                   >
-                    <Download className="w-4 h-4" /> Capability Deck
+                    <Download className="w-4 h-4" /> {pageHome?.plannersSecondaryCta ?? ""}
                   </Button>
                 </div>
               </div>
               <div className="hidden lg:flex items-center justify-center p-14">
                 <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
                   {[
-                    { value: "800+", label: "Events managed" },
-                    { value: "30+", label: "Cities" },
-                    { value: "15+", label: "Years experience" },
-                    { value: "100%", label: "Repeat referrals" },
+                    { value: pageHome?.plannersStat1Value ?? "", label: pageHome?.plannersStat1Label ?? "" },
+                    { value: pageHome?.plannersStat2Value ?? "", label: pageHome?.plannersStat2Label ?? "" },
+                    { value: pageHome?.plannersStat3Value ?? "", label: pageHome?.plannersStat3Label ?? "" },
+                    { value: pageHome?.plannersStat4Value ?? "", label: pageHome?.plannersStat4Label ?? "" },
                   ].map((item) => (
                     <div
                       key={item.label}
@@ -505,12 +505,12 @@ export default async function HomePage() {
             <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-cream-300 shadow-warm-lg shrink-0">
               <div
                 className="w-full h-full bg-cover bg-center bg-maroon-700"
-                style={{ backgroundImage: `url('${settings?.founderImageUrl || ""}')` }}
+                style={{ backgroundImage: `url('${settings?.founderImageUrl ?? ""}')` }}
               />
             </div>
             <div className="text-center lg:text-left max-w-2xl">
               <p className="text-gold-500 text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-                Founder-Led · 15+ Years
+                {pageHome?.founderEyebrow ?? ""}
               </p>
               <blockquote className="font-display text-3xl lg:text-4xl text-maroon-700 font-semibold leading-tight mb-6">
                 &ldquo;{settings?.founderQuote}&rdquo;
@@ -523,7 +523,7 @@ export default async function HomePage() {
                 <div className="text-charcoal-muted text-sm">· {settings?.founderTitle}</div>
               </div>
               <Button href="/about" variant="ghost" id="founder-read-story">
-                Read our story <ArrowRight className="w-4 h-4" />
+                {pageHome?.founderCta ?? ""} <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -534,8 +534,8 @@ export default async function HomePage() {
       <section className="section-padding bg-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="From Our Journal"
-            title="Insights from 800 weddings"
+            eyebrow={pageHome?.blogEyebrow ?? ""}
+            title={pageHome?.blogTitle ?? ""}
             centered
           />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -564,7 +564,7 @@ export default async function HomePage() {
                     {post.excerpt}
                   </p>
                   <div className="flex items-center gap-1 text-maroon-700 text-sm font-medium mt-4 group-hover:gap-2 transition-all">
-                    Read more <ArrowRight className="w-3 h-3" />
+                    {pageHome?.blogReadMoreCta ?? ""} <ArrowRight className="w-3 h-3" />
                   </div>
                 </div>
               </Link>
@@ -572,7 +572,7 @@ export default async function HomePage() {
           </div>
           <div className="mt-10 text-center">
             <Button href="/blog" variant="ghost" id="blog-view-all">
-              All articles <ArrowRight className="w-4 h-4" />
+              {pageHome?.blogViewAllCta ?? ""} <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
         </div>
@@ -582,16 +582,18 @@ export default async function HomePage() {
       <section className="section-padding bg-gradient-to-br from-maroon-700 via-maroon-800 to-maroon-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gold-400 text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-            ✦ Be Our Guest ✦
+            {pageHome?.finalCtaEyebrow ?? ""}
           </p>
           <h2 className="font-display text-4xl lg:text-5xl text-white font-semibold mb-4">
-            Planning a wedding?<br />Let&apos;s talk.
+            {pageHome?.finalCtaTitle?.split('\n').map((line, i) => (
+              <span key={i}>{i > 0 && <br />}{line}</span>
+            )) ?? ""}
           </h2>
           <p className="text-cream-200/80 mb-10 text-lg">
-            Tell us a little about your event and we&apos;ll get back to you within 24 hours.
+            {pageHome?.finalCtaSubtitle ?? ""}
           </p>
 
-          <HomepageContactForm />
+          <HomepageContactForm labels={pageHome} phone={settings?.phone ?? ""} />
         </div>
       </section>
     </>

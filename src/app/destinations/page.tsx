@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getAllDestinations } from '@/lib/repository';
+import { getAllDestinations, getPageDestinations } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { MapPin, Building2, Castle, Mountain, Plane } from 'lucide-react';
 
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 export default async function DestinationsPage() {
   const destinations = await getAllDestinations();
+  const page = await getPageDestinations();
   const indian = destinations.filter((d) => !d.isInternational);
   const international = destinations.filter((d) => d.isInternational);
 
@@ -22,9 +23,9 @@ export default async function DestinationsPage() {
       <section className="section-padding bg-gradient-to-b from-cream-200 to-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
-            eyebrow="Where We Work"
-            title="30+ cities. One team."
-            subtitle="From metro cities to palace destinations, hill retreats to international venues, our on-ground team has you covered."
+            eyebrow={page?.heroEyebrow ?? ""}
+            title={page?.heroTitle ?? ""}
+            subtitle={page?.heroSubtitle ?? ""}
             centered
           />
         </div>
@@ -36,7 +37,7 @@ export default async function DestinationsPage() {
           {/* Metros */}
           <div>
             <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-8 flex items-center gap-3">
-              <Building2 className="w-8 h-8 text-maroon-700" /> Metro Cities ({metros.length})
+              <Building2 className="w-8 h-8 text-maroon-700" /> {page?.metrosHeading ?? ""} ({metros.length})
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {metros.map((d) => (
@@ -54,7 +55,7 @@ export default async function DestinationsPage() {
           {/* Wedding destinations */}
           <div>
             <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-8 flex items-center gap-3">
-              <Castle className="w-8 h-8 text-maroon-700" /> Destination Weddings ({weddingDests.length})
+              <Castle className="w-8 h-8 text-maroon-700" /> {page?.weddingHeading ?? ""} ({weddingDests.length})
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {weddingDests.map((d) => (
@@ -73,7 +74,7 @@ export default async function DestinationsPage() {
           {leisure.length >= 0 && (
             <div>
               <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-8 flex items-center gap-3">
-                <Mountain className="w-8 h-8 text-maroon-700" /> Leisure Destinations ({leisure.length})
+                <Mountain className="w-8 h-8 text-maroon-700" /> {page?.leisureHeading ?? ""} ({leisure.length})
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {leisure.map((d) => (
@@ -92,9 +93,9 @@ export default async function DestinationsPage() {
           {/* International */}
           <div>
             <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-3 flex items-center gap-3">
-              <Plane className="w-8 h-8 text-maroon-700" /> International Destinations ({international.length})
+              <Plane className="w-8 h-8 text-maroon-700" /> {page?.internationalHeading ?? ""} ({international.length})
             </h2>
-            <p className="text-charcoal-muted mb-8">We manage destination weddings internationally, bringing our full team and coordinating with trusted local logistics partners.</p>
+            <p className="text-charcoal-muted mb-8">{page?.internationalDescription ?? ""}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {international.map((d) => (
                 <div key={d.id} className="card-warm p-5 flex items-center gap-3 border-gold-200">
@@ -109,10 +110,10 @@ export default async function DestinationsPage() {
           </div>
 
           <div className="bg-maroon-700/5 border border-maroon-700/10 rounded-3xl p-8 text-center">
-            <p className="font-display text-2xl text-maroon-700 font-semibold mb-3">Don&apos;t see your city?</p>
-            <p className="text-charcoal-muted mb-6">We may still be able to cover your event. Get in touch and we&apos;ll tell you what&apos;s possible.</p>
+            <p className="font-display text-2xl text-maroon-700 font-semibold mb-3">{page?.ctaHeading ?? ""}</p>
+            <p className="text-charcoal-muted mb-6">{page?.ctaText ?? ""}</p>
             <a href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-maroon-700 text-white font-medium hover:bg-maroon-800 transition-colors">
-              Ask about your destination
+              {page?.ctaLinkLabel ?? ""}
             </a>
           </div>
         </div>

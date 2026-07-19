@@ -2,30 +2,12 @@
 
 import { useState } from 'react';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
+import type { PageContact } from '@/lib/repository';
 
-const SERVICES_OPTIONS = [
-  'RSVP & Invitation Management',
-  'Guest Help Desk',
-  'VIP Guest Handling',
-  'Ritual Coordination',
-  'Artist Coordination',
-  'Production Management',
-  'F&B / Bar Management',
-  'Guest Giveaways & Hampers',
-  'Stationery & Collaterals',
-  'First Aid & Essentials',
-  'Airport / Railway Transfers',
-  'Luxury Vehicle Coordination',
-  'Luggage Tagging & Handling',
-  'Multi-city Logistics',
-  'Event Supervisors',
-  'Shadows',
-  'Runners',
-  'Porter Services',
-  'Inventory Management',
-];
-
-export function ContactPageForm() {
+export function ContactPageForm({ services, labels }: {
+  services: { slug: string; title: string }[];
+  labels: PageContact | null;
+}) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -82,14 +64,16 @@ export function ContactPageForm() {
         <div className="w-20 h-20 rounded-full bg-gold-500/10 flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 className="w-10 h-10 text-gold-500" />
         </div>
-        <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-3">Enquiry Sent Successfully!</h2>
+        <h2 className="font-display text-3xl text-maroon-700 font-semibold mb-3">{labels?.formSuccessTitle ?? "Enquiry Sent Successfully!"}</h2>
         <p className="text-charcoal-muted mb-6 max-w-lg mx-auto">
-          Thank you, <strong>{name}</strong>. We have received your request. One of our event coordination leads will review your details and contact you at <strong>{phone}</strong> within 24 hours.
+          {labels?.formSuccessText
+            ? labels.formSuccessText.replace('{name}', name).replace('{phone}', phone)
+            : `Thank you, ${name}. We have received your request.`}
         </p>
 
         {selectedServices.length > 0 && (
           <div className="bg-cream-100/60 rounded-2xl p-5 border border-cream-200 text-left mb-8 max-w-md mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2">Services Selected:</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-2">{labels?.formServicesSelectedLabel ?? "Services Selected:"}</p>
             <div className="flex flex-wrap gap-1.5">
               {selectedServices.map((s) => (
                 <span key={s} className="px-2.5 py-1 rounded-full bg-cream-200 text-maroon-700 text-xs font-medium">
@@ -106,7 +90,7 @@ export function ContactPageForm() {
             target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-whatsapp text-white font-medium hover:brightness-110 active:scale-95 transition-all shadow-sm w-full sm:w-auto"
           >
-            Chat on WhatsApp
+            {labels?.formChatWhatsAppLabel ?? "Chat on WhatsApp"}
           </a>
           <button
             onClick={() => {
@@ -117,7 +101,7 @@ export function ContactPageForm() {
             }}
             className="px-6 py-3 rounded-full border border-maroon-700/20 text-maroon-700 hover:bg-cream-100 font-medium active:scale-95 transition-all w-full sm:w-auto text-sm"
           >
-            Fill another form
+            {labels?.formSendAnotherLabel ?? "Fill another form"}
           </button>
         </div>
       </div>
@@ -130,13 +114,13 @@ export function ContactPageForm() {
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="contact-name" className="block text-sm font-medium text-charcoal mb-2">Your name *</label>
+          <label htmlFor="contact-name" className="block text-sm font-medium text-charcoal mb-2">{labels?.formNameLabel ?? "Your name *"}</label>
           <input
             id="contact-name"
             type="text"
             name="name"
             required
-            placeholder="Priya Mehta"
+            placeholder={labels?.formNamePlaceholder ?? "Priya Mehta"}
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={status === 'loading'}
@@ -144,13 +128,13 @@ export function ContactPageForm() {
           />
         </div>
         <div>
-          <label htmlFor="contact-phone" className="block text-sm font-medium text-charcoal mb-2">Phone / WhatsApp *</label>
+          <label htmlFor="contact-phone" className="block text-sm font-medium text-charcoal mb-2">{labels?.formPhoneLabel ?? "Phone / WhatsApp *"}</label>
           <input
             id="contact-phone"
             type="tel"
             name="phone"
             required
-            placeholder="+91 98765 43210"
+            placeholder={labels?.formPhonePlaceholder ?? "+91 98765 43210"}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             disabled={status === 'loading'}
@@ -158,18 +142,18 @@ export function ContactPageForm() {
           />
         </div>
         <div>
-          <label htmlFor="contact-email" className="block text-sm font-medium text-charcoal mb-2">Email</label>
+          <label htmlFor="contact-email" className="block text-sm font-medium text-charcoal mb-2">{labels?.formEmailLabel ?? "Email"}</label>
           <input
             id="contact-email"
             type="email"
             name="email"
-            placeholder="priya@example.com"
+            placeholder={labels?.formEmailPlaceholder ?? "priya@example.com"}
             disabled={status === 'loading'}
             className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm disabled:opacity-50 transition-all"
           />
         </div>
         <div>
-          <label htmlFor="contact-date" className="block text-sm font-medium text-charcoal mb-2">Event date</label>
+          <label htmlFor="contact-date" className="block text-sm font-medium text-charcoal mb-2">{labels?.formDateLabel ?? "Event date"}</label>
           <input
             id="contact-date"
             type="date"
@@ -179,23 +163,23 @@ export function ContactPageForm() {
           />
         </div>
         <div>
-          <label htmlFor="contact-city" className="block text-sm font-medium text-charcoal mb-2">City / Venue</label>
+          <label htmlFor="contact-city" className="block text-sm font-medium text-charcoal mb-2">{labels?.formCityLabel ?? "City / Venue"}</label>
           <input
             id="contact-city"
             type="text"
             name="city"
-            placeholder="Udaipur, Jaipur…"
+            placeholder={labels?.formCityPlaceholder ?? "Udaipur, Jaipur…"}
             disabled={status === 'loading'}
             className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm disabled:opacity-50 transition-all"
           />
         </div>
         <div>
-          <label htmlFor="contact-guests" className="block text-sm font-medium text-charcoal mb-2">Guest count (approx.)</label>
+          <label htmlFor="contact-guests" className="block text-sm font-medium text-charcoal mb-2">{labels?.formGuestLabel ?? "Guest count (approx.)"}</label>
           <input
             id="contact-guests"
             type="number"
             name="guestCount"
-            placeholder="300"
+            placeholder={labels?.formGuestPlaceholder ?? "300"}
             disabled={status === 'loading'}
             className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm disabled:opacity-50 transition-all"
           />
@@ -203,19 +187,19 @@ export function ContactPageForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-charcoal mb-3">Services interested in</label>
+        <label className="block text-sm font-medium text-charcoal mb-3">{labels?.formServicesLabel ?? "Services interested in"}</label>
         <div className="flex flex-wrap gap-2" role="group" aria-label="Services selection">
-          {SERVICES_OPTIONS.map((s) => {
-            const isChecked = selectedServices.includes(s);
+          {services.map((s) => {
+            const isChecked = selectedServices.includes(s.slug);
             return (
               <button
-                key={s}
+                key={s.slug}
                 type="button"
                 role="checkbox"
                 aria-checked={isChecked}
                 tabIndex={0}
-                onKeyDown={(e) => handleKeyDown(e, s)}
-                onClick={() => handleServiceChange(s)}
+                onKeyDown={(e) => handleKeyDown(e, s.slug)}
+                onClick={() => handleServiceChange(s.slug)}
                 className={`px-3.5 py-2 rounded-full border text-xs font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:outline-none ${
                   isChecked
                     ? 'bg-maroon-700 text-white border-maroon-700 shadow-sm'
@@ -223,8 +207,8 @@ export function ContactPageForm() {
                 }`}
               >
                 {/* Hidden input checkbox to ensure form submission works if serialized */}
-                <input type="checkbox" name="services" value={s} checked={isChecked} readOnly className="sr-only" />
-                {s}
+                <input type="checkbox" name="services" value={s.slug} checked={isChecked} readOnly className="sr-only" />
+                {s.title}
               </button>
             );
           })}
@@ -232,13 +216,13 @@ export function ContactPageForm() {
       </div>
 
       <div>
-        <label htmlFor="contact-message" className="block text-sm font-medium text-charcoal mb-2">Anything else you&apos;d like us to know</label>
+        <label htmlFor="contact-message" className="block text-sm font-medium text-charcoal mb-2">{labels?.formMessageLabel ?? "Anything else you'd like us to know"}</label>
         <textarea
           id="contact-message"
           name="message"
           rows={4}
           disabled={status === 'loading'}
-          placeholder="Tell us about your event, any specific concerns, or how you heard about us…"
+          placeholder={labels?.formMessagePlaceholder ?? "Tell us about your event, any specific concerns, or how you heard about us…"}
           className="w-full px-4 py-3.5 rounded-xl border border-cream-300 bg-cream-50 focus:outline-none focus:ring-2 focus:ring-maroon-700/30 text-charcoal text-sm resize-none disabled:opacity-50 transition-all"
         />
       </div>
@@ -246,7 +230,7 @@ export function ContactPageForm() {
       {status === 'error' && (
         <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-700 text-sm flex items-center gap-2 animate-fade-up">
           <AlertCircle className="w-5 h-5 shrink-0 text-red-500" />
-          <span>Failed to submit enquiry. Please verify your details or reach us via WhatsApp.</span>
+          <span>{labels?.formErrorText ?? "Failed to submit enquiry. Please verify your details or reach us via WhatsApp."}</span>
         </div>
       )}
 
@@ -262,10 +246,10 @@ export function ContactPageForm() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
-            <span>Sending Enquiry...</span>
+            <span>{labels?.formSendingLabel ?? "Sending Enquiry..."}</span>
           </>
         ) : (
-          <span>Send Enquiry</span>
+          <span>{labels?.formSubmitLabel ?? "Send Enquiry"}</span>
         )}
       </button>
     </form>

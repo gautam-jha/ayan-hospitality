@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { getActiveJobListings, getSiteSettings } from '@/lib/repository';
+import { getActiveJobListings, getSiteSettings, getPageCareers } from '@/lib/repository';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -9,24 +9,25 @@ export const metadata: Metadata = {
 };
 
 export default async function CareersPage() {
-  const [roles, settings] = await Promise.all([
+  const [roles, settings, page] = await Promise.all([
     getActiveJobListings(),
     getSiteSettings(),
+    getPageCareers(),
   ]);
 
-  const email = settings?.email || '';
+  const email = settings?.email ?? "";
 
   return (
     <div className="pt-20">
       <section className="section-padding bg-gradient-to-b from-maroon-900 to-maroon-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-gold-400 text-xs font-semibold tracking-[0.3em] uppercase mb-6">Join Our Team</p>
+            <p className="text-gold-400 text-xs font-semibold tracking-[0.3em] uppercase mb-6">{page?.heroEyebrow ?? ""}</p>
             <h1 className="font-display text-5xl lg:text-6xl text-white font-semibold mb-6 leading-tight">
-              The people who make it happen
+              {page?.heroTitle ?? ""}
             </h1>
             <p className="text-cream-200/80 text-lg leading-relaxed mb-8">
-              Ayan Hospitality is built on the people on the ground: the supervisors, shadows, coordinators, and runners who make 400-guest weddings feel personal. If that&apos;s the kind of work you love, we&apos;d love to hear from you.
+              {page?.heroSubtitle ?? ""}
             </p>
           </div>
         </div>
@@ -34,7 +35,7 @@ export default async function CareersPage() {
 
       <section className="section-padding bg-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Open Positions" title="Current openings" centered />
+          <SectionHeading eyebrow={page?.listingsEyebrow ?? ""} title={page?.listingsTitle ?? ""} centered />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             {roles.map((role) => (
               <div key={role.title} className="card-warm p-7">
@@ -48,21 +49,21 @@ export default async function CareersPage() {
                   href={`mailto:${email}?subject=Application: ${role.title}`}
                   className="inline-flex items-center gap-1 text-maroon-700 text-sm font-medium hover:gap-2 transition-all"
                 >
-                  Apply for this role <ArrowRight className="w-3 h-3" />
+                  {page?.applyCta ?? ""} <ArrowRight className="w-3 h-3" />
                 </a>
               </div>
             ))}
           </div>
 
           <div className="mt-12 bg-maroon-700 rounded-3xl p-10 text-center">
-            <h3 className="font-display text-3xl text-white font-semibold mb-3">Don&apos;t see your role?</h3>
-            <p className="text-cream-200/80 mb-6">We&apos;re always growing. Send us your CV and tell us how you&apos;d like to contribute.</p>
+            <h3 className="font-display text-3xl text-white font-semibold mb-3">{page?.noRoleHeading ?? ""}</h3>
+            <p className="text-cream-200/80 mb-6">{page?.noRoleText ?? ""}</p>
             <a
               href={`mailto:${email}`}
               id="careers-general-apply"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gold-500 text-white font-semibold hover:bg-gold-400 active:scale-95 transition-all"
             >
-              Send us your CV
+              {page?.noRoleCta ?? ""}
             </a>
           </div>
         </div>

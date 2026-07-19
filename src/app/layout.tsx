@@ -90,18 +90,17 @@ export default async function RootLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Ayan Hospitality",
-    description:
-      "Wedding hospitality and logistics company operating across India and select international destinations.",
+    name: settings?.schemaName ?? "Ayan Hospitality",
+    description: settings?.schemaDescription ?? "",
     url: "https://ayanhospitality.com",
-    telephone: settings?.phone || "",
-    email: settings?.email || "",
+    telephone: settings?.phone ?? "",
+    email: settings?.email ?? "",
     address: {
       "@type": "PostalAddress",
-      streetAddress: settings?.address || "",
+      streetAddress: settings?.address ?? "",
     },
     areaServed,
-    priceRange: "₹₹₹",
+    priceRange: settings?.schemaPriceRange ?? "",
     image: "https://ayanhospitality.com/og-image.jpg",
   };
 

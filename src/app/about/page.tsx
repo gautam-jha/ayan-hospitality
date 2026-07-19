@@ -7,7 +7,7 @@ import { PortableText } from '@portabletext/react';
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
-  const founderName = settings?.founderName || '';
+  const founderName = settings?.founderName ?? "";
   return {
     title: 'About Us | Our Story & Team',
     description: `Founded by ${founderName} after 15+ years in the wedding industry, Ayan Hospitality was built to take the chaos of operations completely off the host family's shoulders. Meet our team.`,
@@ -24,7 +24,7 @@ export default async function AboutPage() {
   ]);
   const crew = allTeam.filter((m) => !m.isLeadership);
   const timelineData = fetchedTimeline || [];
-  const founderName = settings?.founderName || '';
+  const founderName = settings?.founderName ?? "";
 
   return (
     <div className="pt-20">
@@ -51,7 +51,7 @@ export default async function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <SectionHeading eyebrow={page?.founderStoryEyebrow || ""} title={page?.founderStoryTitle || ""} />
+              <SectionHeading eyebrow={page?.founderStoryEyebrow ?? ""} title={page?.founderStoryTitle ?? ""} />
               <div className="mt-6 space-y-5 text-charcoal-soft leading-relaxed">
                 {page?.founderStoryText && (
                   <div className="prose prose-sm md:prose-base prose-p:text-charcoal-soft prose-p:leading-relaxed max-w-none">
@@ -86,7 +86,7 @@ export default async function AboutPage() {
       {/* Leadership team */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Leadership" title="The team behind every wedding" centered />
+          <SectionHeading eyebrow={page?.leadershipEyebrow ?? ""} title={page?.leadershipTitle ?? ""} centered />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
             {leadership.map((member) => (
               <div key={member.id} className="text-center card-warm p-8">
@@ -107,7 +107,7 @@ export default async function AboutPage() {
       {/* On-ground crew */}
       <section className="section-padding bg-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="On-Ground Crew" title="Named roles, trained people" subtitle="We believe trust starts with knowing who is actually managing your wedding. Every role has a face and a name." centered />
+          <SectionHeading eyebrow={page?.crewEyebrow ?? ""} title={page?.crewTitle ?? ""} subtitle={page?.crewSubtitle ?? ""} centered />
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {crew.map((member) => (
               <div key={member.id} className="text-center">
@@ -125,9 +125,9 @@ export default async function AboutPage() {
       {/* CTA */}
       <section className="section-padding bg-maroon-700">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-display text-4xl text-white font-semibold mb-4">Ready to plan your wedding with us?</h2>
-          <p className="text-cream-200/80 mb-8">One conversation is all it takes to understand what Ayan Hospitality can do for your family.</p>
-          <Button href="/contact" variant="secondary" size="lg" id="about-cta">Get a Free Consultation <ArrowRight className="w-4 h-4" /></Button>
+          <h2 className="font-display text-4xl text-white font-semibold mb-4">{page?.ctaTitle ?? ""}</h2>
+          <p className="text-cream-200/80 mb-8">{page?.ctaSubtitle ?? ""}</p>
+          <Button href="/contact" variant="secondary" size="lg" id="about-cta">{page?.ctaButtonLabel ?? ""} <ArrowRight className="w-4 h-4" /></Button>
         </div>
       </section>
     </div>

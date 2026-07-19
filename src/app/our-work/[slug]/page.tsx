@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getCaseStudyBySlug, getAllCaseStudies, getTestimonialById } from '@/lib/repository';
+import { getCaseStudyBySlug, getAllCaseStudies, getTestimonialById, getPageOurWork } from '@/lib/repository';
 import { Button } from '@/components/ui/Button';
 import { MapPin, Users, Calendar, Star, ArrowRight } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
@@ -22,7 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const cs = await getCaseStudyBySlug(slug);
+  const [cs, page] = await Promise.all([
+    getCaseStudyBySlug(slug),
+    getPageOurWork(),
+  ]);
   if (!cs) notFound();
   const testimonial = cs.testimonialId ? await getTestimonialById(cs.testimonialId) : null;
 
@@ -59,15 +62,15 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-10">
               <div>
-                <h2 className="font-display text-2xl text-maroon-700 font-semibold mb-4">The Challenge</h2>
+                <h2 className="font-display text-2xl text-maroon-700 font-semibold mb-4">{page?.detailChallengeLabel ?? ""}</h2>
                 <p className="text-charcoal-soft leading-relaxed text-lg">{cs.challenge}</p>
               </div>
               <div>
-                <h2 className="font-display text-2xl text-maroon-700 font-semibold mb-4">What We Did</h2>
+                <h2 className="font-display text-2xl text-maroon-700 font-semibold mb-4">{page?.detailWhatWeDidLabel ?? ""}</h2>
                 <p className="text-charcoal-soft leading-relaxed text-lg">{cs.whatWeDid}</p>
               </div>
               <div className="bg-gold-500/10 border border-gold-500/20 rounded-2xl p-6">
-                <h2 className="font-display text-xl text-maroon-700 font-semibold mb-3">The Outcome</h2>
+                <h2 className="font-display text-xl text-maroon-700 font-semibold mb-3">{page?.detailOutcomeLabel ?? ""}</h2>
                 <p className="text-charcoal-soft leading-relaxed">{cs.outcome}</p>
               </div>
             </div>
@@ -82,9 +85,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 </div>
               )}
               <div className="bg-maroon-700 rounded-2xl p-6 text-center">
-                <p className="text-gold-400 text-xs font-semibold uppercase tracking-widest mb-3">Plan your wedding with us</p>
+                <p className="text-gold-400 text-xs font-semibold uppercase tracking-widest mb-3">{page?.detailSidebarHeading ?? ""}</p>
                 <Button href="/contact" variant="secondary" className="w-full justify-center" id="case-study-contact">
-                  Get a Free Consultation <ArrowRight className="w-4 h-4" />
+                  {page?.detailSidebarCta ?? ""} <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>
             </div>

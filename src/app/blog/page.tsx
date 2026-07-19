@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getAllBlogPosts } from '@/lib/repository';
+import { getAllBlogPosts, getPageBlog } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { formatDate } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
@@ -11,16 +11,19 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await getAllBlogPosts();
+  const [posts, page] = await Promise.all([
+    getAllBlogPosts(),
+    getPageBlog(),
+  ]);
 
   return (
     <div className="pt-20">
       <section className="section-padding bg-gradient-to-b from-cream-200 to-cream-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
-            eyebrow="Blog & Journal"
-            title="Insights from 800+ weddings"
-            subtitle="Practical advice on wedding logistics, hospitality, and planning, written by people who've managed hundreds of events."
+            eyebrow={page?.heroEyebrow ?? ""}
+            title={page?.heroTitle ?? ""}
+            subtitle={page?.heroSubtitle ?? ""}
             centered
           />
         </div>
@@ -52,7 +55,7 @@ export default async function BlogPage() {
                     {post.excerpt}
                   </p>
                   <span className="inline-flex items-center gap-1 text-maroon-700 text-sm font-medium group-hover:gap-2 transition-all">
-                    Read article <ArrowRight className="w-3 h-3" />
+                    {page?.cardCta ?? ""} <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
               </Link>

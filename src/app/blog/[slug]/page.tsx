@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
-import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/repository';
+import { getBlogPostBySlug, getAllBlogPosts, getPageBlog } from '@/lib/repository';
 import { Button } from '@/components/ui/Button';
 import { formatDate } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -60,7 +60,10 @@ const portableTextComponents: PortableTextComponents = {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
+  const [post, page] = await Promise.all([
+    getBlogPostBySlug(slug),
+    getPageBlog(),
+  ]);
   if (!post) notFound();
 
   const articleSchema = {
@@ -114,17 +117,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
               <div className="mt-12 border-t border-cream-200 pt-8">
                 <Button href="/blog" variant="ghost" id="blog-back">
-                  <ArrowLeft className="w-4 h-4" /> Back to all articles
+                  <ArrowLeft className="w-4 h-4" /> {page?.backLinkLabel ?? ""}
                 </Button>
               </div>
             </article>
 
             <aside className="space-y-6">
               <div className="bg-maroon-700 rounded-2xl p-6 text-center sticky top-24">
-                <p className="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-3">Planning a wedding?</p>
-                <p className="text-cream-200/80 text-sm mb-5 leading-relaxed">Our team has managed 800+ weddings. We&apos;d love to help with yours.</p>
+                <p className="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-3">{page?.sidebarHeading ?? ""}</p>
+                <p className="text-cream-200/80 text-sm mb-5 leading-relaxed">{page?.sidebarText ?? ""}</p>
                 <Button href="/contact" variant="secondary" className="w-full justify-center" id="blog-post-cta">
-                  Get a Free Consultation <ArrowRight className="w-4 h-4" />
+                  {page?.sidebarCta ?? ""} <ArrowRight className="w-4 h-4" />
                 </Button>
               </div>
             </aside>
