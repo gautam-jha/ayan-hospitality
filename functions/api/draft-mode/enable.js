@@ -1,8 +1,8 @@
 export async function onRequest(context) {
   const url = new URL(context.request.url);
   const redirectUrl = new URL('/', url.origin);
-  redirectUrl.searchParams.set('sanity-preview-perspective', 'drafts');
 
+  // Set the required Sanity draft mode cookie
   const response = Response.redirect(redirectUrl.toString(), 302);
 
   response.headers.append(
