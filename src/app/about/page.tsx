@@ -91,9 +91,13 @@ export default async function AboutPage() {
             {leadership.map((member) => (
               <div key={member.id} className="text-center card-warm p-8">
                 <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-5 border-4 border-cream-200">
-                  <div className="w-full h-full bg-maroon-700 flex items-center justify-center">
-                    <span className="font-display text-3xl text-gold-400 font-bold">{member.name.charAt(0)}</span>
-                  </div>
+                  {member.avatarUrl ? (
+                    <img src={member.avatarUrl} alt={member.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-maroon-700 flex items-center justify-center">
+                      <span className="font-display text-3xl text-gold-400 font-bold">{member.name.charAt(0)}</span>
+                    </div>
+                  )}
                 </div>
                 <h3 className="font-display text-xl text-maroon-700 font-semibold">{member.name}</h3>
                 <p className="text-gold-500 text-sm font-medium mt-1 mb-4">{member.role}</p>
@@ -111,8 +115,14 @@ export default async function AboutPage() {
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {crew.map((member) => (
               <div key={member.id} className="text-center">
-                <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-2 border-cream-300 bg-maroon-700 flex items-center justify-center">
-                  <span className="font-display text-2xl text-gold-400 font-bold">{member.name.charAt(0)}</span>
+                <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-2 border-cream-300">
+                  {member.avatarUrl ? (
+                    <img src={member.avatarUrl} alt={member.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-maroon-700 flex items-center justify-center">
+                      <span className="font-display text-2xl text-gold-400 font-bold">{member.name.charAt(0)}</span>
+                    </div>
+                  )}
                 </div>
                 <p className="font-semibold text-charcoal text-sm">{member.name}</p>
                 <p className="text-charcoal-muted text-xs mt-0.5">{member.role}</p>
