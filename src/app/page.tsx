@@ -108,16 +108,16 @@ export default async function HomePage() {
         {/* Hero background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-maroon-900/70 via-maroon-900/40 to-maroon-900/80 z-10" />
-          {settings?.heroImage && (
+          {settings?.heroImageUrl && (
             <div
               className="w-full h-full bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: `url('${urlFor(settings.heroImage).width(1920).url()}')`,
+                backgroundImage: `url('${settings.heroImageUrl}')`,
                 backgroundColor: "#3D0D16",
               }}
             />
           )}
-          {!settings?.heroImage && (
+          {!settings?.heroImageUrl && (
             <div
               className="w-full h-full bg-cover bg-center bg-no-repeat"
               style={{
