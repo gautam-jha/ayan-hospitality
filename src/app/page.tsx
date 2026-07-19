@@ -38,49 +38,6 @@ export const metadata: Metadata = {
     "India's trusted wedding hospitality and logistics company. 800+ weddings delivered, 1,00,000+ guests welcomed, 30+ cities. RSVP management, guest help desk, transfers, and the full range of on-ground services.",
 };
 
-const PARTNER_LOGOS = [
-  "Taj Hotels",
-  "ITC Hotels",
-  "Leela Palaces",
-  "Oberoi Hotels",
-  "Hyatt India",
-  "Marriott India",
-  "Rambagh Palace",
-  "Umaid Bhawan",
-  "Four Seasons",
-  "W Hotels",
-  "JW Marriott",
-  "The Lalit",
-];
-
-const HOW_IT_WORKS = [
-  {
-    step: "01",
-    title: "Consultation",
-    description:
-      "A call with our team to understand your wedding, including guest count, cities, events, and what matters most, with no obligation.",
-  },
-  {
-    step: "02",
-    title: "Custom Plan",
-    description:
-      "We build a detailed hospitality & logistics plan, assign your team, and share a timeline weeks before the first guest arrives.",
-  },
-  {
-    step: "03",
-    title: "On-Ground Execution",
-    description:
-      "Our team is on the ground from Day 1 to manage every transfer, query, ceremony, and surprise without bothering the family.",
-  },
-  {
-    step: "04",
-    title: "Post-Event Wrap",
-    description:
-      "Departure management, luggage dispatch, vendor returns, and a post-event report. We close every loop before we leave.",
-    icon: "✅",
-  },
-];
-
 export default async function HomePage() {
   const [hospitalityServices, logisticsServices, stats, testimonials, blogPosts, featuredCase, settings, hiwSteps] =
     await Promise.all([
@@ -100,9 +57,9 @@ export default async function HomePage() {
 
   const logosList = settings?.partnerLogos?.length
     ? settings.partnerLogos.map((p) => p.name)
-    : PARTNER_LOGOS;
+    : [];
 
-  const rawSteps = hiwSteps?.length ? hiwSteps : HOW_IT_WORKS;
+  const rawSteps = hiwSteps || [];
   const processSteps = rawSteps.map((step, i) => {
     let Icon = MessageSquare;
     if (i === 1) Icon = ClipboardList;
@@ -544,7 +501,7 @@ export default async function HomePage() {
             <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-cream-300 shadow-warm-lg shrink-0">
               <div
                 className="w-full h-full bg-cover bg-center bg-maroon-700"
-                style={{ backgroundImage: `url('${settings?.founderImageUrl || "/images/team/ayan-shah.jpg"}')` }}
+                style={{ backgroundImage: `url('${settings?.founderImageUrl || ""}')` }}
               />
             </div>
             <div className="text-center lg:text-left max-w-2xl">
@@ -552,14 +509,14 @@ export default async function HomePage() {
                 Founder-Led · 15+ Years
               </p>
               <blockquote className="font-display text-3xl lg:text-4xl text-maroon-700 font-semibold leading-tight mb-6">
-                &ldquo;{settings?.founderQuote || "I started this company because I saw, again and again, that the most important moments of a family's life were being left to chance."}&rdquo;
+                &ldquo;{settings?.founderQuote}&rdquo;
               </blockquote>
               <p className="text-charcoal-muted leading-relaxed mb-6">
-                {settings?.founderBio || "Ayan Shah has spent 15 years in the wedding industry. He built Ayan Hospitality to be the team he always wished existed, one that takes the weight of operations completely off the host family's shoulders."}
+                {settings?.founderBio}
               </p>
               <div className="flex items-center gap-2 mb-6 justify-center lg:justify-start">
-                <div className="font-semibold text-charcoal">{settings?.founderName || "Ayan Shah"}</div>
-                <div className="text-charcoal-muted text-sm">· {settings?.founderTitle || "Founder & Managing Director"}</div>
+                <div className="font-semibold text-charcoal">{settings?.founderName}</div>
+                <div className="text-charcoal-muted text-sm">· {settings?.founderTitle}</div>
               </div>
               <Button href="/about" variant="ghost" id="founder-read-story">
                 Read our story <ArrowRight className="w-4 h-4" />

@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 export default async function ContactPage() {
   const settings = await getSiteSettings();
 
-  const displayPhone = settings?.phone || '+91 88261 04232';
-  const telLink = settings?.phone ? `tel:${settings.phone.replace(/[^+\d]/g, '')}` : 'tel:+918826104232';
-  const displayEmail = settings?.email || 'hello@ayanhospitality.com';
-  const displayWhatsApp = settings?.whatsAppNumber || '918826104232';
+  const displayPhone = settings?.phone || '';
+  const telLink = settings?.phone ? `tel:${settings.phone.replace(/[^+\d]/g, '')}` : '';
+  const displayEmail = settings?.email || '';
+  const displayWhatsApp = settings?.whatsAppNumber || '';
 
   return (
     <div className="pt-20">

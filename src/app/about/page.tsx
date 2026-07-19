@@ -6,20 +6,12 @@ import { ArrowRight } from 'lucide-react';
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
-  const founderName = settings?.founderName || 'Ayan Shah';
+  const founderName = settings?.founderName || '';
   return {
     title: 'About Us | Our Story & Team',
     description: `Founded by ${founderName} after 15+ years in the wedding industry, Ayan Hospitality was built to take the chaos of operations completely off the host family's shoulders. Meet our team.`,
   };
 }
-
-const TIMELINE = [
-  { year: '2009', event: 'First steps in the industry', detail: 'Ayan begins working in wedding operations, learning the industry from the ground up, event by event.' },
-  { year: '2014', event: 'Seeing the gap', detail: 'After managing hundreds of events, a pattern becomes clear: logistics and hospitality are consistently the most under-planned, most impactful parts of a wedding. No dedicated company exists to fix this.' },
-  { year: '2018', event: 'The founding insight', detail: '"Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that." - Ayan Shah' },
-  { year: '2020', event: 'Ayan Hospitality is founded', detail: 'Launched with a small team and a clear mission: be the company that takes the full weight of hospitality and logistics off the host family.' },
-  { year: '2024', event: '800+ weddings later', detail: 'A team of 50+ trained professionals, presence in 30+ cities, and a reputation built entirely on referrals and repeat clients.' },
-];
 
 export default async function AboutPage() {
   const [leadership, allTeam, settings, fetchedTimeline] = await Promise.all([
@@ -29,8 +21,8 @@ export default async function AboutPage() {
     getTimeline(),
   ]);
   const crew = allTeam.filter((m) => !m.isLeadership);
-  const timelineData = fetchedTimeline?.length ? fetchedTimeline : TIMELINE;
-  const founderName = settings?.founderName || 'Ayan Shah';
+  const timelineData = fetchedTimeline || [];
+  const founderName = settings?.founderName || '';
 
   return (
     <div className="pt-20">
@@ -56,7 +48,7 @@ export default async function AboutPage() {
               <div className="mt-6 space-y-5 text-charcoal-soft leading-relaxed">
                 <p>{founderName} spent his first decade in the wedding industry watching the same story repeat itself: a family would plan every detail of their wedding, including the decor, food, and music, and then hand the guest experience to a fragmented collection of vendors who had never worked together before.</p>
                 <p>The result was always some version of the same chaos: guests who couldn&apos;t find their driver, luggage that arrived at the wrong room, elderly relatives who needed help but didn&apos;t know who to call, a help desk that was really just a harried family member&apos;s phone number.</p>
-                <p>&ldquo;{settings?.founderQuote || "Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that."}&rdquo;</p>
+                <p>&ldquo;{settings?.founderQuote}&rdquo;</p>
                 <p>He founded Ayan Hospitality to be the company he always wished existed: one that doesn&apos;t just describe hospitality as a service, but actually delivers it as an experience.</p>
               </div>
             </div>

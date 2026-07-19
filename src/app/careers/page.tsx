@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { getActiveJobListings } from '@/lib/repository';
+import { getActiveJobListings, getSiteSettings } from '@/lib/repository';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -9,7 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default async function CareersPage() {
-  const roles = await getActiveJobListings();
+  const [roles, settings] = await Promise.all([
+    getActiveJobListings(),
+    getSiteSettings(),
+  ]);
+
+  const email = settings?.email || '';
 
   return (
     <div className="pt-20">
@@ -40,7 +45,7 @@ export default async function CareersPage() {
                 <p className="text-gold-500 text-xs font-medium mb-3">📍 {role.location}</p>
                 <p className="text-charcoal-muted text-sm leading-relaxed mb-5">{role.description}</p>
                 <a
-                  href={`mailto:careers@ayanhospitality.com?subject=Application: ${role.title}`}
+                  href={`mailto:${email}?subject=Application: ${role.title}`}
                   className="inline-flex items-center gap-1 text-maroon-700 text-sm font-medium hover:gap-2 transition-all"
                 >
                   Apply for this role <ArrowRight className="w-3 h-3" />
@@ -53,7 +58,7 @@ export default async function CareersPage() {
             <h3 className="font-display text-3xl text-white font-semibold mb-3">Don&apos;t see your role?</h3>
             <p className="text-cream-200/80 mb-6">We&apos;re always growing. Send us your CV and tell us how you&apos;d like to contribute.</p>
             <a
-              href="mailto:careers@ayanhospitality.com"
+              href={`mailto:${email}`}
               id="careers-general-apply"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gold-500 text-white font-semibold hover:bg-gold-400 active:scale-95 transition-all"
             >

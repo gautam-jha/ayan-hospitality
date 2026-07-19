@@ -77,35 +77,30 @@ export const metadata: Metadata = {
   },
 };
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Ayan Hospitality",
-  description:
-    "Wedding hospitality and logistics company operating across India and select international destinations.",
-  url: "https://ayanhospitality.com",
-  telephone: "+918826104232",
-  email: "hello@ayanhospitality.com",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "IN",
-    addressRegion: "Delhi NCR",
-  },
-  areaServed: ["India", "UAE", "Sri Lanka", "Indonesia", "Thailand"],
-  sameAs: [
-    "https://instagram.com/ayanhospitality",
-    "https://facebook.com/ayanhospitality",
-  ],
-  priceRange: "₹₹₹",
-  image: "https://ayanhospitality.com/og-image.jpg",
-};
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const settings = await getSiteSettings();
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Ayan Hospitality",
+    description:
+      "Wedding hospitality and logistics company operating across India and select international destinations.",
+    url: "https://ayanhospitality.com",
+    telephone: settings?.phone || "",
+    email: settings?.email || "",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings?.address || "",
+    },
+    areaServed: ["India", "UAE", "Sri Lanka", "Indonesia", "Thailand"],
+    priceRange: "₹₹₹",
+    image: "https://ayanhospitality.com/og-image.jpg",
+  };
 
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
