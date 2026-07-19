@@ -24,6 +24,8 @@ import {
   FileText,
   Download,
   MapPin,
+  Home,
+  Truck,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -53,21 +55,18 @@ const HOW_IT_WORKS = [
     title: "Consultation",
     description:
       "A call with our team to understand your wedding, including guest count, cities, events, and what matters most, with no obligation.",
-    icon: "💬",
   },
   {
     step: "02",
     title: "Custom Plan",
     description:
       "We build a detailed hospitality & logistics plan, assign your team, and share a timeline weeks before the first guest arrives.",
-    icon: "📋",
   },
   {
     step: "03",
     title: "On-Ground Execution",
     description:
       "Our team is on the ground from Day 1 to manage every transfer, query, ceremony, and surprise without bothering the family.",
-    icon: "🎯",
   },
   {
     step: "04",
@@ -99,7 +98,12 @@ export default async function HomePage() {
     ? settings.partnerLogos.map((p) => p.name)
     : PARTNER_LOGOS;
 
-  const processSteps = hiwSteps?.length ? hiwSteps : HOW_IT_WORKS;
+  const processSteps = hiwSteps?.length
+    ? hiwSteps.map((step, i) => ({
+        ...step,
+        icon: i === 0 ? <Home className="w-5 h-5" /> : i === 1 ? <Truck className="w-5 h-5" /> : <ArrowRight className="w-5 h-5" />,
+      }))
+    : HOW_IT_WORKS;
 
   return (
     <>
@@ -220,7 +224,7 @@ export default async function HomePage() {
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-maroon-700 to-gold-500" />
               <div className="p-8 lg:p-10">
                 <div className="w-12 h-12 rounded-2xl bg-maroon-700/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">🌸</span>
+                  <Home className="w-7 h-7 text-maroon-700" />
                 </div>
                 <h3 className="font-display text-3xl text-maroon-700 font-semibold mb-3">
                   Wedding Hospitality
@@ -258,7 +262,7 @@ export default async function HomePage() {
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-500 to-maroon-700" />
               <div className="p-8 lg:p-10">
                 <div className="w-12 h-12 rounded-2xl bg-gold-500/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">🚁</span>
+                  <Truck className="w-7 h-7 text-gold-600" />
                 </div>
                 <h3 className="font-display text-3xl text-maroon-700 font-semibold mb-3">
                   Logistics & On-Ground Crew
@@ -310,7 +314,7 @@ export default async function HomePage() {
                   <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-gold-300 to-transparent -translate-y-1/2 z-0" />
                 )}
                 <div className="relative z-10 text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-cream-100 border border-cream-300 flex items-center justify-center mx-auto mb-4 text-3xl">
+                  <div className="w-16 h-16 rounded-2xl bg-cream-100 border border-cream-300 flex items-center justify-center mx-auto mb-4 text-gold-500">
                     {step.icon}
                   </div>
                   <div className="text-gold-500 font-display text-sm font-semibold mb-2">

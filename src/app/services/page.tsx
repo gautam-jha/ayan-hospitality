@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getHospitalityServices, getLogisticsServices } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Home, Truck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Wedding Hospitality & Logistics Services',
@@ -21,7 +21,7 @@ export default async function ServicesPage() {
       id: 'hospitality',
       title: 'Wedding Hospitality',
       description: 'Everything that touches your guest experience — from the first RSVP to the final farewell.',
-      emoji: '🌸',
+      icon: <Home className="w-7 h-7" />,
       color: 'maroon',
       href: '/services/hospitality',
       services: hospitality,
@@ -30,7 +30,7 @@ export default async function ServicesPage() {
       id: 'logistics',
       title: 'Logistics & On-Ground Crew',
       description: 'Every vehicle, bag, movement, and on-ground team member — coordinated with precision.',
-      emoji: '🚁',
+      icon: <Truck className="w-7 h-7" />,
       color: 'gold',
       href: '/services/logistics',
       services: logistics,
@@ -61,7 +61,9 @@ export default async function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
               <div>
-                <div className="text-3xl mb-3">{pillar.emoji}</div>
+                <div className="w-14 h-14 rounded-2xl bg-maroon-700/10 flex items-center justify-center mb-3 text-maroon-700">
+                  {pillar.icon}
+                </div>
                 <h2 className="font-display text-4xl text-maroon-700 font-semibold">{pillar.title}</h2>
                 <p className="text-charcoal-muted mt-2 max-w-xl">{pillar.description}</p>
               </div>
