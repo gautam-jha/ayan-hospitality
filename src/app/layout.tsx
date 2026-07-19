@@ -8,6 +8,7 @@ import { SanityLive } from "@/sanity/live";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { getSiteSettings } from "@/lib/repository";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -21,6 +22,8 @@ const inter = Inter({
   variable: "--font-inter",
   display: "swap",
 });
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ayanhospitality.com"),
@@ -102,6 +105,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const settings = await getSiteSettings();
+
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
@@ -112,10 +117,10 @@ export default async function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col font-body antialiased">
         <a href="#main-content" className="skip-link">Skip to main content</a>
-        <Header />
+        <Header whatsAppNumber={settings?.whatsAppNumber} />
         <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
-        <Footer />
-        <WhatsAppFAB />
+        <Footer settings={settings} />
+        <WhatsAppFAB whatsAppNumber={settings?.whatsAppNumber} />
         <SanityLive />
         {(await draftMode()).isEnabled && (
           <>

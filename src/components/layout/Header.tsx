@@ -13,10 +13,9 @@ const NAV_ITEMS = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const WHATSAPP_NUMBER = '918826104232';
 const WHATSAPP_DEFAULT_MSG = encodeURIComponent('Hi Ayan Hospitality, I\'d like to discuss hospitality and logistics for my upcoming wedding.');
 
-export function Header() {
+export function Header({ whatsAppNumber = '918826104232' }: { whatsAppNumber?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -115,7 +114,7 @@ export function Header() {
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_DEFAULT_MSG}`}
+              href={`https://wa.me/${whatsAppNumber}?text=${WHATSAPP_DEFAULT_MSG}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-whatsapp text-white text-sm font-medium hover:brightness-110 active:scale-95 transition-all"
@@ -172,7 +171,7 @@ export function Header() {
           })}
           <div className="pt-4 grid grid-cols-2 gap-3">
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_DEFAULT_MSG}`}
+              href={`https://wa.me/${whatsAppNumber}?text=${WHATSAPP_DEFAULT_MSG}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-whatsapp text-white text-sm font-medium active:scale-95 transition-all"

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import type { SiteSettings } from '@/lib/repository';
 
 const HOSPITALITY_LINKS = [
   { href: '/services/hospitality/rsvp-invitation-management', label: 'RSVP Management' },
@@ -28,7 +29,13 @@ const COMPANY_LINKS = [
   { href: '/careers', label: 'Careers' },
 ];
 
-export function Footer() {
+export function Footer({ settings }: { settings?: SiteSettings | null }) {
+  const displayPhone = settings?.phone || '+91 88261 04232';
+  const telLink = settings?.phone ? `tel:${settings.phone.replace(/[^+\d]/g, '')}` : 'tel:+918826104232';
+  const displayEmail = settings?.email || 'hello@ayanhospitality.com';
+  const displayAddress = settings?.address || 'Delhi NCR · Mumbai · Bangalore\nand 30+ cities across India';
+  const displayWhatsApp = settings?.whatsAppNumber || '918826104232';
+
   return (
     <footer className="bg-maroon-900 text-cream-200">
       {/* Main footer */}
@@ -49,17 +56,17 @@ export function Footer() {
               India&apos;s trusted wedding hospitality & logistics partner. 15+ years, 800+ weddings, 1,00,000+ guests welcomed across 30+ cities.
             </p>
             <div className="space-y-3">
-              <a href="tel:+918826104232" className="flex items-center gap-3 text-cream-300/80 hover:text-gold-400 transition-colors text-sm">
+              <a href={telLink} className="flex items-center gap-3 text-cream-300/80 hover:text-gold-400 transition-colors text-sm">
                 <Phone className="w-4 h-4 text-gold-500 shrink-0" />
-                +91 88261 04232
+                {displayPhone}
               </a>
-              <a href="mailto:hello@ayanhospitality.com" className="flex items-center gap-3 text-cream-300/80 hover:text-gold-400 transition-colors text-sm">
+              <a href={`mailto:${displayEmail}`} className="flex items-center gap-3 text-cream-300/80 hover:text-gold-400 transition-colors text-sm">
                 <Mail className="w-4 h-4 text-gold-500 shrink-0" />
-                hello@ayanhospitality.com
+                {displayEmail}
               </a>
               <div className="flex items-start gap-3 text-cream-300/80 text-sm">
                 <MapPin className="w-4 h-4 text-gold-500 shrink-0 mt-0.5" />
-                <span>Delhi NCR · Mumbai · Bangalore<br />and 30+ cities across India</span>
+                <span className="whitespace-pre-line">{displayAddress}</span>
               </div>
             </div>
           </div>
@@ -125,7 +132,7 @@ export function Footer() {
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
             <a
-              href="https://wa.me/918826104232?text=Hi%20Ayan%20Hospitality%2C%20I%27d%20like%20to%20discuss%20my%20wedding."
+              href={`https://wa.me/${displayWhatsApp}?text=Hi%20Ayan%20Hospitality%2C%20I%27d%20like%20to%20discuss%20my%20wedding.`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"

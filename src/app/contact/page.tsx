@@ -1,13 +1,21 @@
 import type { Metadata } from 'next';
 import { Phone, Mail } from 'lucide-react';
 import { ContactPageForm } from '@/components/ContactPageForm';
+import { getSiteSettings } from '@/lib/repository';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Get a Free Consultation',
   description: 'Get in touch with Ayan Hospitality for a free wedding consultation. Call, WhatsApp, or fill the form. We respond within 24 hours.',
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const settings = await getSiteSettings();
+
+  const displayPhone = settings?.phone || '+91 88261 04232';
+  const telLink = settings?.phone ? `tel:${settings.phone.replace(/[^+\d]/g, '')}` : 'tel:+918826104232';
+  const displayEmail = settings?.email || 'hello@ayanhospitality.com';
+  const displayWhatsApp = settings?.whatsAppNumber || '918826104232';
+
   return (
     <div className="pt-20">
       <section className="section-padding bg-gradient-to-b from-cream-200 to-cream-100">
@@ -27,17 +35,17 @@ export default function ContactPage() {
             <div>
               <h2 className="font-display text-2xl text-maroon-700 font-semibold mb-6">Reach us directly</h2>
               <div className="space-y-4">
-                <a href="tel:+918826104232" id="contact-phone" className="flex items-center gap-4 p-4 rounded-2xl bg-cream-100 border border-cream-300 hover:border-maroon-700/30 transition-colors group">
+                <a href={telLink} id="contact-phone" className="flex items-center gap-4 p-4 rounded-2xl bg-cream-100 border border-cream-300 hover:border-maroon-700/30 transition-colors group">
                   <div className="w-10 h-10 rounded-xl bg-maroon-700 flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <p className="text-xs text-charcoal-muted uppercase tracking-wide">Phone</p>
-                    <p className="font-semibold text-charcoal group-hover:text-maroon-700 transition-colors">+91 88261 04232</p>
+                    <p className="font-semibold text-charcoal group-hover:text-maroon-700 transition-colors">{displayPhone}</p>
                   </div>
                 </a>
                 <a
-                  href="https://wa.me/918826104232?text=Hi%20Ayan%20Hospitality%2C%20I%27d%20like%20to%20discuss%20my%20wedding."
+                  href={`https://wa.me/${displayWhatsApp}?text=Hi%20Ayan%20Hospitality%2C%20I%27d%20like%20to%20discuss%20my%20wedding.`}
                   target="_blank" rel="noopener noreferrer" id="contact-whatsapp"
                   className="flex items-center gap-4 p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 hover:border-[#25D366] transition-colors group"
                 >
@@ -46,16 +54,16 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-xs text-charcoal-muted uppercase tracking-wide">WhatsApp</p>
-                    <p className="font-semibold text-charcoal group-hover:text-whatsapp transition-colors">+91 88261 04232</p>
+                    <p className="font-semibold text-charcoal group-hover:text-whatsapp transition-colors">+{displayWhatsApp.replace(/[^0-9]/g, '')}</p>
                   </div>
                 </a>
-                <a href="mailto:hello@ayanhospitality.com" id="contact-email" className="flex items-center gap-4 p-4 rounded-2xl bg-cream-100 border border-cream-300 hover:border-maroon-700/30 transition-colors group">
+                <a href={`mailto:${displayEmail}`} id="contact-email" className="flex items-center gap-4 p-4 rounded-2xl bg-cream-100 border border-cream-300 hover:border-maroon-700/30 transition-colors group">
                   <div className="w-10 h-10 rounded-xl bg-maroon-700 flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <p className="text-xs text-charcoal-muted uppercase tracking-wide">Email</p>
-                    <p className="font-semibold text-charcoal group-hover:text-maroon-700 transition-colors">hello@ayanhospitality.com</p>
+                    <p className="font-semibold text-charcoal group-hover:text-maroon-700 transition-colors">{displayEmail}</p>
                   </div>
                 </a>
               </div>

@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
-import { getLeadership, getAllTeamMembers } from '@/lib/repository';
+import { getLeadership, getAllTeamMembers, getSiteSettings, getTimeline } from '@/lib/repository';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'About Us | Our Story & Team',
-  description: 'Founded by Ayan Shah after 15+ years in the wedding industry, Ayan Hospitality was built to take the chaos of operations completely off the host family\'s shoulders. Meet our team.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  const founderName = settings?.founderName || 'Ayan Shah';
+  return {
+    title: 'About Us | Our Story & Team',
+    description: `Founded by ${founderName} after 15+ years in the wedding industry, Ayan Hospitality was built to take the chaos of operations completely off the host family's shoulders. Meet our team.`,
+  };
+}
 
 const TIMELINE = [
   { year: '2009', event: 'First steps in the industry', detail: 'Ayan begins working in wedding operations, learning the industry from the ground up, event by event.' },
@@ -18,8 +22,15 @@ const TIMELINE = [
 ];
 
 export default async function AboutPage() {
-  const [leadership, allTeam] = await Promise.all([getLeadership(), getAllTeamMembers()]);
+  const [leadership, allTeam, settings, fetchedTimeline] = await Promise.all([
+    getLeadership(),
+    getAllTeamMembers(),
+    getSiteSettings(),
+    getTimeline(),
+  ]);
   const crew = allTeam.filter((m) => !m.isLeadership);
+  const timelineData = fetchedTimeline?.length ? fetchedTimeline : TIMELINE;
+  const founderName = settings?.founderName || 'Ayan Shah';
 
   return (
     <div className="pt-20">
@@ -43,21 +54,21 @@ export default async function AboutPage() {
             <div>
               <SectionHeading eyebrow="Founder's Story" title="15 years. 800+ weddings. One mission." />
               <div className="mt-6 space-y-5 text-charcoal-soft leading-relaxed">
-                <p>Ayan Shah spent his first decade in the wedding industry watching the same story repeat itself: a family would plan every detail of their wedding, including the decor, food, and music, and then hand the guest experience to a fragmented collection of vendors who had never worked together before.</p>
+                <p>{founderName} spent his first decade in the wedding industry watching the same story repeat itself: a family would plan every detail of their wedding, including the decor, food, and music, and then hand the guest experience to a fragmented collection of vendors who had never worked together before.</p>
                 <p>The result was always some version of the same chaos: guests who couldn&apos;t find their driver, luggage that arrived at the wrong room, elderly relatives who needed help but didn&apos;t know who to call, a help desk that was really just a harried family member&apos;s phone number.</p>
-                <p>&ldquo;Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that.&rdquo;</p>
+                <p>&ldquo;{settings?.founderQuote || "Every family I worked with spent their wedding managing things instead of celebrating it. I wanted to change that."}&rdquo;</p>
                 <p>He founded Ayan Hospitality to be the company he always wished existed: one that doesn&apos;t just describe hospitality as a service, but actually delivers it as an experience.</p>
               </div>
             </div>
             {/* Timeline */}
             <div className="space-y-6">
-              {TIMELINE.map((item, idx) => (
+              {timelineData.map((item, idx) => (
                 <div key={item.year} className="flex gap-6">
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center shrink-0">
                       <span className="text-white text-xs font-bold">{item.year.slice(2)}</span>
                     </div>
-                    {idx < TIMELINE.length - 1 && <div className="w-px flex-1 bg-gold-200 mt-2" />}
+                    {idx < timelineData.length - 1 && <div className="w-px flex-1 bg-gold-200 mt-2" />}
                   </div>
                   <div className="pb-6">
                     <div className="text-gold-600 text-xs font-semibold mb-1">{item.year}</div>

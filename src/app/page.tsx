@@ -7,6 +7,8 @@ import {
   getAllTestimonials,
   getRecentBlogPosts,
   getFeaturedCaseStudy,
+  getSiteSettings,
+  getHowItWorksSteps,
 } from "@/lib/repository";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
@@ -76,7 +78,7 @@ const HOW_IT_WORKS = [
 ];
 
 export default async function HomePage() {
-  const [hospitalityServices, logisticsServices, stats, testimonials, blogPosts, featuredCase] =
+  const [hospitalityServices, logisticsServices, stats, testimonials, blogPosts, featuredCase, settings, hiwSteps] =
     await Promise.all([
       getHospitalityServices(),
       getLogisticsServices(),
@@ -84,11 +86,19 @@ export default async function HomePage() {
       getAllTestimonials(),
       getRecentBlogPosts(3),
       getFeaturedCaseStudy(),
+      getSiteSettings(),
+      getHowItWorksSteps(),
     ]);
 
   const waUrl = buildWhatsAppUrl(
     "Hi Ayan Hospitality, I'd like to discuss hospitality and logistics for my upcoming wedding."
   );
+
+  const logosList = settings?.partnerLogos?.length
+    ? settings.partnerLogos.map((p) => p.name)
+    : PARTNER_LOGOS;
+
+  const processSteps = hiwSteps?.length ? hiwSteps : HOW_IT_WORKS;
 
   return (
     <>
@@ -165,7 +175,7 @@ export default async function HomePage() {
       <section className="bg-white border-y border-cream-300 py-6 overflow-hidden" aria-label="Hotel and venue partners">
         <div className="relative">
           <div className="marquee-track">
-            {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, i) => (
+            {[...logosList, ...logosList].map((logo, i) => (
               <div
                 key={i}
                 className="flex items-center justify-center px-10 shrink-0"
@@ -282,9 +292,9 @@ export default async function HomePage() {
             centered
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {HOW_IT_WORKS.map((step, index) => (
+            {processSteps.map((step, index) => (
               <div key={step.step} className="relative">
-                {index < HOW_IT_WORKS.length - 1 && (
+                {index < processSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-gold-300 to-transparent -translate-y-1/2 z-0" />
                 )}
                 <div className="relative z-10 text-center">
@@ -508,7 +518,7 @@ export default async function HomePage() {
             <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-cream-300 shadow-warm-lg shrink-0">
               <div
                 className="w-full h-full bg-cover bg-center bg-maroon-700"
-                style={{ backgroundImage: "url('/images/team/ayan-shah.jpg')" }}
+                style={{ backgroundImage: `url('${settings?.founderImageUrl || "/images/team/ayan-shah.jpg"}')` }}
               />
             </div>
             <div className="text-center lg:text-left max-w-2xl">
@@ -516,14 +526,14 @@ export default async function HomePage() {
                 Founder-Led · 15+ Years
               </p>
               <blockquote className="font-display text-3xl lg:text-4xl text-maroon-700 font-semibold leading-tight mb-6">
-                &ldquo;I started this company because I saw, again and again, that the most important moments of a family&apos;s life were being left to chance.&rdquo;
+                &ldquo;{settings?.founderQuote || "I started this company because I saw, again and again, that the most important moments of a family's life were being left to chance."}&rdquo;
               </blockquote>
               <p className="text-charcoal-muted leading-relaxed mb-6">
-                Ayan Shah has spent 15 years in the wedding industry. He built Ayan Hospitality to be the team he always wished existed, one that takes the weight of operations completely off the host family&apos;s shoulders.
+                {settings?.founderBio || "Ayan Shah has spent 15 years in the wedding industry. He built Ayan Hospitality to be the team he always wished existed, one that takes the weight of operations completely off the host family's shoulders."}
               </p>
               <div className="flex items-center gap-2 mb-6 justify-center lg:justify-start">
-                <div className="font-semibold text-charcoal">Ayan Shah</div>
-                <div className="text-charcoal-muted text-sm">· Founder & Managing Director</div>
+                <div className="font-semibold text-charcoal">{settings?.founderName || "Ayan Shah"}</div>
+                <div className="text-charcoal-muted text-sm">· {settings?.founderTitle || "Founder & Managing Director"}</div>
               </div>
               <Button href="/about" variant="ghost" id="founder-read-story">
                 Read our story <ArrowRight className="w-4 h-4" />
