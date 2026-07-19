@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFAB } from "@/components/layout/WhatsAppFAB";
+import { VisualEditingWrapper } from "@/components/VisualEditingWrapper";
 import { getSiteSettings, getAreaServed } from "@/lib/repository";
 
 const playfair = Playfair_Display({
@@ -114,6 +115,7 @@ export default async function RootLayout({
         <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
         <Footer settings={settings} />
         <WhatsAppFAB whatsAppNumber={settings?.whatsAppNumber} />
+        <VisualEditingWrapper />
       </body>
     </html>
   );
