@@ -445,6 +445,7 @@ export interface SiteSettings {
   founderBio: string;
   founderQuote: string;
   founderImageUrl: string;
+  heroImageUrl: string;
   partnerLogos: { name: string; logoUrl: string }[];
 }
 
@@ -461,6 +462,7 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
       founderBio,
       founderQuote,
       founderImage,
+      heroImage,
       partnerLogos[] { name, logo }
     }`
   );
@@ -475,6 +477,7 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     founderBio: raw.founderBio ?? "",
     founderQuote: raw.founderQuote ?? "",
     founderImageUrl: imageUrl(raw.founderImage),
+    heroImageUrl: imageUrl(raw.heroImage),
     partnerLogos: (raw.partnerLogos ?? []).map((p: { name: string; logo: unknown }) => ({
       name: p.name,
       logoUrl: imageUrl(p.logo),
