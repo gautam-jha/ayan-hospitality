@@ -1,9 +1,13 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "ayan-hospitality",
-	"pages_build_output_dir": "out",
+	"main": "src/worker.js",
 	"compatibility_date": "2026-07-12",
 	"compatibility_flags": [
 		"nodejs_compat"
-	]
+	],
+	"assets": {
+		"directory": "out",
+		"binding": "ASSETS"
+	}
 }
