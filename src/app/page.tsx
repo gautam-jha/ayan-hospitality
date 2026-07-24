@@ -57,9 +57,7 @@ export default async function HomePage() {
     "Hi Ayan Hospitality, I'd like to discuss hospitality and logistics for my upcoming wedding."
   );
 
-  const logosList = settings?.partnerLogos?.length
-    ? settings.partnerLogos.map((p) => p.name)
-    : [];
+  const logosList = settings?.partnerLogos || [];
 
   const rawSteps = hiwSteps || [];
   const processSteps = rawSteps.map((step, i) => {
@@ -159,23 +157,32 @@ export default async function HomePage() {
       </section>
 
       {/* ─── 2. Trust Bar: Partner logos ────────────────────────────────── */}
-      <section className="bg-white border-y border-cream-300 py-6 overflow-hidden" aria-label="Hotel and venue partners">
+      <section className="bg-white border-y border-cream-300 py-8 overflow-hidden" aria-label="Hotel and venue partners">
         <div className="relative">
-          <div className="marquee-track">
-            {[...logosList, ...logosList].map((logo, i) => (
+          <div className="marquee-track flex items-center">
+            {[...logosList, ...logosList].map((p, i) => (
               <div
                 key={i}
-                className="flex items-center justify-center px-10 shrink-0"
+                className="flex items-center justify-center px-12 shrink-0 group"
               >
-                <span className="font-display text-charcoal-subtle text-base font-medium tracking-wide whitespace-nowrap hover:text-maroon-700 transition-colors cursor-default">
-                  {logo}
-                </span>
+                {p.logoUrl ? (
+                  <img
+                    src={p.logoUrl}
+                    alt={p.name}
+                    className="h-12 w-auto max-w-[200px] object-contain opacity-70 group-hover:opacity-100 mix-blend-multiply transition-opacity duration-300 pointer-events-none"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="font-display text-charcoal-subtle text-lg font-medium tracking-wide whitespace-nowrap group-hover:text-maroon-700 transition-colors cursor-default">
+                    {p.name}
+                  </span>
+                )}
               </div>
             ))}
           </div>
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent pointer-events-none" />
         </div>
       </section>
 
