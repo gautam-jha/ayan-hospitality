@@ -12,7 +12,7 @@ export const client = createClient({
   apiVersion,
   useCdn: process.env.NODE_ENV === "production",
   stega: {
-    enabled: process.env.NEXT_PUBLIC_SANITY_VISUAL_EDITING === "true" || process.env.NODE_ENV === "development",
+    enabled: true,
     studioUrl: "https://ayan-hospitality.sanity.studio",
     filter: (props) => {
       // Prevent encoding slugs, paths, or anything that breaks URLs
