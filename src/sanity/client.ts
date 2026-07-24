@@ -15,8 +15,13 @@ export const client = createClient({
     enabled: true,
     studioUrl: "https://ayan-hospitality.sanity.studio",
     filter: (props) => {
-      // Prevent encoding slugs, paths, or anything that breaks URLs
+      // Prevent encoding ANY field attached to slugs!
       if (props.sourcePath.some(path => path === 'slug' || path === 'current')) {
+        return false;
+      }
+      // Extremely strict check: if a value looks exactly like a slug (only lowercase alphanumeric + dashes),
+      // do not inject stega encoded characters to prevent 404s on dynamic Next.js routes.
+      if (typeof props.value === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(props.value)) {
         return false;
       }
       return props.filterDefault(props);
